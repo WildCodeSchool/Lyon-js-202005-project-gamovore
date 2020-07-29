@@ -1,11 +1,24 @@
-import React from 'react'
 
+
+
+
+
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+import SidebarBox from "./boxbox/SidebarBox"
 import FooterBox from "./boxbox/FooterBox"
+
 
 function App() {
   return (
     <div className="App">
-    <Footer />
+
+   
+
+      <SidebarBox />
+      <Footer />
+
     </div>
   );
 }
