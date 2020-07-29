@@ -5,7 +5,6 @@ const SidebarBox = () => {
 
     return(
         <Sidebar />
-
     )
 
 }
