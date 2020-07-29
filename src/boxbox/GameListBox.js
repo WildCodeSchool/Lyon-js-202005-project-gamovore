@@ -1,11 +1,11 @@
 import React from 'react';
+import GameItem from '../components/GameItem';
+
 
 const GameListBox = () => {
     return (
         <div>
-            <h1>THE GAMES</h1>
-            <div>GAME CARDS</div>
-            <p>Ici la liste des jeux...</p>
+            <GameItem />
         </div>        
     )
 }
