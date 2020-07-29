@@ -1,9 +1,10 @@
 import React from "react";
+import Sidebar from "../containers/Sidebar"
 
 const SidebarBox = () => {
 
     return(
-        <div>Sidebar</div>
+        <Sidebar />
 
     )
 
