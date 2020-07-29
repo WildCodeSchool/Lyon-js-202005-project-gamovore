@@ -14,8 +14,8 @@ function App() {
       <SidebarBox />
       <MainBox />
       <FooterBox />
-
     </GridLayout>
+    
   )
 }
 
