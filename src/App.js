@@ -15,7 +15,7 @@ function App() {
       <FooterBox />
 
     </div>
-  );
+  )
 }
 
 export default App;
