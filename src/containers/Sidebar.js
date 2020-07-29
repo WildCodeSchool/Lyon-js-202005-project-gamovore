@@ -1,99 +1,97 @@
 import React from "react";
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import Ul from "../components/Ul";
+import UlInside from "../components/UlInside"
+import Li from "../components/Li"
 
 const Sidebar = () => {
 
     return(
         <Router>
-
-            <ul>
-                <li>             
+            <Ul>
+                <Li>             
                     <Link to="/">HOME</Link>
-                </li>
-            </ul>
-
-            <ul>
-                <li>
+                </Li>
+            </Ul>
+            <Ul>
+                <Li>
                     GAMES
-                </li>
-            <ul>
-                <li>
-                    PLATEFORMS
-                </li>
-                <ul>
-                    <li><input type="checkbox" /> PC </li>
-                    <li><input type="checkbox" /> PS4 </li>
-                    <li><input type="checkbox" /> XBOX360 </li>
-                </ul>
-            </ul>
+                </Li>
+                <UlInside>
+                    <Li>
+                        PLATEFORMS
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> PC </Li>
+                        <Li><input type="checkbox" /> PS4 </Li>
+                        <Li><input type="checkbox" /> XBOX360 </Li>
+                    </UlInside>
+                </UlInside>
 
-            <ul>
-                <li>
-                    MODES
-                </li>
-                <ul>
-                    <li><input type="checkbox" /> MMO </li>
-                    <li><input type="checkbox" /> CO-OPERATIVE </li>
-                    <li><input type="checkbox" /> MULTIPLAYERS </li>
-                </ul>
-            </ul>
+                <UlInside>
+                    <Li>
+                        MODES
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> MMO </Li>
+                        <Li><input type="checkbox" /> CO-OPERATIVE </Li>
+                        <Li><input type="checkbox" /> MULTIPLAYERS </Li>
+                    </UlInside>
+                </UlInside>
 
-            <ul>
-                <li>
-                    GENRES
-                </li>
-                <ul>
-                    <li><input type="checkbox" /> ACTION </li>
-                    <li><input type="checkbox" /> AVENTURE </li>
-                    <li><input type="checkbox" /> COURSE </li>
-                </ul>
-            </ul>
+                <UlInside>
+                    <Li>
+                        GENRES
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> ACTION </Li>
+                        <Li><input type="checkbox" /> AVENTURE </Li>
+                        <Li><input type="checkbox" /> COURSE </Li>
+                    </UlInside>
+                </UlInside>
 
-            </ul>
-
-
-<ul>
-    <li>
-            GAMOVORES
-    </li>
-    <ul>
-        <li>
-             GAMING MODE
-        </li>
-        <ul>
-                <li><input type="checkbox" /> MMO </li>
-                <li><input type="checkbox" /> CO-OPERATIVE </li>
-                <li><input type="checkbox" /> MULTIPLAYERS </li>
-         </ul>
-    </ul>
-
-    <ul>
-        <li>
-             DISPONIBILITIES
-        </li>
-        <ul>
-                <li><input type="checkbox" /> MORNING </li>
-                <li><input type="checkbox" /> DAY </li>
-                <li><input type="checkbox" /> SOIREE </li>
-                <li><input type="checkbox" /> NIGHT </li>
-         </ul>
-    </ul>
-
-    <ul>
-        <li>
-             GENRES
-        </li>
-        <ul>
-                <li><input type="checkbox" /> ACTION </li>
-                <li><input type="checkbox" /> AVENTURE </li>
-                <li><input type="checkbox" /> COURSE </li>
-         </ul>
-    </ul>
-
-</ul>
+            </Ul>
 
 
+            <Ul>
+                <Li>
+                    GAMOVORES
+                </Li>
+                <UlInside>
+                    <Li>
+                        GAMING MODE
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> MMO </Li>
+                        <Li><input type="checkbox" /> CO-OPERATIVE </Li>
+                        <Li><input type="checkbox" /> MULTIPLAYERS </Li>
+                    </UlInside>
+                </UlInside>
 
+                <UlInside>
+                    <Li>
+                        DISPONIBILITIES
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> MORNING </Li>
+                        <Li><input type="checkbox" /> DAY </Li>
+                        <Li><input type="checkbox" /> SOIREE </Li>
+                        <Li><input type="checkbox" /> NIGHT </Li>
+                    </UlInside>
+                </UlInside>
+
+                <UlInside>
+                    <Li>
+                        GENRES
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> ACTION </Li>
+                        <Li><input type="checkbox" /> AVENTURE </Li>
+                        <Li><input type="checkbox" /> COURSE </Li>
+                    </UlInside>
+                </UlInside>
+
+            </Ul>
 
 </Router>
 
