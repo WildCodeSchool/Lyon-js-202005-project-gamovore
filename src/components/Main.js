@@ -1,12 +1,9 @@
-import React from 'react';
-import GameListBox from "../boxbox/GameListBox"
+import styled from 'styled-components';
 
-function Main() {
-  return (
-    <div>
-        <GameListBox />
-    </div>
-  );
-}
+const Main = styled.main`
+    grid-area: main;
+    background-color: #393431;
+    padding: 2%;
+`;
 
 export default Main;
