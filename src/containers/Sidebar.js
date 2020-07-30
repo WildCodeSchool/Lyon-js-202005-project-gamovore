@@ -7,10 +7,10 @@ import SidebarItemMenu from "../components/SidebarItemMenu"
 const Sidebar = () => {
 
     return(
-        <Router>
+  <>
             <SidebarMenu>
                 <SidebarItemMenu>             
-                    <Link to="/">HOME</Link>
+                    HOME
                 </SidebarItemMenu>
             </SidebarMenu>
             <SidebarMenu>
@@ -93,7 +93,7 @@ const Sidebar = () => {
 
             </SidebarMenu>
 
-</Router>
+</>
 
     )
 
