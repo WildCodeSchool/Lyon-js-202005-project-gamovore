@@ -1,11 +1,13 @@
 import React from 'react';
-import GameListBox from "./GameListBox"
+import GameListBox from "./GameListBox";
 import Main from '../components/Main';
+
 
 function MainBox() {
   return (
     <Main>
-        <GameListBox />
+
+        <GameListBox />  
     </Main>
   );
 }

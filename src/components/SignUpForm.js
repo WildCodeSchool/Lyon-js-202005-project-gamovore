@@ -1,16 +1,25 @@
 import React from 'react';
+import Form from "./Form";
+import Input from "./Input";
+import Button from "./Button";
+import SeparForm from "./SeparForm";
 
 const SignUpForm = () => {
     return (
-        <form>
-            <label for="pseudo">Pseudo:</label>
-            <input type="text" id="pseudo" name="pseudo" required />
-            <label for="mail">e-mail:</label>
-            <input type="email" id="mail" name="e-mail" required />
-            <label for="pass">Password (min 8 character):</label>
-            <input type="password" id="pass" name="password" minLength="8" required />
-            <button type="submit">Sign Up</button>
-        </form>
+        <Form>
+            <h1>Join Gamovore</h1>
+            <p>Sign up to find other gamovores</p>
+            <label htmlFor="pseudoAdd"></label>
+            <Input type="text" id="pseudoAdd" name="pseudo" placeholder="Your pseudo here" required />
+            <label htmlFor="mail"></label>
+            <Input type="email" id="mail" name="e-mail" placeholder="Your e-mail here"required />
+            <label htmlFor="passAdd"></label>
+            <Input type="password" id="passAdd" name="password" minLength="8" placeholder="Your password here" required />
+            <input type="checkbox" /> I agree to your Terms and Conditions
+            <Button type="submit">Create your free account</Button>
+            <SeparForm/>
+            <p>Already registered? Sign in</p>
+        </Form>
     )
 }
 
