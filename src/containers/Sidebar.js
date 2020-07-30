@@ -7,10 +7,10 @@ import Li from "../components/Li"
 const Sidebar = () => {
 
     return(
-        <Router>
+
             <Ul>
                 <Li>             
-                    <Link to="/">HOME</Link>
+                    HOME
                 </Li>
             </Ul>
             <Ul>
@@ -93,7 +93,7 @@ const Sidebar = () => {
 
             </Ul>
 
-</Router>
+
 
     )
 
