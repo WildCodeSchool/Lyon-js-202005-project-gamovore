@@ -1,97 +1,97 @@
 import React from "react";
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-import SidebarMenu from "../components/SidebarMenu";
-import SidebarSubMenu from "../components/SidebarSubMenu"
-import SidebarItemMenu from "../components/SidebarItemMenu"
+import Ul from "../components/Ul";
+import UlInside from "../components/UlInside"
+import Li from "../components/Li"
 
 const Sidebar = () => {
 
     return(
         <Router>
-            <SidebarMenu>
-                <SidebarItemMenu>             
+            <Ul>
+                <Li>             
                     <Link to="/">HOME</Link>
-                </SidebarItemMenu>
-            </SidebarMenu>
-            <SidebarMenu>
-                <SidebarItemMenu>
+                </Li>
+            </Ul>
+            <Ul>
+                <Li>
                     GAMES
-                </SidebarItemMenu>
-                <SidebarSubMenu>
-                    <SidebarItemMenu>
+                </Li>
+                <UlInside>
+                    <Li>
                         PLATEFORMS
-                    </SidebarItemMenu>
-                    <SidebarSubMenu>
-                        <SidebarItemMenu><input type="checkbox" /> PC </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> PS4 </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> XBOX360 </SidebarItemMenu>
-                    </SidebarSubMenu>
-                </SidebarSubMenu>
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> PC </Li>
+                        <Li><input type="checkbox" /> PS4 </Li>
+                        <Li><input type="checkbox" /> XBOX360 </Li>
+                    </UlInside>
+                </UlInside>
 
-                <SidebarSubMenu>
-                    <SidebarItemMenu>
+                <UlInside>
+                    <Li>
                         MODES
-                    </SidebarItemMenu>
-                    <SidebarSubMenu>
-                        <SidebarItemMenu><input type="checkbox" /> MMO </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> CO-OPERATIVE </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> MULTIPLAYERS </SidebarItemMenu>
-                    </SidebarSubMenu>
-                </SidebarSubMenu>
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> MMO </Li>
+                        <Li><input type="checkbox" /> CO-OPERATIVE </Li>
+                        <Li><input type="checkbox" /> MULTIPLAYERS </Li>
+                    </UlInside>
+                </UlInside>
 
-                <SidebarSubMenu>
-                    <SidebarItemMenu>
+                <UlInside>
+                    <Li>
                         GENRES
-                    </SidebarItemMenu>
-                    <SidebarSubMenu>
-                        <SidebarItemMenu><input type="checkbox" /> ACTION </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> AVENTURE </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> COURSE </SidebarItemMenu>
-                    </SidebarSubMenu>
-                </SidebarSubMenu>
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> ACTION </Li>
+                        <Li><input type="checkbox" /> AVENTURE </Li>
+                        <Li><input type="checkbox" /> COURSE </Li>
+                    </UlInside>
+                </UlInside>
 
-            </SidebarMenu>
+            </Ul>
 
 
-            <SidebarMenu>
-                <SidebarItemMenu>
+            <Ul>
+                <Li>
                     GAMOVORES
-                </SidebarItemMenu>
-                <SidebarSubMenu>
-                    <SidebarItemMenu>
+                </Li>
+                <UlInside>
+                    <Li>
                         GAMING MODE
-                    </SidebarItemMenu>
-                    <SidebarSubMenu>
-                        <SidebarItemMenu><input type="checkbox" /> MMO </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> CO-OPERATIVE </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> MULTIPLAYERS </SidebarItemMenu>
-                    </SidebarSubMenu>
-                </SidebarSubMenu>
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> MMO </Li>
+                        <Li><input type="checkbox" /> CO-OPERATIVE </Li>
+                        <Li><input type="checkbox" /> MULTIPLAYERS </Li>
+                    </UlInside>
+                </UlInside>
 
-                <SidebarSubMenu>
-                    <SidebarItemMenu>
+                <UlInside>
+                    <Li>
                         DISPONIBILITIES
-                    </SidebarItemMenu>
-                    <SidebarSubMenu>
-                        <SidebarItemMenu><input type="checkbox" /> MORNING </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> DAY </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> SOIREE </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> NIGHT </SidebarItemMenu>
-                    </SidebarSubMenu>
-                </SidebarSubMenu>
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> MORNING </Li>
+                        <Li><input type="checkbox" /> DAY </Li>
+                        <Li><input type="checkbox" /> SOIREE </Li>
+                        <Li><input type="checkbox" /> NIGHT </Li>
+                    </UlInside>
+                </UlInside>
 
-                <SidebarSubMenu>
-                    <SidebarItemMenu>
+                <UlInside>
+                    <Li>
                         GENRES
-                    </SidebarItemMenu>
-                    <SidebarSubMenu>
-                        <SidebarItemMenu><input type="checkbox" /> ACTION </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> AVENTURE </SidebarItemMenu>
-                        <SidebarItemMenu><input type="checkbox" /> COURSE </SidebarItemMenu>
-                    </SidebarSubMenu>
-                </SidebarSubMenu>
+                    </Li>
+                    <UlInside>
+                        <Li><input type="checkbox" /> ACTION </Li>
+                        <Li><input type="checkbox" /> AVENTURE </Li>
+                        <Li><input type="checkbox" /> COURSE </Li>
+                    </UlInside>
+                </UlInside>
 
-            </SidebarMenu>
+            </Ul>
 
 </Router>
 

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const SidebarSubMenu = styled.ul`
+const UlInside = styled.ul`
   padding: 0;
   list-style-type: none;
   text-transform:uppercase;
 `;
 
-export default SidebarSubMenu;
+export default UlInside;

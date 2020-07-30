@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SidebarMenu = styled.ul`
+const Ul = styled.ul`
   list-style-type: none; 
   text-transform:uppercase;
   margin:0;
@@ -33,5 +33,5 @@ const SidebarMenu = styled.ul`
   }
 `;
 
-export default SidebarMenu;
+export default Ul;
 
