@@ -7,6 +7,7 @@ function HeaderBox () {
         <Header>
             <img src={logoGamovore} alt="logo_gamovore" width="85px" height="81px"/>
             <h1>Gamovore</h1>
+            <ProfilButton/>
         </Header>
     );
 }
