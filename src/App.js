@@ -1,13 +1,11 @@
-import React from 'react';
-import HeaderBox from './boxbox/HeaderBox';
-import SidebarBox from "./boxbox/SidebarBox"
-import FooterBox from "./boxbox/FooterBox"
-import MainBox from "./boxbox/MainBox"
+import React from "react";
+import HeaderBox from "./components/HeaderBox";
+import SidebarBox from "./components/SidebarBox";
+import FooterBox from "./components/FooterBox";
+import MainBox from "./components/MainBox";
 import GridLayout from "./components/GridLayout";
-import SignInForm from './components/SignInForm';
-import SignUpForm from './components/SignUpForm';
-
-
+import SignInForm from "./components/SignInForm";
+import SignUpForm from "./components/SignUpForm";
 
 function App() {
   return (
@@ -18,9 +16,8 @@ function App() {
       <SidebarBox />
       <MainBox />
       <FooterBox />
-
     </GridLayout>
-  )
+  );
 }
 
 export default App;
