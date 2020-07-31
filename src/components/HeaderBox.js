@@ -1,6 +1,7 @@
 import React from 'react';
 import logoGamovore from '../logogamovorebrown.png';
-import Header from '../components/Header';
+import Header from './Header';
+import ProfilButton from './ProfilButton'
 
 function HeaderBox () {
     return (
