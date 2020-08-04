@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const GameItem = () => {
+const GamePage = () => {
     return (
         <div>
             <h1>SpongeBob SquarePants: Battle for Bikini Bottom - Rehydrated - Steam - Key GLOBAL</h1>
@@ -14,4 +14,4 @@ const GameItem = () => {
     )
 }
 
-export default GameItem; 
+export default GamePage; 
