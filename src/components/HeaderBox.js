@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import logoGamovore from '../logogamovorebrown.png';
 import Header from './Header';
 import ProfilButton from "./ProfilButton";
