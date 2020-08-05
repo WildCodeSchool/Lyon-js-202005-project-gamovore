@@ -1,13 +1,17 @@
-import React, { component, useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 import axios from "axios";
 import GameCard from "./GameCard";
+import Title from "./Title";
+import Loading from "./Loading";
+import LoadingImg from "./LoadingImg";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const GameListBox = () => {
-  const [game, setGame] = useState([]);
-  const GameListCall = () => {
+  const [gameList, setGameList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  if (loading && !gameList.length) {
     axios({
       url: "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
       method: "POST",
@@ -19,21 +23,32 @@ const GameListBox = () => {
     })
       .then((response) => response.data)
       .then((data) => {
-        setGame(data);
+        setGameList(data);
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
       });
-  };
+  }
 
-  useEffect(() => {
-    GameListCall();
-  }, []);
+  if (loading) {
+    return (
+      <Loading>
+        <Title>
+          Be patient young Gamovore, the duck is fishing a games for you ...
+        </Title>
+        <LoadingImg
+          src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
+          alt="loading"
+        />
+      </Loading>
+    );
+  }
 
   return (
     <ul>
-      {game.map((item) => (
-        <GameCard {...item} />
+      {gameList.map((item) => (
+        <GameCard {...item} key={item.id} />
       ))}
     </ul>
   );

@@ -10,6 +10,13 @@ margin: 0 0 0.25rem;
 border: none;
 border-radius: 10%;
 justify-content: center;
+border:solid 3px #453F3B;
+transition: all .6s ease-out;
+:hover{
+    cursor: pointer;
+    border: solid 3px #fbb700;
+    transition: all .6s ease-out;
+}
 
 `;
 

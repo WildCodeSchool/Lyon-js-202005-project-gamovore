@@ -4,7 +4,6 @@ import Profil from "../components/Profil";
 import ProfilPageLayout from "../components/ProfilPageLayout";
 import ProfilGameLayout from "../components/ProfilGameLayout";
 import ProfilAsideLayout from "../components/ProfilAsideLayout";
-import ProfilButton from "../components/ProfilButton";
 import MyGamovoreLayout from "../components/MyGamovoreLayout";
 import MyGamovoreProfilLayout from "../components/MyGamovoreProfilLayout";
 import SecondaryTitle from "../components/SecondaryTitle";
