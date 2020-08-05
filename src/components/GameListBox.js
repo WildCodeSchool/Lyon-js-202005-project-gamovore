@@ -15,12 +15,11 @@ const GameListBox = () => {
       Accept: "application/json",
       "user-key": API_KEY,
     },
-    data: "fields name, cover.url; limit 20; where rating>=85;",
+    data: "fields name, cover.url; limit 20; where total_rating_count>=80, multiplayer_modes.;",
   })
     .then((response) => response.data)
     .then((data) => {
       setGame(data);
-      console.log(data)
     })
     .catch((err) => {
       console.error(err);
