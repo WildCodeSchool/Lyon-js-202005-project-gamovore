@@ -11,10 +11,11 @@ border: none;
 border-radius: 10%;
 justify-content: center;
 border:solid 3px #453F3B;
-transition: all .8s ease-out;
+transition: all .6s ease-out;
 :hover{
     cursor: pointer;
     border: solid 3px #fbb700;
+    transition: all .6s ease-out;
 }
 
 `;
