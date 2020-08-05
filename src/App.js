@@ -33,7 +33,6 @@ export const AuthContext = createContext(null);
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
-
   return (
     <AuthContext.Provider value={{ currentUser, setCurrentUser }}> 
     <Router>
@@ -49,9 +48,9 @@ const App = () => {
         <Route exact path="/sign-in">
             <SignInForm />
         </Route>
-        <Route exact path="/sign-up">
+         <Route exact path="/sign-up">
             <SignUpForm />
-        </Route>
+        </Route> 
         <PrivateRoute exact path="/game-list" component={GameListBox} />
         <PrivateRoute exact path="/profil" component={ProfilPage} />
          

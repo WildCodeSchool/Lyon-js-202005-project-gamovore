@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "./Footer";
-import Linked from "./Linked";
+import ExtLink from "./ExtLink";
 import FooterSpan from "./FooterSpan";
 
 const FooterBox = () => {
@@ -11,25 +11,25 @@ const FooterBox = () => {
       ❤️
       </FooterSpan>
       by{" "}
-      <Linked to="https://www.linkedin.com/in/alexandra-lhermitte-802a54171/">
+      <ExtLink href="https://www.linkedin.com/in/alexandra-lhermitte-802a54171/" target="_blank">
         Alex
-      </Linked>
+      </ExtLink>
       ,{" "}
-      <Linked to="https://www.linkedin.com/in/alyson-bernabeu-08249a172/">
+      <ExtLink href="https://www.linkedin.com/in/alyson-bernabeu-08249a172/" target="_blank">
         Alyson
-      </Linked>
+      </ExtLink>
       ,{" "}
-      <Linked to="https://www.linkedin.com/in/guillaume-bento-aires-7623071a3/">
+      <ExtLink href="https://www.linkedin.com/in/guillaume-bento-aires-7623071a3/" target="_blank">
         Guillaume
-      </Linked>
+      </ExtLink>
       ,{" "}
-      <Linked to="https://www.linkedin.com/in/pablo-vilella-0bb66b195/">
+      <ExtLink href="https://www.linkedin.com/in/pablo-vilella-0bb66b195/" target="_blank">
         Pablo
-      </Linked>{" "}
+      </ExtLink>{" "}
       et{" "}
-      <Linked to="https://www.linkedin.com/in/s%C3%A9bastien-morin-70a0371ab/">
+      <ExtLink href="https://www.linkedin.com/in/s%C3%A9bastien-morin-70a0371ab/" target="_blank">
         Seb
-      </Linked>
+      </ExtLink>
     </Footer>
   );
 };
