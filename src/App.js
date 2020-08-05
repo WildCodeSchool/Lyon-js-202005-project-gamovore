@@ -16,6 +16,7 @@ import SignUpForm from "./components/SignUpForm";
 import GameListBox from "./components/GameListBox";
 import ProfilPage from "./containers/ProfilPage";
 
+
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { currentUser } = useContext(AuthContext);
   return (
@@ -51,6 +52,7 @@ const App = () => {
             <SignUpForm />
         </Route>
         <PrivateRoute exact path="/game-list" component={GameListBox} />
+        <PrivateRoute exact path="/profil" component={ProfilPage} />
          
       </Switch>
        

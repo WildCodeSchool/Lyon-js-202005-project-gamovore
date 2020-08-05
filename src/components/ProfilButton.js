@@ -13,7 +13,7 @@ const ProfilButton = () => {
     const { currentUser } = useContext(AuthContext);
     const detailsUser = UserBase.find(el => el.pseudo === currentUser);
     return (
-        <Linked to=""><StyleForProfilButton>
+        <Linked to="/profil"><StyleForProfilButton>
             <StyleForAvatar src={detailsUser.avatar}/>
             <StyleForPseudo>{detailsUser.pseudo}</StyleForPseudo>
         </StyleForProfilButton>
