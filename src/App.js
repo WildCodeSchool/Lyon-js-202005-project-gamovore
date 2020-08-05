@@ -36,7 +36,7 @@ const App = () => {
       <SidebarBox/> 
 
       <Main>
-       {/* <Switch>
+       <Switch>
         <Route exact path="/sign-in">
             <SignInForm />
         </Route>
@@ -45,9 +45,8 @@ const App = () => {
         </Route>
         <PrivateRoute path="/game-list" component={GameListBox} />
          
-      </Switch>  */}
-      <GameListBox />
-      
+      </Switch>
+       
       </Main>
       <FooterBox />
     </GridLayout>
