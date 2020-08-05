@@ -5,6 +5,7 @@ import Form from "./Form";
 import Input from "./Input";
 import Button from "./Button";
 import SeparForm from "./SeparForm";
+import Linked from "./Linked";
 
 const SignUpForm = () => {
     return (
@@ -20,7 +21,7 @@ const SignUpForm = () => {
             <input type="checkbox" /> I agree to your Terms and Conditions
             <Button type="submit">Create your free account</Button>
             <SeparForm/>
-            <p>Already registered?  <NavLink to="/sign-in">Sign in</NavLink></p>
+            <p>Already registered?  <Linked to="/sign-in">Sign in</Linked></p>
         </Form>
     )
 }
