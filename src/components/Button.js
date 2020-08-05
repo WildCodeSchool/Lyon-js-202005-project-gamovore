@@ -13,6 +13,13 @@ const Button = styled.button`
     border:none;
     padding:1%;
     width:50%;
+    transition: all .8s ease-out;
+
+    :hover {
+        background-color:black;
+        color:white;
+        cursor:pointer;
+    }
 `;
 
 export default Button;
