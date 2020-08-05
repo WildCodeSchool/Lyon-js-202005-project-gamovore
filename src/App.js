@@ -1,5 +1,11 @@
 import React, { createContext, useState, useContext } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+
 import HeaderBox from "./components/HeaderBox";
 import SidebarBox from "./components/SidebarBox";
 import FooterBox from "./components/FooterBox";
@@ -8,8 +14,7 @@ import GridLayout from "./components/GridLayout";
 import SignInForm from "./components/SignInForm";
 import SignUpForm from "./components/SignUpForm";
 import GameListBox from "./components/GameListBox";
-
-
+import ProfilPage from "./containers/ProfilPage";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { currentUser } = useContext(AuthContext);
@@ -55,6 +60,6 @@ const App = () => {
     </Router>
     </AuthContext.Provider>
   );
-}
+};
 
 export default App;
