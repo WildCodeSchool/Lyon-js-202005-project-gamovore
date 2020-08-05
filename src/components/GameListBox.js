@@ -8,10 +8,10 @@ import LoadingImg from "./LoadingImg";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const GameListBox = () => {
-  const [game, setGame] = useState([]);
+  const [gameList, setGameList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  if (loading && !game.length) {
+  if (loading && !gameList.length) {
     axios({
       url: "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
       method: "POST",
@@ -23,7 +23,7 @@ const GameListBox = () => {
     })
       .then((response) => response.data)
       .then((data) => {
-        setGame(data);
+        setGameList(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -47,7 +47,7 @@ const GameListBox = () => {
 
   return (
     <ul>
-      {game.map((item) => (
+      {gameList.map((item) => (
         <GameCard {...item} key={item.id} />
       ))}
     </ul>
