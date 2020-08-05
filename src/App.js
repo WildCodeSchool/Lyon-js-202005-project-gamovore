@@ -28,7 +28,9 @@ const App = () => {
   return (
     <AuthContext.Provider value={{ currentUser, setCurrentUser }}> 
     <Router>
-    <GridLayout Connected>
+    
+    <GridLayout>
+    
       <HeaderBox />
 
       <SidebarBox/> 
@@ -47,7 +49,7 @@ const App = () => {
       
       </Main>
       <FooterBox />
-    </GridLayout>
+      </GridLayout>
     </Router>
     </AuthContext.Provider>
   );
