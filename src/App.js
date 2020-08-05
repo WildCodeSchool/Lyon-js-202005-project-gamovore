@@ -33,6 +33,7 @@ export const AuthContext = createContext(null);
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
+
   return (
     <AuthContext.Provider value={{ currentUser, setCurrentUser }}> 
     <Router>

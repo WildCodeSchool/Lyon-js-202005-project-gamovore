@@ -9,7 +9,7 @@ const GridLayout = styled.div`
             "aside main" 
             "footer footer";
     grid-template-columns: 20% 1fr;
-    color:#f3f3f3;
+    color: #f3f3f3;
 
     & h1{
         color:#fbb700;

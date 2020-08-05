@@ -15,15 +15,15 @@ const SignInForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleUsernameChange(e) {
+  const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   }
 
-  function handlePasswordChange(e) {
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   }
 
-  function submitForm() {
+const submitForm = () => {
     if (!username) {
       return alert("Your need to enter a Username");
     } else if (!password) {
