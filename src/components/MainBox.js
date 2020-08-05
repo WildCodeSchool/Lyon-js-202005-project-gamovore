@@ -6,7 +6,7 @@ import Main from './Main';
 function MainBox() {
   return (
     <Main>
-        <GameListBox />  
+       
     </Main>
   );
 }
