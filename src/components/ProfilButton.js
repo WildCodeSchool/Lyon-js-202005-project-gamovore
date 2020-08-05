@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { AuthContext } from "../App";
+import { UserBase } from "../UserBase";
 
-import styled from "styled-components";
 import StyleForPseudo from "./Pseudo";
 import StyleForAvatar from "./Avatar";
 import StyleForProfilButton from "./StyledProfilButton";
 
-const user = {name: "KikiDu69", avatar:"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"};
 
 const ProfilButton = () => {
+    const { currentUser } = useContext(AuthContext);
+    const detailsUser = UserBase.find(el => el.pseudo === currentUser);
     return (
         <StyleForProfilButton>
-            <StyleForAvatar src={user.avatar}/>
-            <StyleForPseudo>{user.name}</StyleForPseudo>
+            <StyleForAvatar src={detailsUser.avatar}/>
+            <StyleForPseudo>{detailsUser.pseudo}</StyleForPseudo>
         </StyleForProfilButton>
     )
 }

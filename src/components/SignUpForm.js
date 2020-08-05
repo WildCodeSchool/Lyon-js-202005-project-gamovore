@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
+
 import Form from "./Form";
 import Input from "./Input";
 import Button from "./Button";
@@ -18,7 +20,7 @@ const SignUpForm = () => {
             <input type="checkbox" /> I agree to your Terms and Conditions
             <Button type="submit">Create your free account</Button>
             <SeparForm/>
-            <p>Already registered? Sign in</p>
+            <p>Already registered?  <NavLink to="/sign-in">Sign in</NavLink></p>
         </Form>
     )
 }
