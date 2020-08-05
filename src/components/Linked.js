@@ -3,11 +3,17 @@ import {Link} from 'react-router-dom';
 
 const Linked = styled(Link)`
 text-decoration:none;
-color:#fbb700;
+color: ${props => props.issidebar ? "#000000" : "#fbb700"};
 font-weight:bold;
 transition: all .8s ease-out;
 :hover{
-    color:#ffffff;
+    color: ${props => props.issidebar ? "#ffffff" : "#ffffff"}
+}
+:visited{
+    color: ${props => props.issidebar ? "#000000" : "#fbb700"};
+}
+:visited:hover{
+    color: ${props => props.issidebar ? "#ffffff" : "#ffffff"};
 }
 `;
 

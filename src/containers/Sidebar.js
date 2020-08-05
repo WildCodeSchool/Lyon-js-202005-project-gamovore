@@ -2,6 +2,7 @@ import React from "react";
 import SidebarMenu from "../components/SidebarMenu";
 import SidebarSubMenu from "../components/SidebarSubMenu"
 import SidebarItemMenu from "../components/SidebarItemMenu"
+import Linked from "../components/Linked"
 
 const Sidebar = () => {
 
@@ -9,7 +10,7 @@ const Sidebar = () => {
   <>
             <SidebarMenu>
                 <SidebarItemMenu>             
-                    HOME
+                    <Linked to="/game-list" issidebar="true">HOME</Linked>
                 </SidebarItemMenu>
             </SidebarMenu>
             <SidebarMenu>
