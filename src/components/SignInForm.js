@@ -57,13 +57,13 @@ const SignInForm = () => {
         </p>
         Go to the <Linked to="/game-list">GameList</Linked>
         <br />
-        <button
+        <Button
           onClick={() => {
             setCurrentUser(null);
           }}
         >
           DECONNEXION
-        </button>
+        </Button>
       </Form>
     );
   } else {
