@@ -9,11 +9,11 @@ import styled from "styled-components";
 
 const fakeGame = {name: "Tetris 3d", img:"https://cdn.steamgriddb.com/grid/1a009b56c1b7d90e5b4216fc0f9fa4e6.png"}
 
-const GameCard = () => {
+const GameCard = (props) => {
     return (
         <GameCardStyle>
-            <GameCardJacquette src={fakeGame.img}/>
-            <GameCardName>{fakeGame.name}</GameCardName>
+            <GameCardJacquette src={props.cover.url}/>
+            <GameCardName>{props.name}</GameCardName>
             <AddGameButton>
                 <Plus src={PlusImg} />
             Add to Collection

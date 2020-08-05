@@ -1,9 +1,9 @@
 import React, {component, useState, useEffect} from "react";
 import styled from "styled-components";
 import axios from "axios";
+import GameCard from "./GameCard"
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-
 
 const GameListBox = () => {
   const [game, setGame] = useState([]);
@@ -33,9 +33,7 @@ const GameListBox = () => {
   return (
       <ul>{
         game.map((item)=>(
-        <li key={item.id}>{item.name}
-        <img key={item.cover? item.cover.id : item.id} src={item.cover? "https:"+item.cover.url.replace("thumb","cover_big_2x"):""} alt={item.name}/>
-        </li>
+        <GameCard {...item} />
         ))
       }</ul>
   );
