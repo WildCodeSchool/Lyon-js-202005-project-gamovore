@@ -10,7 +10,7 @@ import Button from "./Button";
 import SeparForm from "./SeparForm";
 
 const SignInForm = () => {
-  const { setCurrentUser, currentUser } = useContext(AuthContext);
+  const { setCurrentUser} = useContext(AuthContext);
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +24,6 @@ const SignInForm = () => {
   }
 
   function submitForm() {
-    console.log(username);
     if (!username) {
       return alert("Your need to enter a Username");
     } else if (!password) {
@@ -34,7 +33,7 @@ const SignInForm = () => {
         if (UserBase[i].pseudo.indexOf(username) !== -1) {
           if (UserBase[i].password.indexOf(password) !== -1) {
             setCurrentUser(username);
-            //history.push("/game-list");
+            history.push("/game-list");
           } else {
             return alert("password is not correct");
           }
@@ -45,63 +44,40 @@ const SignInForm = () => {
     } // Ferme else if some
   }
 
-  if (currentUser) {
-    const detailsUser = UserBase.find(el => el.pseudo === currentUser);
-    return (
-      <Form>
-        <p>Welcome to the Home</p>
-        <strong>You are :</strong>
-        <p>
-          <img src={detailsUser.avatar} alt={detailsUser.pseudo} />{" "}
-          {detailsUser.pseudo.toUpperCase()}
-        </p>
-        Go to the <Linked to="/game-list">GameList</Linked>
-        <br />
-        <Button
-          onClick={() => {
-            setCurrentUser(null);
-          }}
-        >
-          DECONNEXION
-        </Button>
-      </Form>
-    );
-  } else {
-    return (
-      <Form>
-        <h1>Hello</h1>
-        <p>Sign into your account here</p>
-        <label htmlFor="username" />
-        <Input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Username"
-          onChange={handleUsernameChange}
-          value={username}
-          required
-        />
-        <label htmlFor="password" />
-        <Input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="password"
-          onChange={handlePasswordChange}
-          value={password}
-          required
-        />
-        <Button type="submit" onClick={submitForm}>
-          Sign In
-        </Button>
-        <SeparForm />
-        <p>Forgot password? Reset</p>
-        <p>
-          Don't have an account ? <Linked to="/sign-up">Sign up</Linked>
-        </p>
-      </Form>
-    );
-  }
+  return (
+    <Form>
+      <h1>Hello</h1>
+      <p>Sign into your account here</p>
+      <label htmlFor="username" />
+      <Input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Username"
+        onChange={handleUsernameChange}
+        value={username}
+        required
+      />
+      <label htmlFor="password" />
+      <Input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="password"
+        onChange={handlePasswordChange}
+        value={password}
+        required
+      />
+      <Button type="submit" onClick={submitForm}>
+        Sign In
+      </Button>
+      <SeparForm />
+      <p>Forgot password? Reset</p>
+      <p>
+        Don't have an account ? <Linked to="/sign-up">Sign up</Linked>
+      </p>
+    </Form>
+  );
 };
 
 export default SignInForm;

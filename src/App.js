@@ -1,4 +1,4 @@
-import React, { Component ,createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import HeaderBox from "./components/HeaderBox";
 import SidebarBox from "./components/SidebarBox";
@@ -38,14 +38,14 @@ const App = () => {
       <SidebarBox/> 
 
       <Main>
-       <Switch>
+        <Switch>
         <Route exact path="/sign-in">
             <SignInForm />
         </Route>
         <Route exact path="/sign-up">
             <SignUpForm />
         </Route>
-        <PrivateRoute path="/game-list" component={GameListBox} />
+        <PrivateRoute exact path="/game-list" component={GameListBox} />
          
       </Switch>
        

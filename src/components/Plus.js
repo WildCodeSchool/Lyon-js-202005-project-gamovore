@@ -1,8 +1,5 @@
-import React from 'react';
-
-
 import styled from "styled-components";
-import { render } from '@testing-library/react';
+// import { render } from '@testing-library/react';
 
 const Plus = styled.img`
 border-radius: 5%;
