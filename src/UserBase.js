@@ -7,7 +7,7 @@ export const UserBase = [
       department: "69",
       description:
         "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
-      avatar: "https://robohash.org/magnitemporibusullam.png?size=50x50&set=set1",
+      avatar: "https://www.festi.fr/media/catalog/product/cache/1/image/720x/9df78eab33525d08d6e5fb8d27136e95/deguisement-canard-gonflable_DEGUICHAKSH18Jaune_1.jpg",
       gameMode: ["MMO", "course"],
       gameGenre: ["Action"],
       favoriteGameId: [14],
