@@ -1,44 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import GameCard from "./GameCard";
+import Title from "./Title";
+import Loading from "./Loading";
+import LoadingImg from "./LoadingImg";
 
-// const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const GameListBox = () => {
   const [game, setGame] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const GameListCall = () => {
+  if (loading && !game.length) {
     axios({
       url: "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
       method: "POST",
       headers: {
         Accept: "application/json",
-        "user-key": "ae87c04d02484d1d509c203b31f9e9e1",
+        "user-key": API_KEY,
       },
       data: "fields name, cover.url; limit 20; where total_rating_count>=80;",
     })
       .then((response) => response.data)
       .then((data) => {
         setGame(data);
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
       });
-  };
+  }
 
-  useEffect(() => {
-    GameListCall();
-  }, [GameListCall()]);
+  if (loading) {
+    return (
+      <Loading>
+        <Title>
+          Be patient young Gamovore, the duck is fishing a games for you ...
+        </Title>
+        <LoadingImg
+          src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
+          alt="loading"
+        />
+      </Loading>
+    );
+  }
 
   return (
-    <div>
-      Test
-      <ul>
-        {game.map((item) => (
-          <GameCard {...item} key={item.id} />
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {game.map((item) => (
+        <GameCard {...item} key={item.id} />
+      ))}
+    </ul>
   );
 };
 
