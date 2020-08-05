@@ -9,6 +9,8 @@ import SignInForm from "./components/SignInForm";
 import SignUpForm from "./components/SignUpForm";
 import GameListBox from "./components/GameListBox";
 
+
+
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { currentUser } = useContext(AuthContext);
   return (
@@ -34,7 +36,7 @@ const App = () => {
       <SidebarBox/> 
 
       <Main>
-      <Switch>
+       {/* <Switch>
         <Route exact path="/sign-in">
             <SignInForm />
         </Route>
@@ -43,7 +45,8 @@ const App = () => {
         </Route>
         <PrivateRoute path="/game-list" component={GameListBox} />
          
-      </Switch>
+      </Switch>  */}
+      <GameListBox />
       
       </Main>
       <FooterBox />
