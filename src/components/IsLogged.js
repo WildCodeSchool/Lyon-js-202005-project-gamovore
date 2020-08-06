@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 const IsLogged = styled.div`
-   width:20%;
-   margin:2%;
-  
+   width:90%;
+   margin:1%;
+   justify-content:flex-end;
+   :hover{
+      cursor:pointer;
+   }
 `;
 
 export default IsLogged;

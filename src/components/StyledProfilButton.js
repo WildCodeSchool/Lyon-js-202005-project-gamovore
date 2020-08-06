@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyleForProfilButton = styled.button`
+const StyleForProfilButton = styled.div`
 padding: 1em;
 background: none;
 border:none;
