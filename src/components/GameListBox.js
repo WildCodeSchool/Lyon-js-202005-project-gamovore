@@ -4,6 +4,7 @@ import GameCard from "./GameCard";
 import Title from "./Title";
 import Loading from "./Loading";
 import LoadingImg from "./LoadingImg";
+import GameListLayout from "./GameListLayout";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -46,11 +47,11 @@ const GameListBox = () => {
   }
 
   return (
-    <ul>
+    <GameListLayout>
       {gameList.map((item) => (
         <GameCard {...item} key={item.id} />
       ))}
-    </ul>
+    </GameListLayout>
   );
 };
 
