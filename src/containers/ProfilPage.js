@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { UserBase } from "../UserBase";
 import axios from "axios";
 import GameCard from "../components/GameCard";
@@ -11,12 +11,17 @@ import MyGamovoreProfilLayout from "../components/MyGamovoreProfilLayout";
 import SecondaryTitle from "../components/SecondaryTitle";
 import StyleForPseudo from "../components/Pseudo";
 import StyleForAvatar from "../components/Avatar";
+import Loading from "../components/Loading";
+import Title from "../components/Title";
+import LoadingImg from "../components/LoadingImg";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ProfilPage = () => {
-  const [profilGame, setProfilGame] = useState([]);
-  const GameProfilListCall = () => {
+  const [profilGameList, setProfilGameList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  if (loading && !profilGameList.length) {
     axios({
       url: "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
       method: "POST",
@@ -28,16 +33,27 @@ const ProfilPage = () => {
     })
       .then((response) => response.data)
       .then((data) => {
-        setProfilGame(data);
+        setProfilGameList(data);
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
       });
-  };
+  }
 
-  useEffect(() => {
-    GameProfilListCall();
-  }, []);
+  if (loading) {
+    return (
+      <Loading>
+        <Title>
+          Be patient young Gamovore, the duck is fishing a games for you ...
+        </Title>
+        <LoadingImg
+          src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
+          alt="loading"
+        />
+      </Loading>
+    );
+  }
 
   return (
     <ProfilPageLayout>
@@ -46,7 +62,7 @@ const ProfilPage = () => {
         <section>
           <SecondaryTitle>My Games</SecondaryTitle>
           <ProfilGameLayout>
-            {profilGame.map((item) => (
+            {profilGameList.map((item) => (
               <GameCard little {...item} key={item.id} />
             ))}
           </ProfilGameLayout>
@@ -54,14 +70,12 @@ const ProfilPage = () => {
         <MyGamovoreLayout>
           <SecondaryTitle>My Gamovores</SecondaryTitle>
           <MyGamovoreProfilLayout>
-            <div>
-              <StyleForAvatar src={UserBase[1].avatar} />
-              <StyleForPseudo>{UserBase[1].pseudo}</StyleForPseudo>
-            </div>
-            <div>
-              <StyleForAvatar src={UserBase[2].avatar} />
-              <StyleForPseudo>{UserBase[2].pseudo}</StyleForPseudo>
-            </div>
+            {UserBase.map((item) => (
+              <div key={item.id}>
+                <StyleForAvatar src={item.avatar} />
+                <StyleForPseudo>{item.pseudo}</StyleForPseudo>
+              </div>
+            ))}
           </MyGamovoreProfilLayout>
         </MyGamovoreLayout>
       </ProfilAsideLayout>
