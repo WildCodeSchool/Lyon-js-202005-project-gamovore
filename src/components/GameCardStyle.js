@@ -12,6 +12,7 @@ const GameCardStyle = styled.li`
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   box-shadow: 0 5px 5px #000000;
   transition: all 0.2s ease-out;
   :hover {
