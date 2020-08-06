@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { UserBase } from "../UserBase";
+import axios from "axios";
+import GameCard from "../components/GameCard";
 import Profil from "../components/Profil";
 import ProfilPageLayout from "../components/ProfilPageLayout";
 import ProfilGameLayout from "../components/ProfilGameLayout";
@@ -10,7 +12,33 @@ import SecondaryTitle from "../components/SecondaryTitle";
 import StyleForPseudo from "../components/Pseudo";
 import StyleForAvatar from "../components/Avatar";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const ProfilPage = () => {
+  const [game, setGame] = useState([]);
+  const GameListCall = () => {
+    axios({
+      url: "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "user-key": API_KEY,
+      },
+      data: "fields name, cover.url; limit 2; where total_rating_count>=80;",
+    })
+      .then((response) => response.data)
+      .then((data) => {
+        setGame(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  useEffect(() => {
+    GameListCall();
+  }, []);
+
   return (
     <ProfilPageLayout>
       <Profil />
@@ -18,9 +46,9 @@ const ProfilPage = () => {
         <section>
           <SecondaryTitle>My Games</SecondaryTitle>
           <ProfilGameLayout>
-            <p>jeux1</p>
-            <p>jeux2</p>
-            <p>jeux3</p>
+            {game.map((item) => (
+              <GameCard little {...item} />
+            ))}
           </ProfilGameLayout>
         </section>
         <MyGamovoreLayout>

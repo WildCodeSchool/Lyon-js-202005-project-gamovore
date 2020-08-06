@@ -1,23 +1,24 @@
 import styled from "styled-components";
 
-const GameCardStyle = styled.div`
-display:flex;
-flex-flow: column wrap;
-height: auto;
-width: 35vh;
-background-color: #453F3B;
-margin: 0 0 0.25rem;
-border: none;
-border-radius: 10%;
-justify-content: center;
-border:solid 3px #453F3B;
-transition: all .6s ease-out;
-:hover{
+const GameCardStyle = styled.li`
+  display: flex;
+  flex-flow: column wrap;
+  height: auto;
+  width: ${(props) => (props.little ? "40%" : "30%")};
+  background-color: #453f3b;
+  margin: ${(props) => (props.little ? "2%" : "1%")};
+  border: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 5px #000000;
+  transition: all 0.2s ease-out;
+  :hover {
     cursor: pointer;
     border: solid 3px #fbb700;
-    transition: all .6s ease-out;
-}
-
+    transition: all 0.2s ease-out;
+  }
 `;
 
 export default GameCardStyle;
