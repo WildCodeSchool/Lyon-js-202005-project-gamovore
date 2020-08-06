@@ -6,7 +6,6 @@ const SidebarMenu = styled.ul`
   margin:0;
   padding:0;
  
-  
 
   & li:first-child {
        background-color: #FBB700;
@@ -19,6 +18,7 @@ const SidebarMenu = styled.ul`
   & ul li:first-child {
       background-color: #2E2A27;
       color:#F3F3F3;
+     
 
   }
 
