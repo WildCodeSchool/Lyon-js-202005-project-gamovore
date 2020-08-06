@@ -11,7 +11,13 @@ import PlusImg from "../img/white/plus.png";
 const GameCard = (props) => {
   return (
     <GameCardStyle>
-      <GameCardJacquette src={props.cover.url} />
+      <GameCardJacquette
+        src={
+          props.cover
+            ? "https:" + props.cover.url.replace("thumb", "cover_big_2x")
+            : "https://lh3.googleusercontent.com/proxy/OqgwZ5rvQjLhnHGDwFNG2rPfQZ3WXsm4tVczSpwMs2XSETiL7bZMrN-_bzAKcgwVDY6ppRfJjRssFujMHlaV7eQFp8UxvqOe1tf8zajfQBlPOgK8uDmL1DAzZuBE6aJMIUUAAc0AEVO75zpQA2kzeRWSbbuNvWLEfW9akahJi6qL9uqqon7ujVZJ6aZw39xn6g"
+        }
+      />
       <GameCardName>{props.name}</GameCardName>
       <AddGameButton>
         <Plus src={PlusImg} />
