@@ -15,8 +15,8 @@ import StyleForAvatar from "../components/Avatar";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ProfilPage = () => {
-  const [game, setGame] = useState([]);
-  const GameListCall = () => {
+  const [profilGame, setProfilGame] = useState([]);
+  const GameProfilListCall = () => {
     axios({
       url: "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
       method: "POST",
@@ -28,7 +28,7 @@ const ProfilPage = () => {
     })
       .then((response) => response.data)
       .then((data) => {
-        setGame(data);
+        setProfilGame(data);
       })
       .catch((err) => {
         console.error(err);
@@ -36,7 +36,7 @@ const ProfilPage = () => {
   };
 
   useEffect(() => {
-    GameListCall();
+    GameProfilListCall();
   }, []);
 
   return (
@@ -46,8 +46,8 @@ const ProfilPage = () => {
         <section>
           <SecondaryTitle>My Games</SecondaryTitle>
           <ProfilGameLayout>
-            {game.map((item) => (
-              <GameCard little {...item} />
+            {profilGame.map((item) => (
+              <GameCard little {...item} key={item.id} />
             ))}
           </ProfilGameLayout>
         </section>
