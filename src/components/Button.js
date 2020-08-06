@@ -11,10 +11,11 @@ const Button = styled.button`
     text-transform:uppercase;
     border-radius:5px;
     border:none;
-    padding:1%;
+    padding:2%;
     width:50%;
     transition: all .8s ease-out;
-
+    justify-content:flex-end;
+    
     :hover {
         background-color:black;
         color:white;
