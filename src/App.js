@@ -16,7 +16,6 @@ import SignUpForm from "./components/SignUpForm";
 import GameListBox from "./components/GameListBox";
 import ProfilPage from "./containers/ProfilPage";
 
-
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { currentUser } = useContext(AuthContext);
   return (
@@ -34,32 +33,28 @@ export const AuthContext = createContext(null);
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   return (
-    <AuthContext.Provider value={{ currentUser, setCurrentUser }}> 
-    <Router>
-    
-    <GridLayout>
-    
-      <HeaderBox />
+    <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
+      <Router>
+        <GridLayout>
+          <HeaderBox />
 
-      <SidebarBox/> 
+          <SidebarBox />
 
-      <Main>
-        <Switch>
-        <Route exact path="/sign-in">
-            <SignInForm />
-        </Route>
-        <Route exact path="/sign-up">
-            <SignUpForm />
-        </Route>
-        <PrivateRoute exact path="/game-list" component={GameListBox} />
-        <PrivateRoute exact path="/profil" component={ProfilPage} />
-         
-      </Switch>
-       
-      </Main>
-      <FooterBox />
-      </GridLayout>
-    </Router>
+          <Main>
+            <Switch>
+              <Route exact path="/sign-in">
+                <SignInForm />
+              </Route>
+              <Route exact path="/sign-up">
+                <SignUpForm />
+              </Route>
+              <PrivateRoute exact path="/game-list" component={GameListBox} />
+              <PrivateRoute exact path="/profil" component={ProfilPage} />
+            </Switch>
+          </Main>
+          <FooterBox />
+        </GridLayout>
+      </Router>
     </AuthContext.Provider>
   );
 };

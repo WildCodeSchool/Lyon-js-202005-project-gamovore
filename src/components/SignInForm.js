@@ -10,7 +10,7 @@ import Button from "./Button";
 import SeparForm from "./SeparForm";
 
 const SignInForm = () => {
-  const { setCurrentUser} = useContext(AuthContext);
+  const { setCurrentUser } = useContext(AuthContext);
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +32,7 @@ const SignInForm = () => {
       for (let i = 0; i < UserBase.length; i++) {
         if (UserBase[i].pseudo.indexOf(username) !== -1) {
           if (UserBase[i].password.indexOf(password) !== -1) {
-            setCurrentUser(username);
+            setCurrentUser(UserBase[i]);
             history.push("/game-list");
           } else {
             return alert("password is not correct");
