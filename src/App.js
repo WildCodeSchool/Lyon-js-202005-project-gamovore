@@ -9,11 +9,11 @@ import {
 import HeaderBox from "./components/HeaderBox";
 import SidebarBox from "./components/SidebarBox";
 import FooterBox from "./components/FooterBox";
-import Main from "./components/Main";
-import GridLayout from "./components/GridLayout";
+import Main from "./style/Main";
+import GridLayout from "./style/GridLayout";
 import SignInForm from "./components/SignInForm";
 import SignUpForm from "./components/SignUpForm";
-import GameListBox from "./components/GameListBox";
+import GameListBox from "./containers/GameListBox";
 import ProfilPage from "./containers/ProfilPage";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

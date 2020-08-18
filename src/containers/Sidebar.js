@@ -1,8 +1,8 @@
 import React from "react";
-import SidebarMenu from "../components/SidebarMenu";
-import SidebarSubMenu from "../components/SidebarSubMenu";
-import SidebarItemMenu from "../components/SidebarItemMenu";
-import Linked from "../components/Linked";
+import SidebarMenu from "../style/SidebarMenu";
+import SidebarSubMenu from "../style/SidebarSubMenu";
+import SidebarItemMenu from "../style/SidebarItemMenu";
+import Linked from "../style/Linked";
 
 const Sidebar = () => {
   //   let games = {
