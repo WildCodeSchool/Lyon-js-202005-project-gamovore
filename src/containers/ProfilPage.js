@@ -15,10 +15,10 @@ import Loading from "../style/Loading";
 import Title from "../style/Title";
 import LoadingImg from "../style/LoadingImg";
 
-// const API_KEY = process.env.REACT_APP_API_KEY;
-
 const ProfilPage = () => {
-  const { gameList, loading } = CallIgdb();
+  const dataCallIgdb =
+    "fields name, cover.url; limit 2; where total_rating_count>=80;";
+  const { gameList, loading } = CallIgdb(dataCallIgdb);
 
   return (
     <ProfilPageLayout>

@@ -7,7 +7,9 @@ import GameListLayout from "../style/GameListLayout";
 import CallIgdb from "./CallIgdb";
 
 const GameListBox = () => {
-  const { gameList, loading } = CallIgdb();
+  const dataCallIgdb =
+    "fields name, cover.url; limit 20; where total_rating_count>=80;";
+  const { gameList, loading } = CallIgdb(dataCallIgdb);
 
   return (
     <GameListLayout>
