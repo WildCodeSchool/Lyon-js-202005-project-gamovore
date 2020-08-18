@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import Loading from "../style/Loading";
 import Title from "../style/Title";
@@ -6,28 +6,32 @@ import LoadingImg from "../style/LoadingImg";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const CallIgdb = (props) => {
-  if (props.loading && !props.gameList.length) {
-    axios({
-      url: "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "user-key": API_KEY,
-      },
-      data: "fields name, cover.url; limit 2; where total_rating_count>=80;",
-    })
-      .then((response) => response.data)
-      .then((data) => {
-        setGameList(data);
-        setLoading(false);
+const CallIgdb = ({ loading, gameList, setGameList, setLoading }) => {
+  useEffect(() => {
+    if (loading && !gameList.length) {
+      axios({
+        url:
+          "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "user-key": API_KEY,
+        },
+        data: "fields name, cover.url; limit 2; where total_rating_count>=80;",
       })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+        .then((response) => response.data)
+        .then((data) => {
+          setGameList(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  });
 
-  if (props.loading) {
+  if (loading) {
+    console.log(gameList);
     return (
       <Loading>
         <Title>

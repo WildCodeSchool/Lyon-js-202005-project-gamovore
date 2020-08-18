@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { UserBase } from "../UserBase";
-import axios from "axios";
 import GameCard from "../components/GameCard";
 import Profil from "../components/Profil";
 import ProfilPageLayout from "../style/ProfilPageLayout";
@@ -11,17 +10,13 @@ import MyGamovoreProfilLayout from "../style/MyGamovoreProfilLayout";
 import SecondaryTitle from "../style/SecondaryTitle";
 import StyleForPseudo from "../style/Pseudo";
 import StyleForAvatar from "../style/Avatar";
-import Loading from "../style/Loading";
-import Title from "../style/Title";
-import LoadingImg from "../style/LoadingImg";
 import CallIgdb from "./CallIgdb";
 
 // const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ProfilPage = () => {
-     const [gameList, setGameList] = useState([]);
-     const [loading, setLoading] = useState(true);
-
+  const [gameList, setGameList] = useState([]);
+  const [loading, setLoading] = useState(true);
   //   if (loading && !gameList.length) {
   //     axios({
   //       url: "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
@@ -55,14 +50,20 @@ const ProfilPage = () => {
   //       </Loading>
   //     );
   //   }
-  
+
   return (
     <ProfilPageLayout>
       <Profil />
       <ProfilAsideLayout>
         <section>
           <SecondaryTitle>My Games</SecondaryTitle>
-          <ProfilGameLayout />
+          <ProfilGameLayout>
+            <CallIgdb
+              loading={loading}
+              gameList={gameList}
+              setGameList={setGameList}
+              setLoading={setLoading}
+            />
             {gameList.map((item) => (
               <GameCard little {...item} key={item.id} />
             ))}
