@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import Loading from "../style/Loading";
-import Title from "../style/Title";
-import LoadingImg from "../style/LoadingImg";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const CallIgdb = ({ loading, gameList, setGameList, setLoading }) => {
+const CallIgdb = () => {
+  const [gameList, setGameList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (loading && !gameList.length) {
+      console.log(API_KEY);
       axios({
         url:
           "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
@@ -28,22 +29,9 @@ const CallIgdb = ({ loading, gameList, setGameList, setLoading }) => {
           console.error(err);
         });
     }
-  });
+  }, [loading, gameList]);
 
-  if (loading) {
-    console.log(gameList);
-    return (
-      <Loading>
-        <Title>
-          Be patient young Gamovore, the duck is fishing a games for you ...
-        </Title>
-        <LoadingImg
-          src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
-          alt="loading"
-        />
-      </Loading>
-    );
-  }
+  return { gameList, loading };
 };
 
 export default CallIgdb;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { UserBase } from "../UserBase";
 import GameCard from "../components/GameCard";
 import Profil from "../components/Profil";
@@ -11,45 +11,14 @@ import SecondaryTitle from "../style/SecondaryTitle";
 import StyleForPseudo from "../style/Pseudo";
 import StyleForAvatar from "../style/Avatar";
 import CallIgdb from "./CallIgdb";
+import Loading from "../style/Loading";
+import Title from "../style/Title";
+import LoadingImg from "../style/LoadingImg";
 
 // const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ProfilPage = () => {
-  const [gameList, setGameList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  //   if (loading && !gameList.length) {
-  //     axios({
-  //       url: "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "user-key": API_KEY,
-  //       },
-  //       data: "fields name, cover.url; limit 2; where total_rating_count>=80;",
-  //     })
-  //       .then((response) => response.data)
-  //       .then((data) => {
-  //         setGameList(data);
-  //         setLoading(false);
-  //       })
-  //       .catch((err) => {
-  //         console.error(err);
-  //       });
-  //   }
-
-  //   if (loading) {
-  //     return (
-  //       <Loading>
-  //         <Title>
-  //           Be patient young Gamovore, the duck is fishing a games for you ...
-  //         </Title>
-  //         <LoadingImg
-  //           src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
-  //           alt="loading"
-  //         />
-  //       </Loading>
-  //     );
-  //   }
+  const { gameList, loading } = CallIgdb();
 
   return (
     <ProfilPageLayout>
@@ -58,15 +27,22 @@ const ProfilPage = () => {
         <section>
           <SecondaryTitle>My Games</SecondaryTitle>
           <ProfilGameLayout>
-            <CallIgdb
-              loading={loading}
-              gameList={gameList}
-              setGameList={setGameList}
-              setLoading={setLoading}
-            />
-            {gameList.map((item) => (
-              <GameCard little {...item} key={item.id} />
-            ))}
+            {loading ? (
+              <Loading>
+                <Title>
+                  Be patient young Gamovore, the duck is fishing a games for you
+                  ...
+                </Title>
+                <LoadingImg
+                  src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
+                  alt="loading"
+                />
+              </Loading>
+            ) : (
+              gameList.map((item) => (
+                <GameCard little {...item} key={item.id} />
+              ))
+            )}
           </ProfilGameLayout>
         </section>
         <MyGamovoreLayout>
