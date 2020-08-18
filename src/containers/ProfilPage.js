@@ -19,8 +19,8 @@ import CallIgdb from "./CallIgdb";
 // const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ProfilPage = () => {
-     const [gameList, setGameList] = useState([]);
-     const [loading, setLoading] = useState(true);
+  const [gameList, setGameList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   //   if (loading && !gameList.length) {
   //     axios({
@@ -55,14 +55,21 @@ const ProfilPage = () => {
   //       </Loading>
   //     );
   //   }
-  
-  return (
+  console.log(gameList);
+  return gameList === undefined || gameList.length !== 1 ? (
+    <CallIgdb
+      loading={loading}
+      gameList={gameList}
+      setGameList={setGameList()}
+      setLoading={setLoading()}
+    />
+  ) : (
     <ProfilPageLayout>
       <Profil />
       <ProfilAsideLayout>
         <section>
           <SecondaryTitle>My Games</SecondaryTitle>
-          <ProfilGameLayout />
+          <ProfilGameLayout>
             {gameList.map((item) => (
               <GameCard little {...item} key={item.id} />
             ))}

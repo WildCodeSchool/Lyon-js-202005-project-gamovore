@@ -19,8 +19,8 @@ const CallIgdb = (props) => {
     })
       .then((response) => response.data)
       .then((data) => {
-        setGameList(data);
-        setLoading(false);
+        props.setGameList(data);
+        props.setLoading(false);
       })
       .catch((err) => {
         console.error(err);
