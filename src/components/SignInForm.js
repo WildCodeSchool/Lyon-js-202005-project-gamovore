@@ -2,12 +2,12 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../App";
 import { UserBase } from "../UserBase";
-import Linked from "./Linked";
+import Linked from "../style/Linked";
 
-import Form from "./Form";
-import Input from "./Input";
-import Button from "./Button";
-import SeparForm from "./SeparForm";
+import Form from "../style/Form";
+import Input from "../style/Input";
+import Button from "../style/Button";
+import SeparForm from "../style/SeparForm";
 
 const SignInForm = () => {
   const { setCurrentUser } = useContext(AuthContext);

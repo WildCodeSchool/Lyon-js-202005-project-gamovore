@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../App";
-import ProfilLayout from "./ProfilLayout";
+import ProfilLayout from "../style/ProfilLayout";
 import ProfilButton from "./ProfilButton";
 
 const Profil = () => {

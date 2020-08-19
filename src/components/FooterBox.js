@@ -1,7 +1,7 @@
 import React from "react";
-import Footer from "./Footer";
-import Linked from "./Linked";
-import FooterSpan from "./FooterSpan";
+import Footer from "../style/Footer";
+import Linked from "../style/Linked";
+import FooterSpan from "../style/FooterSpan";
 
 const FooterBox = () => {
   return (

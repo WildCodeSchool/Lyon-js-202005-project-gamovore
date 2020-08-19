@@ -2,11 +2,11 @@ import React from "react";
 // import { AuthContext } from "../App";
 // import React, { useContext } from "react";
 
-import GameCardJacquette from "./GameCardJacquette";
-import GameCardName from "./GameCardName";
-import GameCardStyle from "./GameCardStyle";
-import AddGameButton from "./AddGameButton";
-import Plus from "./Plus";
+import GameCardJacquette from "../style/GameCardJacquette";
+import GameCardName from "../style/GameCardName";
+import GameCardStyle from "../style/GameCardStyle";
+import AddGameButton from "../style/AddGameButton";
+import Plus from "../style/Plus";
 import PlusImg from "../img/white/plus.png";
 import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
 

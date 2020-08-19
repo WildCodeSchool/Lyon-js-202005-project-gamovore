@@ -1,59 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { UserBase } from "../UserBase";
-import axios from "axios";
 import GameCard from "../components/GameCard";
 import Profil from "../components/Profil";
-import ProfilPageLayout from "../components/ProfilPageLayout";
-import ProfilGameLayout from "../components/ProfilGameLayout";
-import ProfilAsideLayout from "../components/ProfilAsideLayout";
-import MyGamovoreLayout from "../components/MyGamovoreLayout";
-import MyGamovoreProfilLayout from "../components/MyGamovoreProfilLayout";
-import SecondaryTitle from "../components/SecondaryTitle";
-import StyleForPseudo from "../components/Pseudo";
-import StyleForAvatar from "../components/Avatar";
-import Loading from "../components/Loading";
-import Title from "../components/Title";
-import LoadingImg from "../components/LoadingImg";
-
-const API_KEY = process.env.REACT_APP_API_KEY;
+import ProfilPageLayout from "../style/ProfilPageLayout";
+import ProfilGameLayout from "../style/ProfilGameLayout";
+import ProfilAsideLayout from "../style/ProfilAsideLayout";
+import MyGamovoreLayout from "../style/MyGamovoreLayout";
+import MyGamovoreProfilLayout from "../style/MyGamovoreProfilLayout";
+import SecondaryTitle from "../style/SecondaryTitle";
+import StyleForPseudo from "../style/Pseudo";
+import StyleForAvatar from "../style/Avatar";
+import CallIgdb from "./CallIgdb";
+import Loading from "../style/Loading";
+import Title from "../style/Title";
+import LoadingImg from "../style/LoadingImg";
 
 const ProfilPage = () => {
-  const [profilGameList, setProfilGameList] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  if (loading && !profilGameList.length) {
-    axios({
-      url: "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "user-key": API_KEY,
-      },
-      data: "fields name, cover.url; limit 2; where total_rating_count>=80;",
-    })
-      .then((response) => response.data)
-      .then((data) => {
-        setProfilGameList(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-
-  if (loading) {
-    return (
-      <Loading>
-        <Title>
-          Be patient young Gamovore, the duck is fishing a games for you ...
-        </Title>
-        <LoadingImg
-          src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
-          alt="loading"
-        />
-      </Loading>
-    );
-  }
+  const dataCallIgdb =
+    "fields name, cover.url; limit 2; where total_rating_count>=80;";
+  const { gameList, loading } = CallIgdb(dataCallIgdb);
 
   return (
     <ProfilPageLayout>
@@ -62,9 +27,22 @@ const ProfilPage = () => {
         <section>
           <SecondaryTitle>My Games</SecondaryTitle>
           <ProfilGameLayout>
-            {profilGameList.map((item) => (
-              <GameCard little {...item} key={item.id} />
-            ))}
+            {loading ? (
+              <Loading>
+                <Title>
+                  Be patient young Gamovore, the duck is fishing a games for you
+                  ...
+                </Title>
+                <LoadingImg
+                  src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
+                  alt="loading"
+                />
+              </Loading>
+            ) : (
+              gameList.map((item) => (
+                <GameCard little {...item} key={item.id} />
+              ))
+            )}
           </ProfilGameLayout>
         </section>
         <MyGamovoreLayout>

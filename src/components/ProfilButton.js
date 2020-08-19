@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../App";
 
-import StyleForPseudo from "./Pseudo";
-import StyleForAvatar from "./Avatar";
-import StyleForProfilButton from "./StyledProfilButton";
-import Linked from "./Linked";
+import StyleForPseudo from "../style/Pseudo";
+import StyleForAvatar from "../style/Avatar";
+import StyleForProfilButton from "../style/StyledProfilButton";
+import Linked from "../style/Linked";
 
 const ProfilButton = () => {
   const { currentUser } = useContext(AuthContext);

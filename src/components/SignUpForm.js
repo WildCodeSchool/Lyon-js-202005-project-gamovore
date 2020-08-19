@@ -1,10 +1,10 @@
 import React from "react";
 
-import Form from "./Form";
-import Input from "./Input";
-import Button from "./Button";
-import SeparForm from "./SeparForm";
-import Linked from "./Linked";
+import Form from "../style/Form";
+import Input from "../style/Input";
+import Button from "../style/Button";
+import SeparForm from "../style/SeparForm";
+import Linked from "../style/Linked";
 
 const SignUpForm = () => {
   return (
