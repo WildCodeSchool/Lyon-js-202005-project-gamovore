@@ -1,27 +1,51 @@
 import React from "react";
+import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
+import GameInfo from "../style/GameInfo";
+import GameImage from "../style/GameImage";
+import GamePage from "../style/GamePage";
+import GameResume from "../style/GameResume";
+import GameInfoList from "../style/GameInfoList";
+import GameInfoListTitle from "../style/GameInfoListTitle";
+import GameInfoListList from "../style/GameInfoListList";
+import Button from "../style/Button";
 
 const GameItem = (props) => {
-  console.log(props);
+  const game = props.location.state.detail;
   return (
-    <div>
-      <h1>
-        SpongeBob SquarePants: Battle for Bikini Bottom - Rehydrated - Steam -
-        Key GLOBAL
-      </h1>
-      <img
-        src="https://images.g2a.com/newlayout/323x433/1x1x0/20eca06baeae/5ec3aa417e696c7c30483e12"
-        alt="cover bob"
+    <GamePage>
+      <GameImage
+        src={
+          game.cover
+            ? "https:" + game.cover.url.replace("thumb", "cover_big_2x")
+            : gameCoverPlaceholder
+        }
+        alt={game.title}
       />
-      <p>
-        Are you ready, kids? The cult classic is back, faithfully remade in
-        spongetastic splendor! Play as SpongeBob, Patrick and Sandy and show the
-        evil Plankton that crime pays even less than Mr. Krabs. Want to save
-        Bikini Bot ...
-      </p>
-      <p>Catégorie : Kids</p>
-      <p>Genre : Adventure</p>
-      <p>Platforms : PS4</p>
-    </div>
+      <GameInfo>
+        <h1>{game.name}</h1>
+        <GameResume>{game.summary}</GameResume>
+        <GameInfoList>
+          <GameInfoListTitle>Catégorie(s) : </GameInfoListTitle>
+          {game.game_modes.map((item) => (
+            <GameInfoListList key={item.id}>{item.name} - </GameInfoListList>
+          ))}
+        </GameInfoList>
+        <GameInfoList>
+          <GameInfoListTitle>Genre(s) : </GameInfoListTitle>
+          {game.genres.map((item) => (
+            <GameInfoListList key={item.id}>{item.name}</GameInfoListList>
+          ))}
+        </GameInfoList>
+        <GameInfoList>
+          <GameInfoListTitle>Plateforme(s) : </GameInfoListTitle>
+
+          {game.platforms.map((item) => (
+            <GameInfoListList key={item.id}>{item.name} </GameInfoListList>
+          ))}
+        </GameInfoList>
+        <Button>Add to My games</Button>
+      </GameInfo>
+    </GamePage>
   );
 };
 
