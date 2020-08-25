@@ -8,9 +8,28 @@ import GameInfoList from "../style/GameInfoList";
 import GameInfoListTitle from "../style/GameInfoListTitle";
 import GameInfoListList from "../style/GameInfoListList";
 import Button from "../style/Button";
+import {
+  SiPlaystation3,
+  SiPlaystation4,
+  SiXbox,
+  SiWindows,
+  SiPlaystation2,
+  SiNintendogamecube,
+  SiNintendo3Ds,
+  SiNintendoswitch,
+  SiPlaystation,
+  SiApple,
+  SiSega,
+  SiLinux,
+  SiIos,
+  SiNintendonetwork,
+} from "react-icons/si";
+
+import { MdAndroid } from "react-icons/md";
 
 const GameItem = (props) => {
   const game = props.location.state.detail;
+  console.log(game);
   return (
     <GamePage>
       <GameImage
@@ -40,7 +59,46 @@ const GameItem = (props) => {
           <GameInfoListTitle>Plateforme(s) : </GameInfoListTitle>
 
           {game.platforms.map((item) => (
-            <GameInfoListList key={item.id}>{item.name} </GameInfoListList>
+            <GameInfoListList key={item.id}>
+              {item.name === "PC (Microsoft Windows)" ? <SiWindows /> : ""}
+              {item.name === "Mac" ? <SiApple /> : ""}
+              {item.name === "Linux" ? <SiLinux /> : ""}
+              {item.name === "PlayStation" ? <SiPlaystation /> : ""}
+              {item.name === "PlayStation 2" ? (
+                <SiPlaystation2 size={32} />
+              ) : (
+                ""
+              )}
+              {item.name === "PlayStation 3" ? (
+                <SiPlaystation3 size={32} />
+              ) : (
+                ""
+              )}
+              {item.name === "PlayStation 4" ? (
+                <SiPlaystation4 size={32} />
+              ) : (
+                ""
+              )}
+              {item.name === "PlayStation Network" ? "playStation Netword" : ""}
+              {item.name === "Xbox One" ? <SiXbox /> : ""}
+              {item.name === "Xbox 360" ? <SiXbox /> : ""}
+              {item.name === "Xbox" ? <SiXbox /> : ""}
+              {item.name === "Nintendo DS" ? <SiNintendo3Ds /> : ""}
+              {item.name === "Nintendo GameCube" ? <SiNintendogamecube /> : ""}
+              {item.name === "Nintendo Switch" ? <SiNintendoswitch /> : ""}
+              {item.name === "Super Nintendo Entertainment System (SNES)" ? (
+                <SiNintendonetwork />
+              ) : (
+                ""
+              )}
+              {item.name === "Game Boy Advance" ? "Game Boy Advance" : ""}
+              {item.name === "PlayStation Portable"
+                ? "Playstation Portable"
+                : ""}
+              {item.name === "iOS" ? <SiIos size={20} /> : ""}
+              {item.name === "Android" ? <MdAndroid /> : ""}
+              {item.name === "Sega Saturn" ? <SiSega /> : ""}
+            </GameInfoListList>
           ))}
         </GameInfoList>
         <Button>Add to My games</Button>
