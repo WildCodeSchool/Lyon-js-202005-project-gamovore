@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import FirebaseContext from "../firebase-config/FirebaseContext";
 
 import Form from "../style/Form";
 import Input from "../style/Input";
@@ -6,38 +7,81 @@ import Button from "../style/Button";
 import SeparForm from "../style/SeparForm";
 import Linked from "../style/Linked";
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
+  console.log(props);
+  const firebase = useContext(FirebaseContext);
+
+  const data = {
+    pseudo: "",
+    email: "",
+    password: "",
+  };
+
+  const [disable, setDisable] = useState(true);
+  const [loginData, setLoginData] = useState(data);
+
+  const checked = () => {
+    setDisable(false);
+  };
+
+  const handleChange = (e) => {
+    setLoginData({ ...loginData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    firebase
+      .signupUser(loginData.email, loginData.password)
+      .then((authUser) => {
+        setLoginData({ ...data });
+        props.history.push("/game-list");
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoginData({ ...data });
+      });
+  };
+
   return (
     <Form>
       <h1>Join Gamovore</h1>
       <p>Sign up to find other gamovores</p>
-      <label htmlFor="pseudoAdd"></label>
+      <label htmlFor="pseudo"></label>
       <Input
         type="text"
-        id="pseudoAdd"
+        id="pseudo"
         name="pseudo"
         placeholder="Your pseudo here"
         required
+        value={loginData.pseudo}
+        onChange={handleChange}
       />
-      <label htmlFor="mail"></label>
+      <label htmlFor="email"></label>
       <Input
         type="email"
-        id="mail"
-        name="e-mail"
+        id="email"
+        name="email"
         placeholder="Your e-mail here"
         required
+        value={loginData.email}
+        onChange={handleChange}
       />
-      <label htmlFor="passAdd"></label>
+      <label htmlFor="password"></label>
       <Input
         type="password"
-        id="passAdd"
+        id="password"
         name="password"
         minLength="8"
         placeholder="Your password here"
         required
+        value={loginData.password}
+        onChange={handleChange}
       />
-      <input type="checkbox" /> I agree to your Terms and Conditions
-      <Button type="submit">Create your free account</Button>
+      <input type="checkbox" onChange={checked} /> I agree to your Terms and
+      Conditions
+      <Button type="submit" disabled={disable} onClick={handleSubmit}>
+        Create your free account
+      </Button>
       <SeparForm />
       <p>
         Already registered? <Linked to="/sign-in">Sign in</Linked>

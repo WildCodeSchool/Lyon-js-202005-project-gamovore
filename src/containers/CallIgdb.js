@@ -11,7 +11,7 @@ const CallIgdb = (dataCallIgdb) => {
     if (loading && !gameList.length) {
       axios({
         url:
-          "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
+          "https://thingproxy.freeboard.io/fetch/https://api-v3.igdb.com/games",
         method: "POST",
         headers: {
           Accept: "application/json",
