@@ -25,7 +25,7 @@ const GameCard = (props) => {
   //     alert("Game is already in your favorites" + gameId);
   //   }
   // };
-  const [gameData, setGameData] = useState(props);
+  const [gameData] = useState(props);
 
   const link = "/game/" + props.id;
 
