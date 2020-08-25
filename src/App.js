@@ -46,7 +46,7 @@ const App = () => {
               <Route exact path="/sign-in" component={SignInForm} />
               <Route exact path="/sign-up" component={SignUpForm} />
               <Route path="/game/:gameId" component={GameItem} />
-              <Route exact path="/game-list" component={GameListBox} />
+              <PrivateRoute exact path="/game-list" component={GameListBox} />
               <PrivateRoute exact path="/profil" component={ProfilPage} />
             </Switch>
           </Main>
