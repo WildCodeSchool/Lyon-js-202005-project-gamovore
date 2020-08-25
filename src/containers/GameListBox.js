@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import FirebaseContext from "../firebase-config/FirebaseContext";
 import GameCard from "../components/GameCard";
 import Title from "../style/Title";
 import Loading from "../style/Loading";
@@ -6,12 +7,32 @@ import LoadingImg from "../style/LoadingImg";
 import GameListLayout from "../style/GameListLayout";
 import CallIgdb from "./CallIgdb";
 
-const GameListBox = () => {
+const GameListBox = (props) => {
+  const firebase = useContext(FirebaseContext);
+
+  const [currentUser, setCurrentUser] = useState(null);
+
   const dataCallIgdb =
     "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 20; where total_rating_count>=80;";
   const { gameList, loading } = CallIgdb(dataCallIgdb);
 
-  return (
+  useEffect(() => {
+    let listener = firebase.auth.onAuthStateChanged((user) => {
+      user ? setCurrentUser(user) : props.history.push("/sign-in");
+    });
+    return () => {
+      listener();
+    };
+  }, []);
+
+  return currentUser === null ? (
+    <Loading>
+      <LoadingImg
+        src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
+        alt="loading"
+      />
+    </Loading>
+  ) : (
     <GameListLayout>
       {loading ? (
         <Loading>
