@@ -31,7 +31,6 @@ import PageTitle from "./PageTitle";
 
 const GameItem = (props) => {
 	const game = props.location.state.detail;
-	console.log(game);
 	return (
 		<GamePage>
 			<GameCoverBox>

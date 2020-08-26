@@ -32,21 +32,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 export const AuthContext = createContext(null);
 
 const App = () => {
-	const [currentUser, setCurrentUser] = useState({
-		id: 1,
-		pseudo: "kikidu69",
-		email: "ccasella0@sciencedirect.com",
-		password: "gamovore",
-		department: "69",
-		description:
-			"Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
-		avatar: "https://i.ebayimg.com/images/g/MXEAAOSwDYdcQJNx/s-l300.jpg",
-		avaibality: ["afternoon"],
-		gameMode: ["MMO", "multi"],
-		gameGenre: ["Action"],
-		favoriteGameId: [2183],
-		favoriteGamovoreId: [2],
-	});
+	const [currentUser, setCurrentUser] = useState(null);
 	return (
 		<Router>
 			<AuthContext.Provider value={{ currentUser, setCurrentUser }}>
@@ -60,7 +46,7 @@ const App = () => {
 							<Route path="/sign-in" component={SignInForm} />
 							<Route path="/sign-up" component={SignUpForm} />
 							<Route path="/game/:gameId" component={GameItem} />
-							<Route path="/game-list" component={GameListBox} />
+							<Route path="/list" component={GameListBox} />
 							<Route path="/profil" component={ProfilPage} />
 						</Switch>
 					</Main>
