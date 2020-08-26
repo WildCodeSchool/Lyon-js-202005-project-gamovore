@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../App";
+import { UserContext } from "../context/UserContext";
 
 import logoGamovore from "../logogamovorebrown.png";
 import Header from "../style/Header";
@@ -11,7 +11,7 @@ import Linked from "../style/Linked";
 import Title from "../style/Title";
 
 function HeaderBox() {
-  const { currentUser } = useContext(AuthContext);
+  const { user } = useContext(UserContext);
   return (
     <Header>
       <Identity>
@@ -19,7 +19,7 @@ function HeaderBox() {
         <Title>Gamovore</Title>
       </Identity>
       <IsLogged>
-        {currentUser ? (
+        {user ? (
           <ProfilButton />
         ) : (
           <Linked to="/sign-in">

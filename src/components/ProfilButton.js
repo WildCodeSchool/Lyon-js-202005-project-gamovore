@@ -1,18 +1,17 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../App";
-
+import { UserContext } from "../context/UserContext";
 import StyleForPseudo from "../style/Pseudo";
 import StyleForAvatar from "../style/Avatar";
 import StyleForProfilButton from "../style/StyledProfilButton";
 import Linked from "../style/Linked";
 
 const ProfilButton = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { user } = useContext(UserContext);
   return (
     <Linked to="/profil">
       <StyleForProfilButton>
-        <StyleForAvatar src={currentUser.avatar} />
-        <StyleForPseudo>{currentUser.pseudo}</StyleForPseudo>
+        <StyleForAvatar src={user.avatarUrl} />
+        <StyleForPseudo>{user.pseudo}</StyleForPseudo>
       </StyleForProfilButton>
     </Linked>
   );
