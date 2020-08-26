@@ -5,7 +5,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-
+import { UserProvider } from "./context/UserContext";
 import HeaderBox from "./components/HeaderBox";
 import SidebarBox from "./components/SidebarBox";
 import FooterBox from "./components/FooterBox";
@@ -17,25 +17,10 @@ import GameListBox from "./containers/GameListBox";
 import GameItem from "./components/GameItem";
 import ProfilPage from "./containers/ProfilPage";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { currentUser } = useContext(AuthContext);
-  return (
-    <Route
-      {...rest}
-      render={() =>
-        currentUser != null ? <Component /> : <Redirect to="/sign-in" />
-      }
-    />
-  );
-};
-
-export const AuthContext = createContext(null);
-
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(null);
   return (
     <Router>
-      <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
+      <UserProvider>
         <GridLayout>
           <HeaderBox />
 
@@ -52,7 +37,7 @@ const App = () => {
           </Main>
           <FooterBox />
         </GridLayout>
-      </AuthContext.Provider>
+      </UserProvider>
     </Router>
   );
 };
