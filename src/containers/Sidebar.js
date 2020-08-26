@@ -1,21 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import SidebarMenu from "../style/SidebarMenu";
 import SidebarSubMenu from "../style/SidebarSubMenu";
 import SidebarItemMenu from "../style/SidebarItemMenu";
 import Linked from "../style/Linked";
 
 const Sidebar = () => {
-  //   let games = {
-  //     PLATEFORMS: ["PC", "PS4", "XBOX360"],
-  //     MODES: ["MMO", "CO-OPERATIVE", "MULTIPLAYERS"],
-  //     GENRES: ["ACTION", "ADVENTURE", "COURSE"],
-  //   };
-
-  //   let gamovores = {
-  //     MODES: ["MMO", "CO-OPERATIVE", "MULTIPLAYERS"],
-  //     AVAILABILITIES: ["MORNING", "DAY", "EVENING", "NIGHT"],
-  //     GENRES: ["ACTION", "ADVENTURE", "COURSE"],
-  //   };
+  const [isPc, setIsPC] = useState(false);
+  const handleToggle = () => {
+    console.log("Hello Alex!");
+    setIsPC(!isPc);
+  };
 
   return (
     <>
@@ -32,13 +26,14 @@ const Sidebar = () => {
           <SidebarItemMenu>PLATEFORMS</SidebarItemMenu>
           <SidebarSubMenu>
             <SidebarItemMenu>
-              <input type="checkbox" /> PC{" "}
+              <input type="checkbox" name="PC" onChange={handleToggle} /> PC
             </SidebarItemMenu>
             <SidebarItemMenu>
-              <input type="checkbox" /> PS4{" "}
+              <input type="checkbox" name="PS4" onChange={handleToggle} /> PS4
             </SidebarItemMenu>
             <SidebarItemMenu>
-              <input type="checkbox" /> XBOX360{" "}
+              <input type="checkbox" name="X360" onChange={handleToggle} />
+              XBOX360
             </SidebarItemMenu>
           </SidebarSubMenu>
         </SidebarSubMenu>
