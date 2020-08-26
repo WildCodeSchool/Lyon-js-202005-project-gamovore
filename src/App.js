@@ -43,11 +43,11 @@ const App = () => {
 
           <Main>
             <Switch>
-              <Route exact path="/sign-in" component={SignInForm} />
-              <Route exact path="/sign-up" component={SignUpForm} />
+              <Route path="/sign-in" component={SignInForm} />
+              <Route path="/sign-up" component={SignUpForm} />
               <Route path="/game/:gameId" component={GameItem} />
-              <PrivateRoute exact path="/game-list" component={GameListBox} />
-              <PrivateRoute exact path="/profil" component={ProfilPage} />
+              <Route path="/game-list" component={GameListBox} />
+              <Route path="/profil" component={ProfilPage} />
             </Switch>
           </Main>
           <FooterBox />

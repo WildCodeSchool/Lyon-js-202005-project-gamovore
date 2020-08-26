@@ -1,6 +1,7 @@
 import React from "react";
 import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
 import GameInfo from "../style/GameInfo";
+import GameCoverBox from "../style/GameCoverBox";
 import GameImage from "../style/GameImage";
 import GamePage from "../style/GamePage";
 import GameResume from "../style/GameResume";
@@ -32,14 +33,16 @@ const GameItem = (props) => {
   console.log(game);
   return (
     <GamePage>
-      <GameImage
-        src={
-          game.cover
-            ? "https:" + game.cover.url.replace("thumb", "cover_big_2x")
-            : gameCoverPlaceholder
-        }
-        alt={game.title}
-      />
+      <GameCoverBox>
+        <GameImage
+          src={
+            game.cover
+              ? "https:" + game.cover.url.replace("thumb", "cover_big_2x")
+              : gameCoverPlaceholder
+          }
+          alt={game.title}
+        />
+      </GameCoverBox>
       <GameInfo>
         <h1>{game.name}</h1>
         <GameResume>{game.summary}</GameResume>

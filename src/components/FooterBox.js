@@ -1,4 +1,5 @@
 import React from "react";
+import Logout from "../components/Logout";
 import Footer from "../style/Footer";
 import Linked from "../style/Linked";
 import FooterSpan from "../style/FooterSpan";
@@ -32,6 +33,7 @@ const FooterBox = () => {
       <Linked to="https://www.linkedin.com/in/s%C3%A9bastien-morin-70a0371ab/">
         Seb
       </Linked>
+      <Logout />
     </Footer>
   );
 };
