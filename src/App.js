@@ -1,10 +1,5 @@
-import React, { createContext, useState, useContext } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { UserProvider } from "./context/UserContext";
 import HeaderBox from "./components/HeaderBox";
 import SidebarBox from "./components/SidebarBox";
@@ -31,7 +26,7 @@ const App = () => {
               <Route path="/sign-in" component={SignInForm} />
               <Route path="/sign-up" component={SignUpForm} />
               <Route path="/game/:gameId" component={GameItem} />
-              <Route path="/game-list" component={GameListBox} />
+              <Route exact path="/" component={GameListBox} />
               <Route path="/profil" component={ProfilPage} />
             </Switch>
           </Main>

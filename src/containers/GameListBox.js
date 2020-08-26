@@ -10,10 +10,9 @@ import CallIgdb from "./CallIgdb";
 
 const GameListBox = (props) => {
   const firebase = useContext(FirebaseContext);
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   const [authUser, setAuthUser] = useState(null);
-  const [userData, setUserData] = useState({});
 
   const dataCallIgdb =
     "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 20; where total_rating_count>=80;";
@@ -41,9 +40,7 @@ const GameListBox = (props) => {
     return () => {
       listener();
     };
-  }, [authUser]);
-
-  console.log(user);
+  }, [authUser, firebase, props.history, setUser]);
 
   return authUser === null ? (
     <Loading>
