@@ -15,7 +15,7 @@ const Sidebar = () => {
     <>
       <SidebarMenu>
         <SidebarItemMenu>
-          <Linked to="/game-list" issidebar="true">
+          <Linked to="/" issidebar="true">
             HOME
           </Linked>
         </SidebarItemMenu>

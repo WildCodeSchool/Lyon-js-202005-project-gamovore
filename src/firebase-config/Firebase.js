@@ -1,5 +1,6 @@
 import app from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -15,6 +16,7 @@ class Firebase {
   constructor() {
     app.initializeApp(config);
     this.auth = app.auth();
+    this.db = app.firestore();
   }
 
   //inscription
@@ -27,6 +29,9 @@ class Firebase {
 
   //deconnexion
   logoutUser = () => this.auth.signOut();
+
+  //ajouter utilisateur bdd
+  userAdd = (uid) => this.db.doc(`users/${uid}`);
 }
 
 export default Firebase;

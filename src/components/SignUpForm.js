@@ -33,6 +33,18 @@ const SignUpForm = (props) => {
     firebase
       .signupUser(loginData.email, loginData.password)
       .then((authUser) => {
+        return firebase.userAdd(authUser.user.uid).set({
+          pseudo: loginData.pseudo,
+          email: loginData.email,
+          avatarUrl:
+            "https://medgoldresources.com/wp-content/uploads/2018/02/avatar-placeholder.gif",
+          description: "I am a new gamovore",
+          avaibalities: ["afternoon", "morning", "evening", "night"],
+          favoriteGameId: [],
+          favoriteGamovoreID: [],
+        });
+      })
+      .then(() => {
         setLoginData({ ...data });
         props.history.push("/game-list");
       })
