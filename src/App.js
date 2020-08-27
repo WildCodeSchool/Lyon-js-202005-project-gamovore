@@ -11,6 +11,7 @@ import SignUpForm from "./components/SignUpForm";
 import GameListBox from "./containers/GameListBox";
 import GameItem from "./components/GameItem";
 import ProfilPage from "./containers/ProfilPage";
+import { FilterProvider } from "./context/FilterContext";
 
 const App = () => {
   return (
@@ -18,18 +19,19 @@ const App = () => {
       <UserProvider>
         <GridLayout>
           <HeaderBox />
+          <FilterProvider>
+            <SidebarBox />
 
-          <SidebarBox />
-
-          <Main>
-            <Switch>
-              <Route path="/sign-in" component={SignInForm} />
-              <Route path="/sign-up" component={SignUpForm} />
-              <Route path="/game/:gameId" component={GameItem} />
-              <Route exact path="/" component={GameListBox} />
-              <Route path="/profil" component={ProfilPage} />
-            </Switch>
-          </Main>
+            <Main>
+              <Switch>
+                <Route path="/sign-in" component={SignInForm} />
+                <Route path="/sign-up" component={SignUpForm} />
+                <Route path="/game/:gameId" component={GameItem} />
+                <Route exact path="/" component={GameListBox} />
+                <Route path="/profil" component={ProfilPage} />
+              </Switch>
+            </Main>
+          </FilterProvider>
           <FooterBox />
         </GridLayout>
       </UserProvider>

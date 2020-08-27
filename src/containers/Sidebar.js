@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import SidebarMenu from "../style/SidebarMenu";
 import SidebarSubMenu from "../style/SidebarSubMenu";
 import SidebarItemMenu from "../style/SidebarItemMenu";
 import Linked from "../style/Linked";
+import { FilterContext } from "../context/FilterContext";
 
 const Sidebar = () => {
-  const [isPc, setIsPC] = useState(false);
-  const handleToggle = () => {
-    console.log("Hello Alex!");
-    setIsPC(!isPc);
-  };
+  const { setFilters } = useContext(FilterContext);
+  const handleToggle = (event) => {};
 
   return (
     <>

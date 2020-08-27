@@ -15,7 +15,7 @@ const GameListBox = (props) => {
   const [authUser, setAuthUser] = useState(null);
 
   const dataCallIgdb =
-    "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 20; where total_rating_count>=80;";
+    "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 500; where total_rating_count>=80;";
   const { gameList, loading } = CallIgdb(dataCallIgdb);
 
   useEffect(() => {
