@@ -38,11 +38,13 @@ class Firebase {
 
   userActu = (uid) => this.db.doc(`users/${uid}`);
 
-  callFirestore = () => this.db;
+  // Ajouter des éléments à la database
 
-  gameAdd = (id) => this.firestore.FieldValue.arrayUnion(id);
+  dataAdd = (id) => this.firestore.FieldValue.arrayUnion(id);
 
-  gameRemove = (id) => this.firestore.FieldValue.arrayRemove(id);
+  // Supprimer des elements de la database.
+
+  dataRemove = (id) => this.firestore.FieldValue.arrayRemove(id);
 }
 
 export default Firebase;

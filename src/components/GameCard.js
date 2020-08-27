@@ -37,7 +37,7 @@ const GameCard = (props) => {
       const userId = user.id;
 
       firebase.userActu(userId).update({
-        favoriteGameId: firebase.gameAdd(gameId),
+        favoriteGameId: firebase.dataAdd(gameId),
       });
     } else {
       console.log("non chargé");
@@ -49,7 +49,7 @@ const GameCard = (props) => {
       const userId = user.id;
 
       firebase.userActu(userId).update({
-        favoriteGameId: firebase.gameRemove(gameId),
+        favoriteGameId: firebase.dataRemove(gameId),
       });
     } else {
       console.log("non chargé");
