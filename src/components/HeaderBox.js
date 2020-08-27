@@ -9,6 +9,7 @@ import Identity from "../style/Identity";
 import IsLogged from "../style/IsLogged";
 import Linked from "../style/Linked";
 import Title from "../style/Title";
+import PageTitle from "./PageTitle";
 
 function HeaderBox() {
   const { user } = useContext(UserContext);
@@ -18,6 +19,7 @@ function HeaderBox() {
         <img src={logoGamovore} alt="logo_gamovore" width="8%" />
         <Title>Gamovore</Title>
       </Identity>
+      <PageTitle />
       <IsLogged>
         {user ? (
           <ProfilButton />

@@ -17,6 +17,7 @@ class Firebase {
     app.initializeApp(config);
     this.auth = app.auth();
     this.db = app.firestore();
+    this.firestore = app.firestore;
   }
 
   //inscription
@@ -32,6 +33,16 @@ class Firebase {
 
   //ajouter utilisateur bdd
   userAdd = (uid) => this.db.doc(`users/${uid}`);
+
+  //recupérer utilisateur bdd
+
+  userActu = (uid) => this.db.doc(`users/${uid}`);
+
+  callFirestore = () => this.db;
+
+  gameAdd = (id) => this.firestore.FieldValue.arrayUnion(id);
+
+  gameRemove = (id) => this.firestore.FieldValue.arrayRemove(id);
 }
 
 export default Firebase;
