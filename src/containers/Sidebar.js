@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import SidebarMenu from "../style/SidebarMenu";
 import SidebarSubMenu from "../style/SidebarSubMenu";
 import SidebarItemMenu from "../style/SidebarItemMenu";
@@ -6,8 +6,20 @@ import Linked from "../style/Linked";
 import { FilterContext } from "../context/FilterContext";
 
 const Sidebar = () => {
-  const { setFilters } = useContext(FilterContext);
-  const handleToggle = (event) => {};
+  const platforms = [
+    { id: 169, name: "Xbox Series X" },
+    { id: 6, name: "PC (Microsoft Windows)" },
+    { id: 130, name: "Nintendo Switch" },
+    { id: 167, name: "PlayStation 5" },
+    { id: 49, name: "Xbox One" },
+    { id: 48, name: "PlayStation 4" },
+  ];
+  const { selectedFilters, setFilters } = useContext(FilterContext);
+  const handleToggle = (event) => {
+    if (event.target.checked) {
+      setFilters(event.target.id);
+    }
+  };
 
   return (
     <>
@@ -23,16 +35,18 @@ const Sidebar = () => {
         <SidebarSubMenu>
           <SidebarItemMenu>PLATEFORMS</SidebarItemMenu>
           <SidebarSubMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" name="PC" onChange={handleToggle} /> PC
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" name="PS4" onChange={handleToggle} /> PS4
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" name="X360" onChange={handleToggle} />
-              XBOX360
-            </SidebarItemMenu>
+            {platforms.map((item) => (
+              <SidebarItemMenu key={item.id}>
+                <input
+                  type="checkbox"
+                  key={item.id}
+                  name={item.name}
+                  id={item.id}
+                  onChange={handleToggle}
+                />{" "}
+                {item.name.toUpperCase()}
+              </SidebarItemMenu>
+            ))}
           </SidebarSubMenu>
         </SidebarSubMenu>
 

@@ -7,8 +7,18 @@ import Loading from "../style/Loading";
 import LoadingImg from "../style/LoadingImg";
 import GameListLayout from "../style/GameListLayout";
 import CallIgdb from "./CallIgdb";
+import { FilterContext } from "../context/FilterContext";
 
 const GameListBox = (props) => {
+  const { selectedFilters, setFilters } = useContext(FilterContext);
+  const [platformFilters, setPlatformFilters] = useState([]);
+  useEffect(() => {
+    setPlatformFilters((platformFilters) => [
+      ...platformFilters,
+      selectedFilters,
+    ]);
+  }, [selectedFilters]);
+
   const firebase = useContext(FirebaseContext);
   const { setUser } = useContext(UserContext);
 
@@ -62,7 +72,21 @@ const GameListBox = (props) => {
           />
         </Loading>
       ) : (
-        gameList.map((item) => <GameCard {...item} key={item.id} />)
+        gameList.map((item) => (
+          <>
+            <GameCard {...item} key={item.id} />
+          </>
+        ))
+        // .filter((item) => {
+        //   console.log(item);
+        //   for (let i = 0; i < item.platforms.length; i++) {
+        //     for (let j = 0; j < platformFilters.length; j++) {
+        //       if (item.platforms[i] === platformFilters[j]) {
+        //         return <GameCard {...item} key={item.id} />;
+        //       }
+        //     }
+        //   }
+        // })
       )}
     </GameListLayout>
   );
