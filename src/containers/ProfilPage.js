@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 import { UserBase } from "../UserBase";
 import GameCard from "../components/GameCard";
 import Profil from "../components/Profil";
@@ -16,9 +17,26 @@ import Title from "../style/Title";
 import LoadingImg from "../style/LoadingImg";
 
 const ProfilPage = () => {
-  const dataCallIgdb =
-    "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; limit 2; where total_rating_count>=80;";
+  const { user } = useContext(UserContext);
+
+  const nbGames = user.favoriteGameId.length;
+  const gamesToLoad = user.favoriteGameId.toString();
+
+  console.log(gamesToLoad);
+
+  const dataCallIgdb = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; limit 3; where id=(${gamesToLoad});`;
+
   const { gameList, loading } = CallIgdb(dataCallIgdb);
+
+  const ViewGames = () => {
+    if (nbGames !== 0) {
+      return gameList.map((item) => (
+        <GameCard little {...item} key={item.id} />
+      ));
+    } else {
+      return <div>Pas de jeux</div>;
+    }
+  };
 
   return (
     <ProfilPageLayout>
@@ -39,9 +57,7 @@ const ProfilPage = () => {
                 />
               </Loading>
             ) : (
-              gameList.map((item) => (
-                <GameCard little {...item} key={item.id} />
-              ))
+              <ViewGames />
             )}
           </ProfilGameLayout>
         </section>

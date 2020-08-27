@@ -17,17 +17,6 @@ const GameCard = (props) => {
   const { user } = useContext(UserContext);
   const gameId = props.id;
 
-  // const addGame = () => {
-  //   if (currentUser.favoriteGameId.indexOf(gameId) === -1) {
-  //     setCurrentUser({
-  //       ...currentUser,
-  //       favoriteGameId: [...currentUser.favoriteGameId, gameId],
-  //     });
-  //   } else {
-  //     alert("Game is already in your favorites" + gameId);
-  //   }
-  // };
-
   const [gameData] = useState(props);
 
   const link = "/game/" + props.id;
