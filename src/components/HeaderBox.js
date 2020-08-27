@@ -12,25 +12,25 @@ import Title from "../style/Title";
 import PageTitle from "./PageTitle";
 
 function HeaderBox() {
-  const { user } = useContext(UserContext);
-  return (
-    <Header>
-      <Identity>
-        <img src={logoGamovore} alt="logo_gamovore" width="8%" />
-        <Title>Gamovore</Title>
-      </Identity>
-      <PageTitle />
-      <IsLogged>
-        {user ? (
-          <ProfilButton />
-        ) : (
-          <Linked to="/sign-in">
-            <Button>Connexion</Button>
-          </Linked>
-        )}
-      </IsLogged>
-    </Header>
-  );
+	const { user } = useContext(UserContext);
+	return (
+		<Header>
+			<Identity>
+				<img src={logoGamovore} alt="logo_gamovore" width="8%" />
+				<Title>Gamovore</Title>
+			</Identity>
+			<PageTitle />
+			<IsLogged>
+				{user ? (
+					<ProfilButton />
+				) : (
+					<Linked to="/sign-in">
+						<Button>Connexion</Button>
+					</Linked>
+				)}
+			</IsLogged>
+		</Header>
+	);
 }
 
 export default HeaderBox;
