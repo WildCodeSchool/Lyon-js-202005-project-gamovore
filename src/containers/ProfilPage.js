@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
+import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserBase } from "../UserBase";
 import GameCard from "../components/GameCard";
 import Profil from "../components/Profil";
@@ -17,12 +18,11 @@ import Title from "../style/Title";
 import LoadingImg from "../style/LoadingImg";
 
 const ProfilPage = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const firebase = useContext(FirebaseContext);
 
   const nbGames = user.favoriteGameId.length;
   const gamesToLoad = user.favoriteGameId.toString();
-
-  console.log(gamesToLoad);
 
   const dataCallIgdb = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; limit 3; where id=(${gamesToLoad});`;
 
@@ -34,7 +34,7 @@ const ProfilPage = () => {
         <GameCard little {...item} key={item.id} />
       ));
     } else {
-      return <div>Pas de jeux</div>;
+      return <div>No games to your collection ... </div>;
     }
   };
 

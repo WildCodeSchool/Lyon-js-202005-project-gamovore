@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserContext } from "../context/UserContext";
@@ -14,19 +14,21 @@ import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
 
 const GameCard = (props) => {
   const firebase = useContext(FirebaseContext);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
   const gameId = props.id;
-
   const [gameData] = useState(props);
-
   const link = "/game/" + props.id;
 
   const addGame = (user, gameId) => {
     if (user && firebase) {
       const userId = user.id;
-
       firebase.userActu(userId).update({
         favoriteGameId: firebase.dataAdd(gameId),
+      });
+
+      firebase.userActu(userId).onSnapshot(function (doc) {
+        setUser(doc.data());
       });
     } else {
       console.log("non chargé");
@@ -39,6 +41,10 @@ const GameCard = (props) => {
 
       firebase.userActu(userId).update({
         favoriteGameId: firebase.dataRemove(gameId),
+      });
+
+      firebase.userActu(userId).onSnapshot(function (doc) {
+        setUser(doc.data());
       });
     } else {
       console.log("non chargé");
