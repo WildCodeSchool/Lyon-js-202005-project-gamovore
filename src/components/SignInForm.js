@@ -28,7 +28,7 @@ const SignInForm = (props) => {
       .then((user) => {
         setEmail("");
         setPassword("");
-        props.history.push("/game-list");
+        props.history.push("/");
       })
       .catch((error) => {
         setEmail("");
