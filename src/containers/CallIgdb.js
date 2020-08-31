@@ -31,7 +31,7 @@ const CallIgdb = (dataCallIgdb) => {
     }
   }, [loading, gameList, dataCallIgdb]);
 
-  return { gameList, loading };
+  return { gameList, setGameList, loading, setLoading };
 };
 
 export default CallIgdb;
