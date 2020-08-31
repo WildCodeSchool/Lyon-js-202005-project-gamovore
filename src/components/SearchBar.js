@@ -7,13 +7,15 @@ const SearchBar = () => {
   const [search, setSearch] = useState(data);
 
   const onChange = (e) => {
-    setSearch(inputToRequest(e.target.value));
+    setSearch(e.target.value);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setData(search);
+    setData(search ? inputToRequest(search) : "");
   };
+
+  const onClick = (e) => {};
   // transform into api request
   const inputToRequest = (string) =>
     "search " +
@@ -23,7 +25,7 @@ const SearchBar = () => {
   return (
     <form onSubmit={onSubmit}>
       <input type="input" onChange={onChange} />
-      <input type="submit" />
+      <input type="submit" onClick={onClick} />
     </form>
   );
 };
