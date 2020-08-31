@@ -11,7 +11,7 @@ const Gamovores = (props) => {
   const userId = props.user.favoriteGamovoreID;
 
   useEffect(() => {
-    if (user) {
+    if (user && userId.length) {
       firebase
         .firestore()
         .collection("users")
