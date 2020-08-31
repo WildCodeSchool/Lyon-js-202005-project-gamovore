@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserContext } from "../context/UserContext";
@@ -8,9 +8,8 @@ import GameCardJacquette from "../style/GameCardJacquette";
 import GameCardName from "../style/GameCardName";
 import GameCardStyle from "../style/GameCardStyle";
 import AddGameButton from "../style/AddGameButton";
-import Plus from "../style/Plus";
-import PlusImg from "../img/black/plus.png";
 import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
+import { RiDeleteBin5Fill, RiAddFill } from "react-icons/ri";
 
 const GameCard = (props) => {
   const firebase = useContext(FirebaseContext);
@@ -51,29 +50,36 @@ const GameCard = (props) => {
     }
   };
 
-  return (
-    <GameCardStyle>
-      <Link to={{ pathname: link, state: { detail: gameData } }}>
-        <GameCardJacquette
-          src={
-            props.cover
-              ? "https:" + props.cover.url.replace("thumb", "cover_big_2x")
-              : gameCoverPlaceholder
-          }
-        />
-      </Link>
-      <GameCardName>{props.name}</GameCardName>
-      {/*onClick={addGame}*/}
-      <AddGameButton onClick={() => addGame(user, gameId)}>
-        <Plus src={PlusImg} />
-        Add to Collection
-      </AddGameButton>
-      <AddGameButton onClick={() => deleteGame(user, gameId)}>
-        <Plus src={PlusImg} />
-        Delete to Collection
-      </AddGameButton>
-    </GameCardStyle>
-  );
+  if (user) {
+    return (
+      <GameCardStyle>
+        <Link to={{ pathname: link, state: { detail: gameData } }}>
+          <GameCardJacquette
+            src={
+              props.cover
+                ? "https:" + props.cover.url.replace("thumb", "cover_big_2x")
+                : gameCoverPlaceholder
+            }
+          />
+        </Link>
+        <GameCardName>{props.name}</GameCardName>
+
+        {user.favoriteGameId.includes(gameId) ? (
+          <AddGameButton onClick={() => deleteGame(user, gameId)}>
+            <RiDeleteBin5Fill fontSize="2.5em" />
+            Delete to Collection
+          </AddGameButton>
+        ) : (
+          <AddGameButton onClick={() => addGame(user, gameId)}>
+            <RiAddFill fontSize="3em" />
+            Add to Collection
+          </AddGameButton>
+        )}
+      </GameCardStyle>
+    );
+  } else {
+    return <div>No user</div>;
+  }
 };
 
 export default GameCard;

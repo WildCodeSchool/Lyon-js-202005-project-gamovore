@@ -12,7 +12,6 @@ import MenuItem from "../style/MenuItem";
 const ProfilButton = (props) => {
   const { user } = useContext(UserContext);
   const [hover, setHover] = useState(false);
-  console.log(props);
 
   return props.drop && hover ? (
     <StyleForProfilButton
