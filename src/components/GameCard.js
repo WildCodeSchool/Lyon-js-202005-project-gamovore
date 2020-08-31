@@ -66,12 +66,12 @@ const GameCard = (props) => {
 
         {user.favoriteGameId.includes(gameId) ? (
           <AddGameButton onClick={() => deleteGame(user, gameId)}>
-            <RiDeleteBin5Fill fontSize="3em" />
+            <RiDeleteBin5Fill fontSize="2.5em" />
             Delete to Collection
           </AddGameButton>
         ) : (
           <AddGameButton onClick={() => addGame(user, gameId)}>
-            <RiAddFill fontSize="3em" fontWeight="bold" />
+            <RiAddFill fontSize="3em" />
             Add to Collection
           </AddGameButton>
         )}
