@@ -8,9 +8,8 @@ import GameCardJacquette from "../style/GameCardJacquette";
 import GameCardName from "../style/GameCardName";
 import GameCardStyle from "../style/GameCardStyle";
 import AddGameButton from "../style/AddGameButton";
-import Plus from "../style/Plus";
-import PlusImg from "../img/black/plus.png";
 import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
+import { RiDeleteBin5Fill, RiAddFill } from "react-icons/ri";
 
 const GameCard = (props) => {
   const firebase = useContext(FirebaseContext);
@@ -67,12 +66,12 @@ const GameCard = (props) => {
 
         {user.favoriteGameId.includes(gameId) ? (
           <AddGameButton onClick={() => deleteGame(user, gameId)}>
-            <Plus src={PlusImg} />
+            <RiDeleteBin5Fill fontSize="3em" />
             Delete to Collection
           </AddGameButton>
         ) : (
           <AddGameButton onClick={() => addGame(user, gameId)}>
-            <Plus src={PlusImg} />
+            <RiAddFill fontSize="3em" fontWeight="bold" />
             Add to Collection
           </AddGameButton>
         )}
