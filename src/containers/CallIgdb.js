@@ -24,12 +24,15 @@ const CallIgdb = (dataCallIgdb) => {
           setLoading(false);
         })
         .catch((err) => {
-          console.error(err);
+          console.log(err);
           setLoading(false);
         });
-    
-  }, [dataCallIgdb]);
-  return { gameList, loading };
+
+    }
+  }, [loading, gameList, dataCallIgdb]);
+
+  return { gameList, setGameList, loading, setLoading };
+
 };
 
 export default CallIgdb;

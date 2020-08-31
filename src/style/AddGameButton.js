@@ -13,7 +13,7 @@ const AddGameButton = styled.button`
   margin-right: auto;
   margin-bottom: 2%;
   color: black;
-  font-size: 0.8em;
+  font-size: 1em;
   justify-content: space-around;
   align-items: center;
 `;
