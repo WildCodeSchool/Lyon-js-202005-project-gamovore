@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+import FirebaseContext from "../firebase-config/FirebaseContext";
+import { UserContext } from "../context/UserContext";
 import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
 import GameInfo from "../style/GameInfo";
 import GameCoverBox from "../style/GameCoverBox";
@@ -30,6 +32,18 @@ import { MdAndroid } from "react-icons/md";
 
 const GameItem = (props) => {
   const game = props.location.state.detail;
+  const firebase = useContext(FirebaseContext);
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    let listener = firebase.auth.onAuthStateChanged((user) => {
+      user ? console.log("fuck!!!!") : props.history.push("/sign-in");
+    });
+    return () => {
+      listener();
+    };
+  }, [user]);
+
   return (
     <GamePage>
       <GameCoverBox>
