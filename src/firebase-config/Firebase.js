@@ -45,6 +45,10 @@ class Firebase {
   // Supprimer des elements de la database.
 
   dataRemove = (id) => this.firestore.FieldValue.arrayRemove(id);
+
+  //voir tous les utilisateurs
+
+  allUser = (users) => this.db.doc(users);
 }
 
 export default Firebase;

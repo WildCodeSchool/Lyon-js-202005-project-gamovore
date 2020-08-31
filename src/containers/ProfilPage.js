@@ -32,26 +32,24 @@ const ProfilPage = () => {
   const { gameList, setGameList, loading, setLoading } = CallIgdb(dataCallIgdb);
 
   useEffect(() => {
-    if (nbGames !== 0 && nbGames !== null) {
-      axios({
-        url:
-          "https://thingproxy.freeboard.io/fetch/https://api-v3.igdb.com/games",
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "user-key": API_KEY,
-        },
-        data: dataCallIgdb,
+    axios({
+      url:
+        "https://thingproxy.freeboard.io/fetch/https://api-v3.igdb.com/games",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "user-key": API_KEY,
+      },
+      data: dataCallIgdb,
+    })
+      .then((response) => response.data)
+      .then((data) => {
+        setGameList(data);
+        setLoading(false);
       })
-        .then((response) => response.data)
-        .then((data) => {
-          setGameList(data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setLoading(false);
-        });
-    }
+      .catch((err) => {
+        setLoading(false);
+      });
   }, [user]);
 
   const ViewGames = () => {

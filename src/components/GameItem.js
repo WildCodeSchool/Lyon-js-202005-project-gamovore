@@ -9,6 +9,7 @@ import GameInfoList from "../style/GameInfoList";
 import GameInfoListTitle from "../style/GameInfoListTitle";
 import GameInfoListList from "../style/GameInfoListList";
 import Button from "../style/Button";
+import Gamovores from "./Gamovores";
 import {
   SiPlaystation3,
   SiPlaystation4,
@@ -104,6 +105,8 @@ const GameItem = (props) => {
           ))}
         </GameInfoList>
         <Button>Add to My games</Button>
+
+        <Gamovores gameId={game.id} />
       </GameInfo>
     </GamePage>
   );
