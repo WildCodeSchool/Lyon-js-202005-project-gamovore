@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import FirebaseContext from "../firebase-config/FirebaseContext";
+import Button from "../style/Button";
 
 const Logout = () => {
   const firebase = useContext(FirebaseContext);
@@ -10,7 +11,7 @@ const Logout = () => {
 
   return (
     <div>
-      <button onClick={handleClick}>Deconnexion</button>
+      <Button onClick={handleClick}>LOGOUT</Button>
     </div>
   );
 };
