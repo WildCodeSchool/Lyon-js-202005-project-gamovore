@@ -34,6 +34,7 @@ const SignUpForm = (props) => {
       .signupUser(loginData.email, loginData.password)
       .then((authUser) => {
         return firebase.userAdd(authUser.user.uid).set({
+          id: authUser.user.uid,
           pseudo: loginData.pseudo,
           email: loginData.email,
           avatarUrl:

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import { AuthContext } from "../App";
-// import React, { useContext } from "react";
+import FirebaseContext from "../firebase-config/FirebaseContext";
+import { UserContext } from "../context/UserContext";
+import "firebase/firestore";
 
 import GameCardJacquette from "../style/GameCardJacquette";
 import GameCardName from "../style/GameCardName";
@@ -12,22 +13,43 @@ import PlusImg from "../img/black/plus.png";
 import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
 
 const GameCard = (props) => {
-  // const { currentUser, setCurrentUser } = useContext(AuthContext);
-  // const gameId = props.id;
+  const firebase = useContext(FirebaseContext);
+  const { user, setUser } = useContext(UserContext);
 
-  // const addGame = () => {
-  //   if (currentUser.favoriteGameId.indexOf(gameId) === -1) {
-  //     setCurrentUser({
-  //       ...currentUser,
-  //       favoriteGameId: [...currentUser.favoriteGameId, gameId],
-  //     });
-  //   } else {
-  //     alert("Game is already in your favorites" + gameId);
-  //   }
-  // };
+  const gameId = props.id;
   const [gameData] = useState(props);
-
   const link = "/game/" + props.id;
+
+  const addGame = (user, gameId) => {
+    if (user && firebase) {
+      const userId = user.id;
+      firebase.userActu(userId).update({
+        favoriteGameId: firebase.dataAdd(gameId),
+      });
+
+      firebase.userActu(userId).onSnapshot(function (doc) {
+        setUser(doc.data());
+      });
+    } else {
+      console.log("non chargé");
+    }
+  };
+
+  const deleteGame = (user, gameId) => {
+    if (user && firebase) {
+      const userId = user.id;
+
+      firebase.userActu(userId).update({
+        favoriteGameId: firebase.dataRemove(gameId),
+      });
+
+      firebase.userActu(userId).onSnapshot(function (doc) {
+        setUser(doc.data());
+      });
+    } else {
+      console.log("non chargé");
+    }
+  };
 
   return (
     <GameCardStyle>
@@ -42,9 +64,13 @@ const GameCard = (props) => {
       </Link>
       <GameCardName>{props.name}</GameCardName>
       {/*onClick={addGame}*/}
-      <AddGameButton>
+      <AddGameButton onClick={() => addGame(user, gameId)}>
         <Plus src={PlusImg} />
         Add to Collection
+      </AddGameButton>
+      <AddGameButton onClick={() => deleteGame(user, gameId)}>
+        <Plus src={PlusImg} />
+        Delete to Collection
       </AddGameButton>
     </GameCardStyle>
   );

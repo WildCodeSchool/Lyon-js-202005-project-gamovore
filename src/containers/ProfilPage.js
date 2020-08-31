@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../context/UserContext";
+import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserBase } from "../UserBase";
 import GameCard from "../components/GameCard";
 import Profil from "../components/Profil";
@@ -16,9 +18,33 @@ import Title from "../style/Title";
 import LoadingImg from "../style/LoadingImg";
 
 const ProfilPage = () => {
-  const dataCallIgdb =
-    "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; limit 2; where total_rating_count>=80;";
+  const { user, setUser } = useContext(UserContext);
+  const firebase = useContext(FirebaseContext);
+
+  const nbGames = user.favoriteGameId.length;
+  const gamesToLoad = user.favoriteGameId.toString();
+
+  const dataCallIgdb = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; limit 3; where id=(${gamesToLoad});`;
+
   const { gameList, loading } = CallIgdb(dataCallIgdb);
+
+  const gameListId = gameList.map((item) => {
+    return item.id;
+  });
+
+  const ViewGames = () => {
+    if (gameListId !== user.favoriteGameId && nbGames !== 0) {
+      return gameList
+        .filter((item) => user.favoriteGameId.includes(item.id))
+        .map((item) => <GameCard little {...item} key={item.id} />);
+    } else if (nbGames !== 0) {
+      return gameList.map((item) => (
+        <GameCard little {...item} key={item.id} />
+      ));
+    } else {
+      return <div>No games to your collection ... </div>;
+    }
+  };
 
   return (
     <ProfilPageLayout>
@@ -39,9 +65,7 @@ const ProfilPage = () => {
                 />
               </Loading>
             ) : (
-              gameList.map((item) => (
-                <GameCard little {...item} key={item.id} />
-              ))
+              <ViewGames />
             )}
           </ProfilGameLayout>
         </section>

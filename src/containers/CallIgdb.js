@@ -26,6 +26,7 @@ const CallIgdb = (dataCallIgdb) => {
         })
         .catch((err) => {
           console.error(err);
+          setLoading(false);
         });
     }
   }, [loading, gameList, dataCallIgdb]);
