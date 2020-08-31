@@ -25,7 +25,7 @@ const CallIgdb = (dataCallIgdb) => {
           setLoading(false);
         })
         .catch((err) => {
-          console.error(err);
+          console.log(err);
           setLoading(false);
         });
     }

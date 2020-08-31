@@ -51,29 +51,36 @@ const GameCard = (props) => {
     }
   };
 
-  return (
-    <GameCardStyle>
-      <Link to={{ pathname: link, state: { detail: gameData } }}>
-        <GameCardJacquette
-          src={
-            props.cover
-              ? "https:" + props.cover.url.replace("thumb", "cover_big_2x")
-              : gameCoverPlaceholder
-          }
-        />
-      </Link>
-      <GameCardName>{props.name}</GameCardName>
-      {/*onClick={addGame}*/}
-      <AddGameButton onClick={() => addGame(user, gameId)}>
-        <Plus src={PlusImg} />
-        Add to Collection
-      </AddGameButton>
-      <AddGameButton onClick={() => deleteGame(user, gameId)}>
-        <Plus src={PlusImg} />
-        Delete to Collection
-      </AddGameButton>
-    </GameCardStyle>
-  );
+  if (user) {
+    return (
+      <GameCardStyle>
+        <Link to={{ pathname: link, state: { detail: gameData } }}>
+          <GameCardJacquette
+            src={
+              props.cover
+                ? "https:" + props.cover.url.replace("thumb", "cover_big_2x")
+                : gameCoverPlaceholder
+            }
+          />
+        </Link>
+        <GameCardName>{props.name}</GameCardName>
+
+        {user.favoriteGameId.includes(gameId) ? (
+          <AddGameButton onClick={() => deleteGame(user, gameId)}>
+            <Plus src={PlusImg} />
+            Delete to Collection
+          </AddGameButton>
+        ) : (
+          <AddGameButton onClick={() => addGame(user, gameId)}>
+            <Plus src={PlusImg} />
+            Add to Collection
+          </AddGameButton>
+        )}
+      </GameCardStyle>
+    );
+  } else {
+    return <div>No user</div>;
+  }
 };
 
 export default GameCard;

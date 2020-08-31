@@ -32,7 +32,6 @@ const ProfilPage = () => {
   const { gameList, setGameList, loading, setLoading } = CallIgdb(dataCallIgdb);
 
   useEffect(() => {
-    console.log(nbGames);
     if (nbGames !== 0 && nbGames !== null) {
       axios({
         url:
