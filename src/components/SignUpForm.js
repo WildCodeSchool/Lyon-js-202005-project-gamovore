@@ -8,7 +8,7 @@ import SeparForm from "../style/SeparForm";
 import Linked from "../style/Linked";
 
 const SignUpForm = (props) => {
-  console.log(props);
+  
   const firebase = useContext(FirebaseContext);
 
   const data = {

@@ -41,8 +41,6 @@ const GameListBox = (props) => {
     };
   }, [authUser, firebase, props.history, setUser]);
 
-  // useEffect(() => {}, [data]);
-
   return authUser === null ? (
     <Loading>
       <LoadingImg

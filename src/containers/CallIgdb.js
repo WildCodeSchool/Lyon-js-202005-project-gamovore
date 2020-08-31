@@ -28,7 +28,6 @@ const CallIgdb = (dataCallIgdb) => {
         });
     
   }, [dataCallIgdb]);
-  console.log(dataCallIgdb);
   return { gameList, loading };
 };
 

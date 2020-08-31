@@ -6,7 +6,7 @@ const dataCallIgdb =
 export const GameListContext = React.createContext(null);
 
 export const GameListProvider = (props) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(dataCallIgdb);
 
   useEffect(() => {
     data ? setData(data) : setData(dataCallIgdb);
