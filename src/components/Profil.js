@@ -10,7 +10,7 @@ import { GiSunrise, GiSunset } from "react-icons/gi";
 
 const Profil = () => {
   const { user } = useContext(UserContext);
-  console.log(user);
+
   return (
     <ProfilLayout>
       <ProfilButton />
