@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { GameListContext } from "../context/GameListContext";
-import StyledSearchBar from "../style/StyledSearchBar"
+import StyledSearchBar from "../style/StyledSearchBar";
 // j'aimerais bien lui donner ce style https://codepen.io/himalayasingh/pen/dqjLgO
 
 const SearchBar = () => {
@@ -13,7 +13,7 @@ const SearchBar = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setData(search ? inputToRequest(search) : "");
+    setData(inputToRequest(search));
   };
 
   const onClick = (e) => {};

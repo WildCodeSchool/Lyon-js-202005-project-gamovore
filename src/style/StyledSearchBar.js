@@ -1,20 +1,22 @@
 import styled from "styled-components";
 
 const StyledSearchBar = styled.form`
+  display: inline;
   position: relative;
-  width: auto;
-  background: #57bd84;
+  background: #fbb700;
   border-radius: 15px;
-  & input,
+  outline: none;
+
+  input,
   button {
     height: 40px;
-    font-family: "Lato", sans-serif;
     border: 0;
     color: #2f2f2f;
-    font-size: 1.8rem;
+    font-size: 1rem;
   }
-  &input {
-    width: 100%;
+
+  input {
+    width: 80%;
     background: #fff;
     padding: 0 1.6rem;
     border-radius: 15px;
@@ -24,23 +26,23 @@ const StyledSearchBar = styled.form`
     z-index: 1;
     position: relative;
   }
-  &button {
+
+  button {
     display: none;
     position: relative;
     top: 0;
     right: 0;
-    width: 100px;
+    width: 70px;
     font-weight: bold;
-    background: #57bd84;
+    background: #fbb700;
     border-radius: 0 15px 15px 0;
   }
 
-
-  &input:not(:placeholder-shown) {
+  input:not(:placeholder-shown) {
     border-radius: 15px 0 0 15px;
-    width: calc(100% - 100px);
+    width: calc(100% - 80px);
     + button {
-      display: block;
+      display: inline-block;
     }
   }
 `;
