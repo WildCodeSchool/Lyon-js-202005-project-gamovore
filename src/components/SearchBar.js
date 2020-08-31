@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import CallIgdb from "../containers/CallIgdb";
 import { GameListContext } from "../context/GameListContext";
 // j'aimerais bien lui donner ce style https://codepen.io/himalayasingh/pen/dqjLgO
 
@@ -11,7 +10,8 @@ const SearchBar = () => {
     setSearch(inputToRequest(e.target.value));
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     setData(search);
   };
   // transform into api request

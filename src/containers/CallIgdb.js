@@ -8,7 +8,6 @@ const CallIgdb = (dataCallIgdb) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (loading && !gameList.length) {
       axios({
         url:
           "https://thingproxy.freeboard.io/fetch/https://api-v3.igdb.com/games",
@@ -27,8 +26,8 @@ const CallIgdb = (dataCallIgdb) => {
         .catch((err) => {
           console.error(err);
         });
-    }
-  }, [loading, gameList, dataCallIgdb]);
+    
+  }, [dataCallIgdb]);
   console.log(dataCallIgdb);
   return { gameList, loading };
 };

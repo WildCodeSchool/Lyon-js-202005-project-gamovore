@@ -8,14 +8,15 @@ import Loading from "../style/Loading";
 import LoadingImg from "../style/LoadingImg";
 import GameListLayout from "../style/GameListLayout";
 import CallIgdb from "./CallIgdb";
+
 const GameListBox = (props) => {
   const firebase = useContext(FirebaseContext);
   const { setUser } = useContext(UserContext);
 
   const [authUser, setAuthUser] = useState(null);
 
-  const { data, setData } = useContext(GameListContext);
-  const { gameList, loading } = CallIgdb(data);
+  const { data } = useContext(GameListContext);
+  let { gameList, loading } = CallIgdb(data);
   useEffect(() => {
     let listener = firebase.auth.onAuthStateChanged((user) => {
       user ? setAuthUser(user) : props.history.push("/sign-in");
@@ -39,6 +40,8 @@ const GameListBox = (props) => {
       listener();
     };
   }, [authUser, firebase, props.history, setUser]);
+
+  // useEffect(() => {}, [data]);
 
   return authUser === null ? (
     <Loading>
