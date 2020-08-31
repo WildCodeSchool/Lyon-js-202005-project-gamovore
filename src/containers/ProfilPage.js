@@ -28,8 +28,16 @@ const ProfilPage = () => {
 
   const { gameList, loading } = CallIgdb(dataCallIgdb);
 
+  const gameListId = gameList.map((item) => {
+    return item.id;
+  });
+
   const ViewGames = () => {
-    if (nbGames !== 0) {
+    if (gameListId !== user.favoriteGameId && nbGames !== 0) {
+      return gameList
+        .filter((item) => user.favoriteGameId.includes(item.id))
+        .map((item) => <GameCard little {...item} key={item.id} />);
+    } else if (nbGames !== 0) {
       return gameList.map((item) => (
         <GameCard little {...item} key={item.id} />
       ));
