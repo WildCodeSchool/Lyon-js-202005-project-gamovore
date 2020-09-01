@@ -11,7 +11,7 @@ const Gamovores = (props) => {
   const userId = props.user.favoriteGamovoreID;
 
   useEffect(() => {
-    if (user) {
+    if (user && userId.length) {
       firebase
         .firestore()
         .collection("users")
@@ -22,13 +22,15 @@ const Gamovores = (props) => {
           snapshot.forEach((doc) => {
             if (doc && doc.exists) {
               gamovores.push(doc.data());
-            }
+            } else console.log("no user");
           });
           setGamovoresList(gamovores);
         })
         .catch((error) => {
           console.log(error);
         });
+    } else {
+      setGamovoresList([]);
     }
   }, [userId, firebase, user]);
 
