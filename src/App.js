@@ -15,6 +15,7 @@ import SignUpForm from "./components/SignUpForm";
 import GameListBox from "./containers/GameListBox";
 import GameItem from "./components/GameItem";
 import ProfilPage from "./containers/ProfilPage";
+import GamovoreProfil from "./components/GamovoreProfil";
 import { GameListProvider } from "./context/GameListContext";
 import { UserContext } from "./context/UserContext";
 
@@ -38,6 +39,7 @@ const App = () => {
               <Route path="/profil">
                 {user === null ? <Redirect to="/sign-in" /> : <ProfilPage />}
               </Route>
+              <Route path="/gamovore/:gamovoreId" component={GamovoreProfil} />
             </Switch>
           </Main>
         </GameListProvider>
