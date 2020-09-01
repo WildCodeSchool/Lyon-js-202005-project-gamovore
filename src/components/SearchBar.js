@@ -16,7 +16,9 @@ const SearchBar = () => {
     setData(inputToRequest(search));
   };
 
-  const onClick = (e) => {};
+  const onClick = (e) => {
+    console.log(e.target);
+  };
   // transform into api request
   const inputToRequest = (string) =>
     "search " +
