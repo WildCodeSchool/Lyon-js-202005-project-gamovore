@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const dataCallIgdb =
-  "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 20; where total_rating_count>=80;";
+  "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 50; where total_rating_count>=80;";
 
 export const GameListContext = React.createContext(null);
 

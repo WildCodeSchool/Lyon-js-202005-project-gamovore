@@ -10,9 +10,11 @@ const Sidebar = () => {
   const { setData } = useContext(GameListContext);
   const [platformFilters, setPlatformFilters] = useState([]);
   const [genresFilters, setGenresFilters] = useState([]);
+  const [modesFilters, setModesFilters] = useState([]);
+
   const defaultCall =
     "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 50; where total_rating_count>=80;";
-  const filteredSearch = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 100; where genres=(${genresFilters}) & release_dates.platform=(${platformFilters});`;
+  const filteredSearch = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 100; where game_modes=(${modesFilters}) & genres=(${genresFilters}) & release_dates.platform=(${platformFilters});`;
   setData(filteredSearch);
 
   const platforms = [
@@ -24,7 +26,7 @@ const Sidebar = () => {
     { id: 49, name: "Xbox One" },
   ];
 
-  const modes = [
+  const genres = [
     { id: 31, name: "Adventure" },
     { id: 33, name: "Arcade" },
     { id: 35, name: "Card & Board Game" },
@@ -37,6 +39,15 @@ const Sidebar = () => {
     { id: 5, name: "Shooter" },
     { id: 14, name: "Sport" },
     { id: 15, name: "Strategy" },
+  ];
+
+  const modes = [
+    { id: 6, name: "Battle Royale" },
+    { id: 3, name: "Co-operative" },
+    { id: 5, name: "Massively Multiplayer Online (MMO)" },
+    { id: 2, name: "Multiplayer" },
+    { id: 1, name: "Single player" },
+    { id: 4, name: "Split screen" },
   ];
 
   const handlePlatforms = (event) => {
@@ -72,6 +83,27 @@ const Sidebar = () => {
           (filter) => filter !== event.target.id
         );
         setGenresFilters(removedGenre);
+      }
+    }
+  };
+
+  const handleModes = (event) => {
+    event.persist();
+    if (event.target.checked) {
+      setModesFilters((modesFilters) => [...modesFilters, event.target.id]);
+    } else {
+      if (
+        platformFilters.length === 1 &&
+        genresFilters === 1 &&
+        modesFilters === 1
+      ) {
+        setModesFilters([]);
+        setData(defaultCall);
+      } else {
+        const removedGenre = modesFilters.filter(
+          (filter) => filter !== event.target.id
+        );
+        setModesFilters(removedGenre);
       }
     }
   };
@@ -114,9 +146,9 @@ const Sidebar = () => {
         </SidebarSubMenu>
 
         <SidebarSubMenu>
-          <SidebarItemMenu>MODES</SidebarItemMenu>
+          <SidebarItemMenu>GENRES</SidebarItemMenu>
           <SidebarSubMenu>
-            {modes.map((item) => (
+            {genres.map((item) => (
               <SidebarItemMenu key={item.id}>
                 <input
                   type="checkbox"
@@ -134,15 +166,18 @@ const Sidebar = () => {
         <SidebarSubMenu>
           <SidebarItemMenu>GENRES</SidebarItemMenu>
           <SidebarSubMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> ACTION{" "}
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> AVENTURE{" "}
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> COURSE{" "}
-            </SidebarItemMenu>
+            {modes.map((item) => (
+              <SidebarItemMenu key={item.id}>
+                <input
+                  type="checkbox"
+                  key={item.id}
+                  name={item.name}
+                  id={item.id}
+                  onChange={handleModes}
+                />{" "}
+                {item.name}
+              </SidebarItemMenu>
+            ))}
           </SidebarSubMenu>
         </SidebarSubMenu>
       </SidebarMenu>
