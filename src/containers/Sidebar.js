@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { FilterContext } from "../context/FilterContext";
+import React, { useState, useContext } from "react";
 import { GameListContext } from "../context/GameListContext";
 import SidebarMenu from "../style/SidebarMenu";
 import SidebarSubMenu from "../style/SidebarSubMenu";
@@ -8,11 +7,11 @@ import Linked from "../style/Linked";
 import Searchbar from "../components/SearchBar";
 
 const Sidebar = () => {
-  const { data, setData } = useContext(GameListContext);
-  const { selectedFilters, setFilters } = useContext(FilterContext);
+  const { setData } = useContext(GameListContext);
+  const [platformFilters, setPlatformFilters] = useState([]);
   const defaultCall =
     "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 50; where total_rating_count>=80;";
-  const filteredSearch = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 100; where release_dates.platform=(${selectedFilters});`;
+  const filteredSearch = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 100; where release_dates.platform=(${platformFilters});`;
   setData(filteredSearch);
 
   const platforms = [
@@ -24,19 +23,37 @@ const Sidebar = () => {
     { id: 49, name: "Xbox One" },
   ];
 
+  const modes = [
+    { id: 31, name: "Adventure" },
+    { id: 33, name: "Arcade" },
+    { id: 35, name: "Card & Board Game" },
+    { id: 4, name: "Fighting" },
+    { id: 25, name: "Hack and slash/Beat 'em up" },
+    { id: 36, name: "MOBA" },
+    { id: 10, name: "Racing" },
+    { id: 11, name: "Real Time Strategy (RTS)" },
+    { id: 12, name: "Role-playing (RPG)" },
+    { id: 5, name: "Shooter" },
+    { id: 14, name: "Sport" },
+    { id: 15, name: "Strategy" },
+  ];
+
   const handleToggle = (event) => {
     event.persist();
     if (event.target.checked) {
-      setFilters((selectedFilters) => [...selectedFilters, event.target.id]);
+      setPlatformFilters((platformFilters) => [
+        ...platformFilters,
+        event.target.id,
+      ]);
     } else {
-      if (selectedFilters.length === 1) {
-        setFilters([]);
+      if (platformFilters.length === 1) {
+        setPlatformFilters([]);
         setData(defaultCall);
       } else {
-        const removedFilter = selectedFilters.filter(
+        const removedFilter = platformFilters.filter(
           (filter) => filter !== event.target.id
         );
-        setFilters(removedFilter);
+        setPlatformFilters(removedFilter);
       }
     }
   };
@@ -81,15 +98,18 @@ const Sidebar = () => {
         <SidebarSubMenu>
           <SidebarItemMenu>MODES</SidebarItemMenu>
           <SidebarSubMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> MMO{" "}
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> CO-OPERATIVE{" "}
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> MULTIPLAYERS{" "}
-            </SidebarItemMenu>
+            {modes.map((item) => (
+              <SidebarItemMenu key={item.id}>
+                <input
+                  type="checkbox"
+                  key={item.id}
+                  name={item.name}
+                  id={item.id}
+                  onChange={handleToggle}
+                />{" "}
+                {item.name.toUpperCase()}
+              </SidebarItemMenu>
+            ))}
           </SidebarSubMenu>
         </SidebarSubMenu>
 
