@@ -5,7 +5,7 @@ import StyleForAvatar from "../style/Avatar";
 import GamovoreDiv from "../style/GamovoreDiv";
 
 const Gamovores = (props) => {
-  const [gamovoresList, setGamovoresList] = useState(null);
+  const [gamovoresList, setGamovoresList] = useState([]);
   const firebase = useContext(FirebaseContext);
   const user = props.user;
   const userId = props.user.favoriteGamovoreID;
@@ -29,8 +29,6 @@ const Gamovores = (props) => {
         .catch((error) => {
           console.log(error);
         });
-    } else {
-      setGamovoresList([]);
     }
   }, [userId, firebase, user]);
 
