@@ -16,7 +16,6 @@ const SearchBar = () => {
     setData(inputToRequest(search));
   };
 
-  const onClick = (e) => {};
   // transform into api request
   const inputToRequest = (string) =>
     "search " +
@@ -31,16 +30,8 @@ const SearchBar = () => {
     //   </form>
     // </div>
     <StyledSearchBar onSubmit={onSubmit}>
-      <input
-        type="search"
-        onChange={onChange}
-        placeholder="Search..."
-        autofocus
-        required
-      />
-      <button type="submit" onClick={onClick}>
-        Go
-      </button>
+      <input type="search" onChange={onChange} placeholder="Search..." />
+      <button type="submit">Go</button>
     </StyledSearchBar>
   );
 };
