@@ -17,7 +17,7 @@ const SearchBar = () => {
   const inputToRequest = (string) =>
     "search " +
     `"${string}"; ` +
-    "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 20; where ;";
+    "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 20;";
 
   return (
     <form onSubmit={onSubmit}>

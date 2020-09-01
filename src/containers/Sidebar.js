@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { FilterContext } from "../context/FilterContext";
+import { GameListContext } from "../context/GameListContext";
 import SidebarMenu from "../style/SidebarMenu";
 import SidebarSubMenu from "../style/SidebarSubMenu";
 import SidebarItemMenu from "../style/SidebarItemMenu";
@@ -7,25 +8,35 @@ import Linked from "../style/Linked";
 import Searchbar from "../components/SearchBar";
 
 const Sidebar = () => {
+  const { data, setData } = useContext(GameListContext);
   const { selectedFilters, setFilters } = useContext(FilterContext);
+  const defaultCall =
+    "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 50; where total_rating_count>=80;";
+  const filteredSearch = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 100; where release_dates.platform=(${selectedFilters});`;
+  setData(filteredSearch);
 
   const platforms = [
-    { id: 169, name: "Xbox Series X" },
-    { id: 6, name: "PC (Microsoft Windows)" },
     { id: 130, name: "Nintendo Switch" },
-    { id: 167, name: "PlayStation 5" },
-    { id: 49, name: "Xbox One" },
+    { id: 6, name: "PC (Microsoft Windows)" },
     { id: 48, name: "PlayStation 4" },
+    { id: 167, name: "PlayStation 5" },
+    { id: 169, name: "Xbox Series X" },
+    { id: 49, name: "Xbox One" },
   ];
 
-  const handleToggle = (e) => {
-    if (e.target.checked) {
-      setFilters((selectedFilters) => [...selectedFilters, e.target.id]);
+  const handleToggle = (event) => {
+    event.persist();
+    if (event.target.checked) {
+      setFilters((selectedFilters) => [...selectedFilters, event.target.id]);
     } else {
-      const removedFilter = selectedFilters.filter(
-        (filter) => filter !== e.target.id
-      );
-      setFilters(removedFilter);
+      if (selectedFilters.length === 1) {
+        setData(defaultCall);
+      } else {
+        const removedFilter = selectedFilters.filter(
+          (filter) => filter !== event.target.id
+        );
+        setFilters(removedFilter);
+      }
     }
   };
 
