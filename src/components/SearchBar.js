@@ -31,13 +31,7 @@ const SearchBar = () => {
     //   </form>
     // </div>
     <StyledSearchBar onSubmit={onSubmit}>
-      <input
-        type="search"
-        onChange={onChange}
-        placeholder="Search..."
-        autofocus
-        required
-      />
+      <input type="search" onChange={onChange} placeholder="Search..." />
       <button type="submit" onClick={onClick}>
         Go
       </button>
