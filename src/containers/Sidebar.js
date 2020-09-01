@@ -9,9 +9,10 @@ import Searchbar from "../components/SearchBar";
 const Sidebar = () => {
   const { setData } = useContext(GameListContext);
   const [platformFilters, setPlatformFilters] = useState([]);
+  const [genresFilters, setGenresFilters] = useState([]);
   const defaultCall =
     "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 50; where total_rating_count>=80;";
-  const filteredSearch = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 100; where release_dates.platform=(${platformFilters});`;
+  const filteredSearch = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 100; where genres=(${genresFilters}) & release_dates.platform=(${platformFilters});`;
   setData(filteredSearch);
 
   const platforms = [
@@ -38,7 +39,7 @@ const Sidebar = () => {
     { id: 15, name: "Strategy" },
   ];
 
-  const handleToggle = (event) => {
+  const handlePlatforms = (event) => {
     event.persist();
     if (event.target.checked) {
       setPlatformFilters((platformFilters) => [
@@ -46,14 +47,31 @@ const Sidebar = () => {
         event.target.id,
       ]);
     } else {
-      if (platformFilters.length === 1) {
+      if (platformFilters.length === 1 && genresFilters === 1) {
         setPlatformFilters([]);
         setData(defaultCall);
       } else {
-        const removedFilter = platformFilters.filter(
+        const removedPlatform = platformFilters.filter(
           (filter) => filter !== event.target.id
         );
-        setPlatformFilters(removedFilter);
+        setPlatformFilters(removedPlatform);
+      }
+    }
+  };
+
+  const handleGenres = (event) => {
+    event.persist();
+    if (event.target.checked) {
+      setGenresFilters((genresFilters) => [...genresFilters, event.target.id]);
+    } else {
+      if (platformFilters.length === 1 && genresFilters === 1) {
+        setGenresFilters([]);
+        setData(defaultCall);
+      } else {
+        const removedGenre = genresFilters.filter(
+          (filter) => filter !== event.target.id
+        );
+        setGenresFilters(removedGenre);
       }
     }
   };
@@ -87,9 +105,9 @@ const Sidebar = () => {
                   key={item.id}
                   name={item.name}
                   id={item.id}
-                  onChange={handleToggle}
+                  onChange={handlePlatforms}
                 />{" "}
-                {item.name.toUpperCase()}
+                {item.name}
               </SidebarItemMenu>
             ))}
           </SidebarSubMenu>
@@ -105,9 +123,9 @@ const Sidebar = () => {
                   key={item.id}
                   name={item.name}
                   id={item.id}
-                  onChange={handleToggle}
+                  onChange={handleGenres}
                 />{" "}
-                {item.name.toUpperCase()}
+                {item.name}
               </SidebarItemMenu>
             ))}
           </SidebarSubMenu>
