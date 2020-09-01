@@ -30,6 +30,7 @@ const Sidebar = () => {
       setFilters((selectedFilters) => [...selectedFilters, event.target.id]);
     } else {
       if (selectedFilters.length === 1) {
+        setFilters([]);
         setData(defaultCall);
       } else {
         const removedFilter = selectedFilters.filter(
