@@ -21,7 +21,7 @@ import LoadingImg from "../style/LoadingImg";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ProfilPage = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const firebase = useContext(FirebaseContext);
 
   const nbGames = user.favoriteGameId.length;
@@ -32,6 +32,15 @@ const ProfilPage = () => {
   const { gameList, setGameList, loading, setLoading } = CallIgdb(dataCallIgdb);
 
   useEffect(() => {
+    let listener = firebase.auth.onAuthStateChanged((user) => {
+      user ? apiRender() : setUser(null);
+    });
+    return () => {
+      listener();
+    };
+  }, [user]);
+
+  const apiRender = () => {
     if (nbGames !== 0 && nbGames !== null) {
       axios({
         url:
@@ -52,7 +61,7 @@ const ProfilPage = () => {
           setLoading(false);
         });
     }
-  }, [user]);
+  };
 
   const ViewGames = () => {
     if (nbGames !== 0) {

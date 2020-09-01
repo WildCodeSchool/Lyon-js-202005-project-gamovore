@@ -1,6 +1,10 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { UserProvider } from "./context/UserContext";
+import React, { useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import HeaderBox from "./components/HeaderBox";
 import SidebarBox from "./components/SidebarBox";
 import FooterBox from "./components/FooterBox";
@@ -12,29 +16,33 @@ import GameListBox from "./containers/GameListBox";
 import GameItem from "./components/GameItem";
 import ProfilPage from "./containers/ProfilPage";
 import { GameListProvider } from "./context/GameListContext";
+import { UserContext } from "./context/UserContext";
+
 const App = () => {
+  const { user } = useContext(UserContext);
+
   return (
     <Router>
-      <UserProvider>
-        <GridLayout>
-          <HeaderBox />
+      <GridLayout>
+        <HeaderBox />
 
-          <GameListProvider>
-            <SidebarBox />
+        <GameListProvider>
+          <SidebarBox />
 
-            <Main>
-              <Switch>
-                <Route path="/sign-in" component={SignInForm} />
-                <Route path="/sign-up" component={SignUpForm} />
-                <Route path="/game/:gameId" component={GameItem} />
-                <Route exact path="/" component={GameListBox} />
-                <Route path="/profil" component={ProfilPage} />
-              </Switch>
-            </Main>
-          </GameListProvider>
-          <FooterBox />
-        </GridLayout>
-      </UserProvider>
+          <Main>
+            <Switch>
+              <Route path="/sign-in" component={SignInForm} />
+              <Route path="/sign-up" component={SignUpForm} />
+              <Route path="/game/:gameId" component={GameItem} />
+              <Route exact path="/" component={GameListBox} />
+              <Route path="/profil">
+                {user === null ? <Redirect to="/sign-in" /> : <ProfilPage />}
+              </Route>
+            </Switch>
+          </Main>
+        </GameListProvider>
+        <FooterBox />
+      </GridLayout>
     </Router>
   );
 };
