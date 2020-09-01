@@ -10,6 +10,8 @@ import ProfilLayout from "../style/ProfilLayout";
 import ProfilPageLayout from "../style/ProfilPageLayout";
 import ProfilAsideLayout from "../style/ProfilAsideLayout";
 import ProfilGameLayout from "../style/ProfilGameLayout";
+import Button from "../style/Button";
+import ButtonLayout from "../style/ButtonLayout";
 
 import { RiMoonClearLine, RiSunLine } from "react-icons/ri";
 import { GiSunrise, GiSunset } from "react-icons/gi";
@@ -98,6 +100,9 @@ const GamovoreProfil = (props) => {
             ))}
           </GameInfoList>
         </div>
+        <ButtonLayout>
+          <Button>{`Add ${props.location.state.detail}`}</Button>
+        </ButtonLayout>
       </ProfilLayout>
       <ProfilAsideLayout>
         <section>
