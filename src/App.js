@@ -12,7 +12,8 @@ import GameListBox from "./containers/GameListBox";
 import GameItem from "./components/GameItem";
 import ProfilPage from "./containers/ProfilPage";
 import { GameListProvider } from "./context/GameListContext";
-import { FilterContext } from "./context/FilterContext";
+import { FilterProvider } from "./context/FilterContext";
+
 const App = () => {
   return (
     <Router>
@@ -21,7 +22,7 @@ const App = () => {
           <HeaderBox />
 
           <GameListProvider>
-            <FilterContext.Provider>
+            <FilterProvider>
               <SidebarBox />
 
               <Main>
@@ -33,7 +34,7 @@ const App = () => {
                   <Route path="/profil" component={ProfilPage} />
                 </Switch>
               </Main>
-            </FilterContext.Provider>
+            </FilterProvider>
           </GameListProvider>
           <FooterBox />
         </GridLayout>

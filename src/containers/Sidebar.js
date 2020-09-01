@@ -18,12 +18,12 @@ const Sidebar = () => {
     { id: 48, name: "PlayStation 4" },
   ];
 
-  const handleToggle = (event) => {
-    if (event.target.checked) {
-      setFilters((selectedFilters) => [...selectedFilters, event.target.id]);
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setFilters((selectedFilters) => [...selectedFilters, e.target.id]);
     } else {
       const removedFilter = selectedFilters.filter(
-        (filter) => filter !== event.target.id
+        (filter) => filter !== e.target.id
       );
       setFilters(removedFilter);
     }
