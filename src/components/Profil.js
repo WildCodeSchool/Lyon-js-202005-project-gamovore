@@ -1,38 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
-import ProfilLayout from "../style/ProfilLayout";
-import ProfilButton from "./ProfilButton";
-import GameInfoList from "../style/GameInfoList";
-import GameInfoListList from "../style/GameInfoListList";
-
-import { RiMoonClearLine, RiSunLine } from "react-icons/ri";
-import { GiSunrise, GiSunset } from "react-icons/gi";
+import ViewProfil from "./ViewProfil";
+import EditProfil from "./EditProfil";
 
 const Profil = () => {
   const { user } = useContext(UserContext);
+  const [editProfil, setEditProfil] = useState(false);
 
-  return (
-    <ProfilLayout>
-      <ProfilButton />
-      <div>
-        <h2>Description:</h2>
-        <p>{user.description}</p>
-      </div>
-      <div>
-        <h2>Disponibilities:</h2>
-        <GameInfoList>
-          {user.avaibalities.map((item) => (
-            <GameInfoListList key={item}>
-              {item === "morning" ? <GiSunrise fontSize="2em" /> : ""}
-              {item === "afternoon" ? <RiSunLine fontSize="2em" /> : ""}
-              {item === "evening" ? <GiSunset fontSize="2em" /> : ""}
-              {item === "night" ? <RiMoonClearLine fontSize="2em" /> : ""}
-            </GameInfoListList>
-          ))}
-        </GameInfoList>
-      </div>
-    </ProfilLayout>
-  );
+  if (!editProfil) {
+    return <ViewProfil user={user} setEditProfil={setEditProfil} />;
+  } else {
+    return <EditProfil user={user} setEditProfil={setEditProfil} />;
+  }
 };
 
 export default Profil;
