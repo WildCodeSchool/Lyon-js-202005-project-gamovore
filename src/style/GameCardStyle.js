@@ -20,6 +20,11 @@ const GameCardStyle = styled.li`
     border: solid 3px #fbb700;
     transition: all 0.2s ease-out;
   }
+  @media screen and (max-width: 600px) {
+    width: 90%;
+    margin-left: none;
+    margin-bottom: 3%;
+  }
 `;
 
 export default GameCardStyle;
