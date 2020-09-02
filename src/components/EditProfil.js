@@ -18,15 +18,11 @@ const Profil = ({ setEditProfil }) => {
   const [pseudo, setPseudo] = useState(user.pseudo);
   const [avatarUrl, setAvatarUrl] = useState(user.avatarUrl);
   const [description, setDescription] = useState(user.description);
-  const [exAvaibalities, setExAvaibalities] = useState(user.avaibalities);
-  const [avaibalities, setAvaibalities] = useState([]);
-  const [id, setId] = useState(user.id);
-  const [email, setEmail] = useState(user.email);
-  const [favoriteGameId, setFavoriteGameId] = useState(user.favoriteGameId);
-  const [favoriteGamovoreID, setFavoriteGamovoreID] = useState(
-    user.favoriteGamovoreID
-  );
-
+  const [avaibalities, setAvaibalities] = useState(user.avaibalities);
+  const id = user.id;
+  const email = user.email;
+  const favoriteGameId = user.favoriteGameId;
+  const favoriteGamovoreID = user.favoriteGamovoreID;
   const saveProfil = (
     user,
     pseudo,
@@ -95,8 +91,6 @@ const Profil = ({ setEditProfil }) => {
     }
   };
 
-  console.log(avaibalities);
-
   return (
     <ProfilLayout>
       <AvatarContainer>
@@ -114,6 +108,7 @@ const Profil = ({ setEditProfil }) => {
 
       <div>
         <h2>Description :</h2>
+        <p>avaibalities</p>
         <Textarea
           rows="5"
           cols="45"
@@ -128,6 +123,7 @@ const Profil = ({ setEditProfil }) => {
           type="checkbox"
           name="morning"
           onChange={handleCheckChange}
+          checked={avaibalities.includes("morning") ? true : false}
         />{" "}
         Morning <GiSunrise fontSize="2em" />
         <br />
@@ -135,15 +131,22 @@ const Profil = ({ setEditProfil }) => {
           type="checkbox"
           name="afternoon"
           onChange={handleCheckChange}
+          checked={avaibalities.includes("afternoon") ? true : false}
         />{" "}
         Afternoon <RiSunLine fontSize="2em" /> <br />
         <input
           type="checkbox"
           name="evening"
           onChange={handleCheckChange}
+          checked={avaibalities.includes("evening") ? true : false}
         />{" "}
         Evening <GiSunset fontSize="2em" /> <br />
-        <input type="checkbox" name="night" onChange={handleCheckChange} />{" "}
+        <input
+          type="checkbox"
+          name="night"
+          onChange={handleCheckChange}
+          checked={avaibalities.includes("night") ? true : false}
+        />{" "}
         Nigth <RiMoonClearLine fontSize="2em" /> <br />
       </div>
       <br />
