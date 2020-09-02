@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import FirebaseContext from "../firebase-config/FirebaseContext";
+import { UserContext } from "../context/UserContext";
 import axios from "axios";
 import GameCard from "../components/GameCard";
 
@@ -20,13 +21,13 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 const GamovoreProfil = (props) => {
   const firebase = useContext(FirebaseContext);
+  const { user, setUser } = useContext(UserContext);
 
   const [gamovoreData, setGamovoreData] = useState([]);
   const [gameToLoad, setGameToLoad] = useState([]);
   const [gamovoreGames, setGamovoreGames] = useState([]);
 
   useEffect(() => {
-    console.log(props.location.state.gvid);
     firebase.db
       .collection("users")
       .doc(props.location.state.gvid)
@@ -79,6 +80,28 @@ const GamovoreProfil = (props) => {
     }
   };
 
+  const gamovoreID = props.location.state.gvid;
+
+  const addGamovore = (user, gamovoreID) => {
+    const userID = user.id;
+    firebase
+      .userActu(userID)
+      .update({ favoriteGamovoreID: firebase.dataAdd(gamovoreID) });
+    firebase.userActu(userID).onSnapshot(function (doc) {
+      setUser(doc.data());
+    });
+  };
+
+  const deleteGamovore = (user, gamovoreID) => {
+    const userID = user.id;
+    firebase
+      .userActu(userID)
+      .update({ favoriteGamovoreID: firebase.dataRemove(gamovoreID) });
+    firebase.userActu(userID).onSnapshot(function (doc) {
+      setUser(doc.data());
+    });
+  };
+
   return gamovoreData.length !== 0 ? (
     <ProfilPageLayout>
       <ProfilLayout>
@@ -101,7 +124,15 @@ const GamovoreProfil = (props) => {
           </GameInfoList>
         </div>
         <ButtonLayout>
-          <Button>{`Add ${props.location.state.detail}`}</Button>
+          {user.favoriteGamovoreID.includes(gamovoreID) ? (
+            <Button onClick={() => deleteGamovore(user, gamovoreID)}>
+              {`Delete ${props.location.state.detail}`}
+            </Button>
+          ) : (
+            <Button onClick={() => addGamovore(user, gamovoreID)}>
+              {`Add ${props.location.state.detail}`}
+            </Button>
+          )}
         </ButtonLayout>
       </ProfilLayout>
       <ProfilAsideLayout>

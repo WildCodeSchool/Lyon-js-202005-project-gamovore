@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserContext } from "../context/UserContext";
 import StyleForPseudo from "../style/Pseudo";
 import StyleForAvatar from "../style/Avatar";
 import GamovoreDiv from "../style/GamovoreDiv";
+import Linked from "../style/Linked";
 import Title from "../style/Title";
 
 const Gamovores = (props) => {
@@ -41,17 +41,18 @@ const Gamovores = (props) => {
         <Title> Gamovores</Title>
         {gamovoresList.length !== 0 ? (
           gamovoresList.map((item) => (
-            <Link
+            <Linked
               to={{
                 pathname: `/gamovore/${item.id}`,
                 state: { detail: item.pseudo, gvid: item.id },
               }}
+              key={item.id}
             >
               <GamovoreDiv key={item.id} display="inline-block">
                 <StyleForAvatar src={item.avatarUrl} />
                 <StyleForPseudo>{item.pseudo}</StyleForPseudo>
               </GamovoreDiv>
-            </Link>
+            </Linked>
           ))
         ) : (
           <p>No gamovores</p>
