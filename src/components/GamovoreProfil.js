@@ -28,7 +28,6 @@ const GamovoreProfil = (props) => {
   const [gamovoreGames, setGamovoreGames] = useState([]);
 
   useEffect(() => {
-    console.log(props.location.state.gvid);
     firebase.db
       .collection("users")
       .doc(props.location.state.gvid)
@@ -61,7 +60,6 @@ const GamovoreProfil = (props) => {
         })
           .then((response) => {
             setGamovoreGames(response.data);
-            console.log(gamovoreData);
           })
           .catch((error) => {
             console.log(error);
