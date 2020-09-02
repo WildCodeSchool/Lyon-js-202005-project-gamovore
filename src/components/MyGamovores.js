@@ -4,6 +4,7 @@ import FirebaseContext from "../firebase-config/FirebaseContext";
 import StyleForPseudo from "../style/Pseudo";
 import StyleForAvatar from "../style/Avatar";
 import GamovoreDiv from "../style/GamovoreDiv";
+import Linked from "../style/Linked";
 
 const Gamovores = (props) => {
   const [gamovoresList, setGamovoresList] = useState([]);
@@ -38,7 +39,7 @@ const Gamovores = (props) => {
       <div>
         {gamovoresList.length !== 0 ? (
           gamovoresList.map((item) => (
-            <Link
+            <Linked
               to={{
                 pathname: `/gamovore/${item.id}`,
                 state: { detail: item.pseudo, gvid: item.id },
@@ -49,7 +50,7 @@ const Gamovores = (props) => {
                 <StyleForAvatar src={item.avatarUrl} />
                 <StyleForPseudo>{item.pseudo}</StyleForPseudo>
               </GamovoreDiv>
-            </Link>
+            </Linked>
           ))
         ) : (
           <p>No gamovores</p>
