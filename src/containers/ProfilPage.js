@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import FirebaseContext from "../firebase-config/FirebaseContext";
@@ -15,6 +15,8 @@ import Loading from "../style/Loading";
 import Title from "../style/Title";
 import LoadingImg from "../style/LoadingImg";
 import MyGamovores from "../components/MyGamovores";
+import Button from "../style/Button";
+import MyGameDiv from "../style/MyGameDiv";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -25,9 +27,11 @@ const ProfilPage = () => {
   const nbGames = user.favoriteGameId.length;
   const gamesToLoad = user.favoriteGameId.toString();
 
-  const dataCallIgdb = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; limit 3; where id=(${gamesToLoad});`;
+  const dataCallIgdb = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; where id=(${gamesToLoad});`;
 
   const { gameList, setGameList, loading, setLoading } = CallIgdb(dataCallIgdb);
+
+  const [isViewAll, setIsViewAll] = useState(false);
 
   useEffect(() => {
     let listener = firebase.auth.onAuthStateChanged((user) => {
@@ -62,10 +66,22 @@ const ProfilPage = () => {
   };
 
   const ViewGames = () => {
-    if (nbGames !== 0) {
-      return gameList.map((item) => (
-        <GameCard little {...item} key={item.id} />
-      ));
+    if (nbGames !== 0 && isViewAll === true) {
+      return (
+        <MyGameDiv>
+          {gameList.map((item) => (
+            <GameCard little {...item} key={item.id} />
+          ))}
+        </MyGameDiv>
+      );
+    } else if (nbGames !== 0 && isViewAll === false) {
+      return (
+        <MyGameDiv>
+          {gameList.slice(0, 3).map((item) => (
+            <GameCard little {...item} key={item.id} />
+          ))}
+        </MyGameDiv>
+      );
     } else {
       return <div>No games to your collection ... </div>;
     }
@@ -93,6 +109,19 @@ const ProfilPage = () => {
               <ViewGames />
             )}
           </ProfilGameLayout>
+          <br />
+
+          <Button
+            onClick={() => {
+              if (isViewAll === true) {
+                setIsViewAll(false);
+              } else {
+                setIsViewAll(true);
+              }
+            }}
+          >
+            {isViewAll ? "Reduce my games list" : "View all my games"}
+          </Button>
         </section>
         <MyGamovoreLayout>
           <SecondaryTitle>My Gamovores</SecondaryTitle>

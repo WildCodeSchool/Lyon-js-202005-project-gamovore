@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import StyleForPseudo from "../style/Pseudo";
 import StyleForAvatar from "../style/Avatar";
