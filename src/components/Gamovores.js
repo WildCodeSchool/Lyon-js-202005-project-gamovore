@@ -46,6 +46,7 @@ const Gamovores = (props) => {
                 pathname: `/gamovore/${item.id}`,
                 state: { detail: item.pseudo, gvid: item.id },
               }}
+              key={item.id}
             >
               <GamovoreDiv key={item.id} display="inline-block">
                 <StyleForAvatar src={item.avatarUrl} />
