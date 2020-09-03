@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "../style/Footer";
 import Linked from "../style/Linked";
 import FooterSpan from "../style/FooterSpan";
+import ScrollButton from "../components/ScrollButton";
 
 const FooterBox = () => {
   return (
@@ -32,6 +33,7 @@ const FooterBox = () => {
       <Linked to="https://www.linkedin.com/in/s%C3%A9bastien-morin-70a0371ab/">
         Seb
       </Linked>
+      <ScrollButton scrollStepInPx="50" delayInMs="10" />
     </Footer>
   );
 };
