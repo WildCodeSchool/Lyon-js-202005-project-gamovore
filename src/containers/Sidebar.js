@@ -1,4 +1,3 @@
-
 import React, { useState, useContext, useEffect } from "react";
 import { GameListContext } from "../context/GameListContext";
 import SidebarMenu from "../style/SidebarMenu";
@@ -6,7 +5,7 @@ import SidebarSubMenu from "../style/SidebarSubMenu";
 import SidebarItemMenu from "../style/SidebarItemMenu";
 import Button from "../style/Button";
 import Searchbar from "../components/SearchBar";
-import { GameListContext } from "../context/GameListContext";
+import Linked from "../style/Linked";
 
 const Sidebar = () => {
   const { setData } = useContext(GameListContext);
@@ -15,8 +14,7 @@ const Sidebar = () => {
   const [modesFilters, setModesFilters] = useState([]);
   const [allFilters, setAllFilters] = useState([]);
   const [where, setWhere] = useState("; where");
-  
-  const { setData } = useContext(GameListContext);
+
   const onClick = () => {
     setData(
       "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 20; where total_rating_count>=80;"
@@ -154,13 +152,13 @@ const Sidebar = () => {
       );
       setModesFilters(removedGenre);
     }
-
+  };
 
   return (
     <>
       <SidebarMenu>
         <SidebarItemMenu>
-          <Linked to=“/” issidebar=“true” onClick={onClick}>
+          <Linked to="/" issidebar="true" onClick={onClick}>
             HOME
           </Linked>
         </SidebarItemMenu>
@@ -202,7 +200,6 @@ const Sidebar = () => {
         </SidebarSubMenu>
 
         <SidebarSubMenu>
-
           <SidebarItemMenu>Genres</SidebarItemMenu>
           <SidebarSubMenu>
             {genres.map((item) => (
@@ -238,7 +235,6 @@ const Sidebar = () => {
           </SidebarSubMenu>
         </SidebarSubMenu>
       </SidebarMenu>
-
     </>
   );
 };
