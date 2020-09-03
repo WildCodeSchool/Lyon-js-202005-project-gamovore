@@ -27,27 +27,27 @@ const App = () => {
     <Router>
       <GridLayout>
         <GameListProvider>
-          <HeaderBox />
-
-          <SidebarBox />
-
-          <Main>
-            <PageTitle />
-
-            <Switch>
-              <Route path="/sign-in" component={SignInForm} />
-              <Route path="/sign-up" component={SignUpForm} />
-              <Route path="/game/:gameId" component={GameItem} />
-              <Route exact path="/" component={GameListBox} />
-              <Route path="/profil">
-                {user === null ? <Redirect to="/sign-in" /> : <ProfilPage />}
-              </Route>
-              <Route path="/gamovore/:gamovoreId" component={GamovoreProfil} />
-            </Switch>
-          </Main>
-        </GameListProvider>
-        <FooterBox />
-      </GridLayout>
+          <HeaderBox />  
+    
+            <SidebarBox />
+    
+            <Main>
+              <PageTitle />
+    
+              <Switch>
+                <Route path="/sign-in" component={SignInForm} />
+                <Route path="/sign-up" component={SignUpForm} />
+                <Route path="/game/:gameId" component={GameItem} />
+                <Route exact path="/" component={GameListBox} />
+                <Route path="/profil">
+                  {user === null ? <Redirect to="/sign-in" /> : <ProfilPage />}
+                </Route>
+                <Route path="/gamovore/:gamovoreId" component={GamovoreProfil} />
+              </Switch>
+            </Main>
+          </GameListProvider>
+          <FooterBox />
+        </GridLayout>
     </Router>
   );
 };
