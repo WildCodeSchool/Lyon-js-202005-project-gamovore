@@ -23,7 +23,7 @@ const Gamovores = (props) => {
           snapshot.forEach((doc) => {
             if (doc && doc.exists) {
               gamovores.push(doc.data());
-            } else console.log("no user");
+            }
           });
           setGamovoresList(gamovores);
         })

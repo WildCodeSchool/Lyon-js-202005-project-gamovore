@@ -37,8 +37,6 @@ const GamovoreProfil = (props) => {
       .then((doc) => {
         if (doc.exists) {
           setGamovoreData(doc.data());
-        } else {
-          console.log("No such document!");
         }
       })
       .catch((error) => {
@@ -67,8 +65,6 @@ const GamovoreProfil = (props) => {
             console.log(error);
           });
       }
-    } else {
-      console.log("nothing to load");
     }
   }, [gamovoreData, gameToLoad]);
 

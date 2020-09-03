@@ -12,7 +12,6 @@ const Sidebar = () => {
   const [platformFilters, setPlatformFilters] = useState([]);
   const [genresFilters, setGenresFilters] = useState([]);
   const [modesFilters, setModesFilters] = useState([]);
-  const [allFilters, setAllFilters] = useState([]);
   const [where, setWhere] = useState("; where");
 
   const onClick = () => {
@@ -20,14 +19,6 @@ const Sidebar = () => {
       "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 20; where total_rating_count>=80;"
     );
   };
-
-  useEffect(() => {
-    setAllFilters((allFilters) => [
-      platformFilters,
-      genresFilters,
-      modesFilters,
-    ]);
-  }, [platformFilters, genresFilters, modesFilters]);
 
   const defaultCall =
     "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 50; where total_rating_count>=80;";
