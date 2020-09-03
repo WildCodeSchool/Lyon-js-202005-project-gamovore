@@ -4,7 +4,7 @@ const GameCardStyle = styled.li`
   display: flex;
   flex-flow: column wrap;
   height: auto;
-  width: ${(props) => (props.little ? "40%" : "30%")};
+  width: ${(props) => (props.little ? "29%" : "20%")};
   background-color: #453f3b;
   margin: ${(props) => (props.little ? "2%" : "1%")};
   border: none;

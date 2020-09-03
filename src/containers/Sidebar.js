@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import SidebarMenu from "../style/SidebarMenu";
 import SidebarSubMenu from "../style/SidebarSubMenu";
 import SidebarItemMenu from "../style/SidebarItemMenu";
@@ -20,7 +20,9 @@ const Sidebar = () => {
   //   };
   const { setData } = useContext(GameListContext);
   const onClick = () => {
-    setData(null);
+    setData(
+      "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 20; where total_rating_count>=80;"
+    );
   };
 
   return (

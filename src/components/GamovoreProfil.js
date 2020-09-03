@@ -13,6 +13,7 @@ import ProfilAsideLayout from "../style/ProfilAsideLayout";
 import ProfilGameLayout from "../style/ProfilGameLayout";
 import Button from "../style/Button";
 import ButtonLayout from "../style/ButtonLayout";
+import MyGameDiv from "../style/MyGameDiv";
 
 import { RiMoonClearLine, RiSunLine } from "react-icons/ri";
 import { GiSunrise, GiSunset } from "react-icons/gi";
@@ -22,6 +23,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const GamovoreProfil = (props) => {
   const firebase = useContext(FirebaseContext);
   const { user, setUser } = useContext(UserContext);
+  const [isViewAll, setIsViewAll] = useState(false);
 
   const [gamovoreData, setGamovoreData] = useState([]);
   const [gameToLoad, setGameToLoad] = useState([]);
@@ -56,7 +58,7 @@ const GamovoreProfil = (props) => {
             Accept: "application/json",
             "user-key": API_KEY,
           },
-          data: `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; limit 3; where id=(${gameToLoad});`,
+          data: `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; where id=(${gameToLoad});`,
         })
           .then((response) => {
             setGamovoreGames(response.data);
@@ -71,10 +73,22 @@ const GamovoreProfil = (props) => {
   }, [gamovoreData, gameToLoad]);
 
   const DisplayGames = () => {
-    if (gamovoreGames.length !== 0) {
-      return gamovoreGames.map((item) => (
-        <GameCard little {...item} key={item.id} />
-      ));
+    if (gamovoreGames.length !== 0 && isViewAll === true) {
+      return (
+        <MyGameDiv>
+          {gamovoreGames.map((item) => (
+            <GameCard little {...item} key={item.id} />
+          ))}
+        </MyGameDiv>
+      );
+    } else if (gamovoreGames.length !== 0 && isViewAll === false) {
+      return (
+        <MyGameDiv>
+          {gamovoreGames.slice(0, 3).map((item) => (
+            <GameCard little {...item} key={item.id} />
+          ))}
+        </MyGameDiv>
+      );
     } else {
       return <p>No games to your collection ... </p>;
     }
@@ -141,6 +155,17 @@ const GamovoreProfil = (props) => {
           <ProfilGameLayout>
             <DisplayGames />
           </ProfilGameLayout>
+          <Button
+            onClick={() => {
+              if (isViewAll === true) {
+                setIsViewAll(false);
+              } else {
+                setIsViewAll(true);
+              }
+            }}
+          >
+            {isViewAll ? "Reduce games list" : "View all games"}
+          </Button>
         </section>
       </ProfilAsideLayout>
     </ProfilPageLayout>
