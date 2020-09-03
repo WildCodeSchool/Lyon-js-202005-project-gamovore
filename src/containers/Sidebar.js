@@ -1,3 +1,4 @@
+
 import React, { useState, useContext, useEffect } from "react";
 import { GameListContext } from "../context/GameListContext";
 import SidebarMenu from "../style/SidebarMenu";
@@ -5,6 +6,7 @@ import SidebarSubMenu from "../style/SidebarSubMenu";
 import SidebarItemMenu from "../style/SidebarItemMenu";
 import Button from "../style/Button";
 import Searchbar from "../components/SearchBar";
+import { GameListContext } from "../context/GameListContext";
 
 const Sidebar = () => {
   const { setData } = useContext(GameListContext);
@@ -13,6 +15,13 @@ const Sidebar = () => {
   const [modesFilters, setModesFilters] = useState([]);
   const [allFilters, setAllFilters] = useState([]);
   const [where, setWhere] = useState("; where");
+  
+  const { setData } = useContext(GameListContext);
+  const onClick = () => {
+    setData(
+      "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 20; where total_rating_count>=80;"
+    );
+  };
 
   useEffect(() => {
     setAllFilters((allFilters) => [
@@ -145,12 +154,19 @@ const Sidebar = () => {
       );
       setModesFilters(removedGenre);
     }
-  };
+
 
   return (
     <>
       <SidebarMenu>
-        <SidebarItemMenu>Search</SidebarItemMenu>
+        <SidebarItemMenu>
+          <Linked to=“/” issidebar=“true” onClick={onClick}>
+            HOME
+          </Linked>
+        </SidebarItemMenu>
+      </SidebarMenu>
+      <SidebarMenu>
+        <SidebarItemMenu>SEARCH</SidebarItemMenu>
         <SidebarSubMenu>
           <SidebarItemMenu>
             <Searchbar />
@@ -186,6 +202,7 @@ const Sidebar = () => {
         </SidebarSubMenu>
 
         <SidebarSubMenu>
+
           <SidebarItemMenu>Genres</SidebarItemMenu>
           <SidebarSubMenu>
             {genres.map((item) => (
@@ -222,56 +239,6 @@ const Sidebar = () => {
         </SidebarSubMenu>
       </SidebarMenu>
 
-      {/* <SidebarMenu>
-        <SidebarItemMenu>GAMOVORES</SidebarItemMenu>
-        <SidebarSubMenu>
-          <SidebarItemMenu>GAMING MODE</SidebarItemMenu>
-          <SidebarSubMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> MMO{" "}
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> CO-OPERATIVE{" "}
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> MULTIPLAYERS{" "}
-            </SidebarItemMenu>
-          </SidebarSubMenu>
-        </SidebarSubMenu>
-
-        <SidebarSubMenu>
-          <SidebarItemMenu>DISPONIBILITIES</SidebarItemMenu>
-          <SidebarSubMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> MORNING{" "}
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> DAY{" "}
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> SOIREE{" "}
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> NIGHT{" "}
-            </SidebarItemMenu>
-          </SidebarSubMenu>
-        </SidebarSubMenu>
-
-        <SidebarSubMenu>
-          <SidebarItemMenu>GENRES</SidebarItemMenu>
-          <SidebarSubMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> ACTION{" "}
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> AVENTURE{" "}
-            </SidebarItemMenu>
-            <SidebarItemMenu>
-              <input type="checkbox" /> COURSE{" "}
-            </SidebarItemMenu>
-          </SidebarSubMenu>
-        </SidebarSubMenu>
-      </SidebarMenu> */}
     </>
   );
 };

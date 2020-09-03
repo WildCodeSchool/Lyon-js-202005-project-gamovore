@@ -8,8 +8,12 @@ import GameCardJacquette from "../style/GameCardJacquette";
 import GameCardName from "../style/GameCardName";
 import GameCardStyle from "../style/GameCardStyle";
 import AddGameButton from "../style/AddGameButton";
+import ImageContent from "../style/ImageContent";
 import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
 import { RiDeleteBin5Fill, RiAddFill } from "react-icons/ri";
+import Title from "../style/Title";
+import Loading from "../style/Loading";
+import LoadingImg from "../style/LoadingImg";
 
 const GameCard = (props) => {
   const firebase = useContext(FirebaseContext);
@@ -52,16 +56,18 @@ const GameCard = (props) => {
 
   if (user) {
     return (
-      <GameCardStyle>
-        <Link to={{ pathname: link, state: { detail: gameData } }}>
-          <GameCardJacquette
-            src={
-              props.cover
-                ? "https:" + props.cover.url.replace("thumb", "cover_big_2x")
-                : gameCoverPlaceholder
-            }
-          />
-        </Link>
+      <GameCardStyle little={props.little}>
+        <ImageContent>
+          <Link to={{ pathname: link, state: { detail: gameData } }}>
+            <GameCardJacquette
+              src={
+                props.cover
+                  ? "https:" + props.cover.url.replace("thumb", "cover_big_2x")
+                  : gameCoverPlaceholder
+              }
+            />
+          </Link>
+        </ImageContent>
         <GameCardName>{props.name}</GameCardName>
 
         {user.favoriteGameId.includes(gameId) ? (
@@ -78,7 +84,17 @@ const GameCard = (props) => {
       </GameCardStyle>
     );
   } else {
-    return <div>No user</div>;
+    return (
+      <Loading>
+        <Title>
+          Be patient young Gamovore, the duck is fishing a games for you ...
+        </Title>
+        <LoadingImg
+          src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
+          alt="loading"
+        />
+      </Loading>
+    );
   }
 };
 

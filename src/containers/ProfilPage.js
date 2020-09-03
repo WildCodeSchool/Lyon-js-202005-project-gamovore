@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import FirebaseContext from "../firebase-config/FirebaseContext";
-import { UserBase } from "../UserBase";
 import GameCard from "../components/GameCard";
 import Profil from "../components/Profil";
 import ProfilPageLayout from "../style/ProfilPageLayout";
@@ -11,27 +10,40 @@ import ProfilAsideLayout from "../style/ProfilAsideLayout";
 import MyGamovoreLayout from "../style/MyGamovoreLayout";
 import MyGamovoreProfilLayout from "../style/MyGamovoreProfilLayout";
 import SecondaryTitle from "../style/SecondaryTitle";
-import StyleForPseudo from "../style/Pseudo";
-import StyleForAvatar from "../style/Avatar";
 import CallIgdb from "./CallIgdb";
 import Loading from "../style/Loading";
 import Title from "../style/Title";
 import LoadingImg from "../style/LoadingImg";
+import MyGamovores from "../components/MyGamovores";
+import Button from "../style/Button";
+import MyGameDiv from "../style/MyGameDiv";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ProfilPage = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const firebase = useContext(FirebaseContext);
 
   const nbGames = user.favoriteGameId.length;
   const gamesToLoad = user.favoriteGameId.toString();
 
-  const dataCallIgdb = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; limit 3; where id=(${gamesToLoad});`;
+  const dataCallIgdb = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; limit 500; where id=(${gamesToLoad});`;
 
-  const { gameList, setGameList, loading, setLoading } = CallIgdb(dataCallIgdb);
+  const [myGameList, setMyGameList] = useState(CallIgdb(dataCallIgdb));
+  const [loading, setLoading] = useState(true);
+
+  const [isViewAll, setIsViewAll] = useState(false);
 
   useEffect(() => {
+    let listener = firebase.auth.onAuthStateChanged((user) => {
+      user ? apiRender() : setUser(null);
+    });
+    return () => {
+      listener();
+    };
+  }, [user]);
+
+  const apiRender = () => {
     if (nbGames !== 0 && nbGames !== null) {
       axios({
         url:
@@ -45,20 +57,34 @@ const ProfilPage = () => {
       })
         .then((response) => response.data)
         .then((data) => {
-          setGameList(data);
+          setMyGameList(data);
           setLoading(false);
         })
         .catch((err) => {
           setLoading(false);
         });
+    } else {
+      setLoading(false);
     }
-  }, [user]);
+  };
 
   const ViewGames = () => {
-    if (nbGames !== 0) {
-      return gameList.map((item) => (
-        <GameCard little {...item} key={item.id} />
-      ));
+    if (nbGames !== 0 && isViewAll === true) {
+      return (
+        <MyGameDiv>
+          {myGameList.map((item) => (
+            <GameCard little {...item} key={item.id} />
+          ))}
+        </MyGameDiv>
+      );
+    } else if (nbGames !== 0 && isViewAll === false) {
+      return (
+        <MyGameDiv>
+          {myGameList.slice(0, 3).map((item) => (
+            <GameCard little {...item} key={item.id} />
+          ))}
+        </MyGameDiv>
+      );
     } else {
       return <div>No games to your collection ... </div>;
     }
@@ -86,16 +112,24 @@ const ProfilPage = () => {
               <ViewGames />
             )}
           </ProfilGameLayout>
+          <br />
+
+          <Button
+            onClick={() => {
+              if (isViewAll === true) {
+                setIsViewAll(false);
+              } else {
+                setIsViewAll(true);
+              }
+            }}
+          >
+            {isViewAll ? "Reduce my games list" : "View all my games"}
+          </Button>
         </section>
         <MyGamovoreLayout>
           <SecondaryTitle>My Gamovores</SecondaryTitle>
           <MyGamovoreProfilLayout>
-            {UserBase.map((item) => (
-              <div key={item.id}>
-                <StyleForAvatar src={item.avatar} />
-                <StyleForPseudo>{item.pseudo}</StyleForPseudo>
-              </div>
-            ))}
+            <MyGamovores user={user} />
           </MyGamovoreProfilLayout>
         </MyGamovoreLayout>
       </ProfilAsideLayout>
