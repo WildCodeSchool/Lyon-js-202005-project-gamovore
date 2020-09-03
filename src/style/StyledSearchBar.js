@@ -13,6 +13,7 @@ const StyledSearchBar = styled.form`
     border: 0;
     color: #2f2f2f;
     font-size: 1rem;
+    outline: none;
   }
 
   input {
