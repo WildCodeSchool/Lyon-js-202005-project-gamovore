@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { GameListContext } from "../context/GameListContext";
 import SidebarMenu from "../style/SidebarMenu";
 import SidebarSubMenu from "../style/SidebarSubMenu";
 import SidebarItemMenu from "../style/SidebarItemMenu";
-import Linked from "../style/Linked";
+import Button from "../style/Button";
 import Searchbar from "../components/SearchBar";
 
 const Sidebar = () => {
@@ -11,11 +11,20 @@ const Sidebar = () => {
   const [platformFilters, setPlatformFilters] = useState([]);
   const [genresFilters, setGenresFilters] = useState([]);
   const [modesFilters, setModesFilters] = useState([]);
+  const [allFilters, setAllFilters] = useState([]);
+  const [where, setWhere] = useState(";where");
+
+  useEffect(() => {
+    setAllFilters((allFilters) => [
+      platformFilters,
+      genresFilters,
+      modesFilters,
+    ]);
+  }, [platformFilters, genresFilters, modesFilters]);
 
   const defaultCall =
     "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 50; where total_rating_count>=80;";
-  const filteredSearch = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 100; where game_modes=(${modesFilters}) & genres=(${genresFilters}) & release_dates.platform=(${platformFilters});`;
-  setData(filteredSearch);
+  const filteredSearch = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 100${where};`;
 
   const platforms = [
     { id: 130, name: "Nintendo Switch" },
@@ -50,6 +59,55 @@ const Sidebar = () => {
     { id: 4, name: "Split screen" },
   ];
 
+  const handleFilters = (event) => {
+    if (
+      platformFilters.length > 0 ||
+      genresFilters.length > 0 ||
+      modesFilters > 0
+    ) {
+      if (
+        platformFilters.length > 0 &&
+        genresFilters.length === 0 &&
+        modesFilters === 0
+      ) {
+        setWhere(
+          (where) => `${where} release_date.platform=(${platformFilters})`
+        );
+      } else if (
+        (platformFilters.length > 0 &&
+          genresFilters.length > 0 &&
+          modesFilters.length === 0) ||
+        (platformFilters.length > 0 &&
+          genresFilters.length === 0 &&
+          modesFilters.length > 0)
+      ) {
+        setWhere(
+          (where) => `${where} release_date.platform=(${platformFilters}) &`
+        );
+      }
+      if (genresFilters.length > 0 && modesFilters.length === 0) {
+        setWhere((where) => `${where} genres=(${genresFilters})`);
+      } else if (genresFilters.length > 0 && modesFilters.length > 0) {
+        setWhere((where) => `${where} genres=(${genresFilters}) &`);
+      }
+      if (modesFilters.length > 0) {
+        setWhere((where) => `${where} modes=(${modesFilters})`);
+      }
+    }
+  };
+
+  useEffect(() => {
+    setData(filteredSearch);
+  }, [handleFilters]);
+
+  const handleReset = (event) => {
+    setData(defaultCall);
+    setWhere(";where");
+    setPlatformFilters([]);
+    setGenresFilters([]);
+    setModesFilters([]);
+  };
+
   const handlePlatforms = (event) => {
     event.persist();
     if (event.target.checked) {
@@ -58,15 +116,10 @@ const Sidebar = () => {
         event.target.id,
       ]);
     } else {
-      if (platformFilters.length === 1 && genresFilters === 1) {
-        setPlatformFilters([]);
-        setData(defaultCall);
-      } else {
-        const removedPlatform = platformFilters.filter(
-          (filter) => filter !== event.target.id
-        );
-        setPlatformFilters(removedPlatform);
-      }
+      const removedPlatform = platformFilters.filter(
+        (filter) => filter !== event.target.id
+      );
+      setPlatformFilters(removedPlatform);
     }
   };
 
@@ -75,15 +128,10 @@ const Sidebar = () => {
     if (event.target.checked) {
       setGenresFilters((genresFilters) => [...genresFilters, event.target.id]);
     } else {
-      if (platformFilters.length === 1 && genresFilters === 1) {
-        setGenresFilters([]);
-        setData(defaultCall);
-      } else {
-        const removedGenre = genresFilters.filter(
-          (filter) => filter !== event.target.id
-        );
-        setGenresFilters(removedGenre);
-      }
+      const removedGenre = genresFilters.filter(
+        (filter) => filter !== event.target.id
+      );
+      setGenresFilters(removedGenre);
     }
   };
 
@@ -92,43 +140,35 @@ const Sidebar = () => {
     if (event.target.checked) {
       setModesFilters((modesFilters) => [...modesFilters, event.target.id]);
     } else {
-      if (
-        platformFilters.length === 1 &&
-        genresFilters === 1 &&
-        modesFilters === 1
-      ) {
-        setModesFilters([]);
-        setData(defaultCall);
-      } else {
-        const removedGenre = modesFilters.filter(
-          (filter) => filter !== event.target.id
-        );
-        setModesFilters(removedGenre);
-      }
+      const removedGenre = modesFilters.filter(
+        (filter) => filter !== event.target.id
+      );
+      setModesFilters(removedGenre);
     }
   };
 
   return (
     <>
       <SidebarMenu>
-        <SidebarItemMenu>
-          <Linked to="/" issidebar="true">
-            HOME
-          </Linked>
-        </SidebarItemMenu>
+        <SidebarItemMenu>Search</SidebarItemMenu>
+        <SidebarSubMenu>
+          <SidebarItemMenu>
+            <Searchbar />
+          </SidebarItemMenu>
+        </SidebarSubMenu>
       </SidebarMenu>
       <SidebarMenu>
-        <SidebarItemMenu>GAMES</SidebarItemMenu>
         <SidebarSubMenu>
-          <SidebarItemMenu>Search</SidebarItemMenu>
-          <SidebarSubMenu>
-            <SidebarItemMenu>
-              <Searchbar />
-            </SidebarItemMenu>
-          </SidebarSubMenu>
+          <SidebarItemMenu>
+            FILTERS
+            <SidebarSubMenu>
+              <Button onClick={handleFilters}>Filter</Button>
+              <Button onClick={handleReset}>Reset Filters</Button>
+            </SidebarSubMenu>
+          </SidebarItemMenu>
         </SidebarSubMenu>
         <SidebarSubMenu>
-          <SidebarItemMenu>PLATEFORMS</SidebarItemMenu>
+          <SidebarItemMenu>Platforms</SidebarItemMenu>
           <SidebarSubMenu>
             {platforms.map((item) => (
               <SidebarItemMenu key={item.id}>
@@ -146,7 +186,7 @@ const Sidebar = () => {
         </SidebarSubMenu>
 
         <SidebarSubMenu>
-          <SidebarItemMenu>GENRES</SidebarItemMenu>
+          <SidebarItemMenu>Genres</SidebarItemMenu>
           <SidebarSubMenu>
             {genres.map((item) => (
               <SidebarItemMenu key={item.id}>
@@ -164,7 +204,7 @@ const Sidebar = () => {
         </SidebarSubMenu>
 
         <SidebarSubMenu>
-          <SidebarItemMenu>GENRES</SidebarItemMenu>
+          <SidebarItemMenu>Modes</SidebarItemMenu>
           <SidebarSubMenu>
             {modes.map((item) => (
               <SidebarItemMenu key={item.id}>
@@ -182,7 +222,7 @@ const Sidebar = () => {
         </SidebarSubMenu>
       </SidebarMenu>
 
-      <SidebarMenu>
+      {/* <SidebarMenu>
         <SidebarItemMenu>GAMOVORES</SidebarItemMenu>
         <SidebarSubMenu>
           <SidebarItemMenu>GAMING MODE</SidebarItemMenu>
@@ -231,7 +271,7 @@ const Sidebar = () => {
             </SidebarItemMenu>
           </SidebarSubMenu>
         </SidebarSubMenu>
-      </SidebarMenu>
+      </SidebarMenu> */}
     </>
   );
 };

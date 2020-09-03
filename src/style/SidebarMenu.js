@@ -1,37 +1,31 @@
 import styled from "styled-components";
 
 const SidebarMenu = styled.ul`
-  list-style-type: none; 
-  text-transform:uppercase;
-  margin:0;
-  padding:0;
- 
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 
   & li:first-child {
-       background-color: #FBB700;
-       color: #393431;
-       font-weight:bold;
-       font-size:1.5em;
-       padding-left:5%;
-    }
+    background-color: #fbb700;
+    color: #393431;
+    font-weight: bold;
+    font-size: 1.5em;
+    padding-left: 5%;
+  }
 
   & ul li:first-child {
-      background-color: #2E2A27;
-      color:#F3F3F3;
-     
-
+    background-color: #2e2a27;
+    color: #f3f3f3;
   }
 
   & ul ul li:first-child {
-      background-color: #393431;
-      color: #F3F3F3;
-      font-weight:normal;
-      font-size:1em;
-      padding-left: 0;
-      padding-left:10%;
-
+    background-color: #393431;
+    color: #f3f3f3;
+    font-weight: normal;
+    font-size: 1em;
+    padding-left: 0;
+    padding-left: 10%;
   }
 `;
 
 export default SidebarMenu;
-
