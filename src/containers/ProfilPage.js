@@ -29,7 +29,8 @@ const ProfilPage = () => {
 
   const dataCallIgdb = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; where id=(${gamesToLoad});`;
 
-  const { gameList, setGameList, loading, setLoading } = CallIgdb(dataCallIgdb);
+  const [myGameList, setMyGameList] = useState(CallIgdb(dataCallIgdb));
+  const [loading, setLoading] = useState(true);
 
   const [isViewAll, setIsViewAll] = useState(false);
 
@@ -56,7 +57,7 @@ const ProfilPage = () => {
       })
         .then((response) => response.data)
         .then((data) => {
-          setGameList(data);
+          setMyGameList(data);
           setLoading(false);
         })
         .catch((err) => {
@@ -69,7 +70,7 @@ const ProfilPage = () => {
     if (nbGames !== 0 && isViewAll === true) {
       return (
         <MyGameDiv>
-          {gameList.map((item) => (
+          {myGameList.map((item) => (
             <GameCard little {...item} key={item.id} />
           ))}
         </MyGameDiv>
@@ -77,7 +78,7 @@ const ProfilPage = () => {
     } else if (nbGames !== 0 && isViewAll === false) {
       return (
         <MyGameDiv>
-          {gameList.slice(0, 3).map((item) => (
+          {myGameList.slice(0, 3).map((item) => (
             <GameCard little {...item} key={item.id} />
           ))}
         </MyGameDiv>

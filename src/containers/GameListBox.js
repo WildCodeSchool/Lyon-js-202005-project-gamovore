@@ -17,6 +17,7 @@ const GameListBox = (props) => {
 
   const { data } = useContext(GameListContext);
   let { gameList, loading } = CallIgdb(data);
+
   useEffect(() => {
     let listener = firebase.auth.onAuthStateChanged((user) => {
       user ? setAuthUser(user) : props.history.push("/sign-in");
