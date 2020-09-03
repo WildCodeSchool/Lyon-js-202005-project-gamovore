@@ -63,6 +63,8 @@ const ProfilPage = () => {
         .catch((err) => {
           setLoading(false);
         });
+    } else {
+      setLoading(false);
     }
   };
 
