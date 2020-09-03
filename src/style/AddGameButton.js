@@ -16,6 +16,12 @@ const AddGameButton = styled.button`
   font-size: 1em;
   justify-content: space-around;
   align-items: center;
+  transition: all 0.8s ease-out;
+  :hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+  }
 `;
 
 export default AddGameButton;
