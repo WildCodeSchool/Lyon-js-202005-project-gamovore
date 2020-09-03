@@ -27,7 +27,7 @@ const ProfilPage = () => {
   const nbGames = user.favoriteGameId.length;
   const gamesToLoad = user.favoriteGameId.toString();
 
-  const dataCallIgdb = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; where id=(${gamesToLoad});`;
+  const dataCallIgdb = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name; limit 500; where id=(${gamesToLoad});`;
 
   const [myGameList, setMyGameList] = useState(CallIgdb(dataCallIgdb));
   const [loading, setLoading] = useState(true);
