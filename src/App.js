@@ -26,9 +26,9 @@ const App = () => {
   return (
     <Router>
       <GridLayout>
-        <HeaderBox />
-
         <GameListProvider>
+          <HeaderBox />
+
           <SidebarBox />
 
           <Main>
