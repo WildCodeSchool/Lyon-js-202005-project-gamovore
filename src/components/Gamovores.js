@@ -38,7 +38,9 @@ const Gamovores = (props) => {
   if (gamovoresList) {
     return (
       <div>
-        <Title> Gamovores</Title>
+        <Title>
+          {gamovoresList.length ? gamovoresList.length : ""} Gamovores
+        </Title>
         {gamovoresList.length !== 0 ? (
           gamovoresList.map((item) => (
             <Linked
