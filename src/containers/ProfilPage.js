@@ -34,15 +34,6 @@ const ProfilPage = () => {
 
   const [isViewAll, setIsViewAll] = useState(false);
 
-  useEffect(() => {
-    let listener = firebase.auth.onAuthStateChanged((user) => {
-      user ? apiRender() : setUser(null);
-    });
-    return () => {
-      listener();
-    };
-  }, [user]);
-
   const apiRender = () => {
     if (nbGames !== 0 && nbGames !== null) {
       axios({
@@ -67,6 +58,17 @@ const ProfilPage = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    let listener = firebase.auth.onAuthStateChanged((user) => {
+      user ? apiRender() : setUser(null);
+    });
+    return () => {
+      listener();
+    };
+  }, [user, apiRender, firebase.auth, setUser]);
+
+
 
   const ViewGames = () => {
     if (nbGames !== 0 && isViewAll === true) {
