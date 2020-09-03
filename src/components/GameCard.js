@@ -8,6 +8,7 @@ import GameCardJacquette from "../style/GameCardJacquette";
 import GameCardName from "../style/GameCardName";
 import GameCardStyle from "../style/GameCardStyle";
 import AddGameButton from "../style/AddGameButton";
+import ImageContent from "../style/ImageContent";
 import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
 import { RiDeleteBin5Fill, RiAddFill } from "react-icons/ri";
 import Title from "../style/Title";
@@ -56,15 +57,17 @@ const GameCard = (props) => {
   if (user) {
     return (
       <GameCardStyle little={props.little}>
-        <Link to={{ pathname: link, state: { detail: gameData } }}>
-          <GameCardJacquette
-            src={
-              props.cover
-                ? "https:" + props.cover.url.replace("thumb", "cover_big_2x")
-                : gameCoverPlaceholder
-            }
-          />
-        </Link>
+        <ImageContent>
+          <Link to={{ pathname: link, state: { detail: gameData } }}>
+            <GameCardJacquette
+              src={
+                props.cover
+                  ? "https:" + props.cover.url.replace("thumb", "cover_big_2x")
+                  : gameCoverPlaceholder
+              }
+            />
+          </Link>
+        </ImageContent>
         <GameCardName>{props.name}</GameCardName>
 
         {user.favoriteGameId.includes(gameId) ? (

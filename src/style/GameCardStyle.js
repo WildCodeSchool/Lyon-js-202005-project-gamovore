@@ -10,7 +10,7 @@ const GameCardStyle = styled.li`
   border: none;
   border-radius: 20px;
   box-sizing: border-box;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   overflow: hidden;
   box-shadow: 0 5px 5px #000000;
