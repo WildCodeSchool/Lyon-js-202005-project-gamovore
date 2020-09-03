@@ -118,9 +118,7 @@ const GameItem = (props) => {
               <GameInfoListList key={item.id}>
                 {item.name === "PC (Microsoft Windows)" ? (
                   <>
-                    <a data-tip data-for="windows">
-                      <SiWindows />
-                    </a>
+                    <SiWindows data-tip data-for="windows" />
                     <ReactTooltip
                       id="windows"
                       type="light"
@@ -135,9 +133,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "Mac" ? (
                   <>
-                    <a data-tip data-for="mac">
-                      <SiApple />
-                    </a>
+                    <SiApple data-tip data-for="mac" />
                     <ReactTooltip
                       id="mac"
                       type="light"
@@ -152,9 +148,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "Linux" ? (
                   <>
-                    <a data-tip data-for="linux">
-                      <SiLinux />
-                    </a>
+                    <SiLinux data-tip data-for="linux" />
                     <ReactTooltip
                       id="linux"
                       type="light"
@@ -169,9 +163,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "PlayStation" ? (
                   <>
-                    <a data-tip data-for="plastation">
-                      <SiPlaystation />
-                    </a>
+                    <SiPlaystation data-tip data-for="plastation" />
                     <ReactTooltip
                       id="plastation"
                       type="light"
@@ -186,9 +178,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "PlayStation 2" ? (
                   <>
-                    <a data-tip data-for="plastation2">
-                      <SiPlaystation2 size={32} />
-                    </a>
+                    <SiPlaystation2 size={32} data-tip data-for="plastation2" />
                     <ReactTooltip
                       id="plastation2"
                       type="light"
@@ -203,9 +193,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "PlayStation 3" ? (
                   <>
-                    <a data-tip data-for="plastation3">
-                      <SiPlaystation3 size={32} />
-                    </a>
+                    <SiPlaystation3 size={32} data-tip data-for="plastation3" />
                     <ReactTooltip
                       id="plastation3"
                       type="light"
@@ -220,9 +208,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "PlayStation 4" ? (
                   <>
-                    <a data-tip data-for="plastation4">
-                      <SiPlaystation4 size={32} />
-                    </a>
+                    <SiPlaystation4 size={32} data-tip data-for="plastation4" />
                     <ReactTooltip
                       id="plastation4"
                       type="light"
@@ -240,9 +226,7 @@ const GameItem = (props) => {
                   : ""}
                 {item.name === "Xbox One" ? (
                   <>
-                    <a data-tip data-for="xboxone">
-                      <SiXbox />
-                    </a>
+                    <SiXbox data-tip data-for="xboxone" />
                     <ReactTooltip
                       id="xboxone"
                       type="light"
@@ -257,9 +241,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "Xbox 360" ? (
                   <>
-                    <a data-tip data-for="xbox360">
-                      <SiXbox />
-                    </a>
+                    <SiXbox data-tip data-for="xbox360" />
                     <ReactTooltip
                       id="xbox360"
                       type="light"
@@ -274,9 +256,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "Xbox" ? (
                   <>
-                    <a data-tip data-for="xbox">
-                      <SiXbox />
-                    </a>
+                    <SiXbox data-tip data-for="xbox" />
                     <ReactTooltip
                       id="xbox"
                       type="light"
@@ -291,9 +271,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "Nintendo DS" ? (
                   <>
-                    <a data-tip data-for="nintendods">
-                      <SiNintendo3Ds />
-                    </a>
+                    <SiNintendo3Ds data-tip data-for="nintendods" />
                     <ReactTooltip
                       id="nintendods"
                       type="light"
@@ -308,9 +286,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "Nintendo GameCube" ? (
                   <>
-                    <a data-tip data-for="gamecube">
-                      <SiNintendogamecube />
-                    </a>
+                    <SiNintendogamecube data-tip data-for="gamecube" />
                     <ReactTooltip
                       id="gamecube"
                       type="light"
@@ -325,9 +301,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "Nintendo Switch" ? (
                   <>
-                    <a data-tip data-for="switch">
-                      <SiNintendoswitch />
-                    </a>
+                    <SiNintendoswitch data-tip data-for="switch" />
                     <ReactTooltip
                       id="switch"
                       type="light"
@@ -351,9 +325,7 @@ const GameItem = (props) => {
                   : ""}
                 {item.name === "iOS" ? (
                   <>
-                    <a data-tip data-for="ios">
-                      <SiIos size={20} />
-                    </a>
+                    <SiIos size={20} data-tip data-for="ios" />
                     <ReactTooltip
                       id="ios"
                       type="light"
@@ -368,9 +340,7 @@ const GameItem = (props) => {
                 )}
                 {item.name === "Android" ? (
                   <>
-                    <a data-tip data-for="android">
-                      <MdAndroid />
-                    </a>
+                    <MdAndroid data-tip data-for="android" />
                     <ReactTooltip
                       id="android"
                       type="light"
