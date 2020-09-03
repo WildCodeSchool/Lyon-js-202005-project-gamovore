@@ -7,6 +7,7 @@ const GameCardName = styled.p`
   font-weight: 500;
   font-size: 1.2em;
   justify-content: center;
+  text-align: center;
 `;
 
 export default GameCardName;
