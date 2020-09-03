@@ -12,7 +12,7 @@ const Sidebar = () => {
   const [genresFilters, setGenresFilters] = useState([]);
   const [modesFilters, setModesFilters] = useState([]);
   const [allFilters, setAllFilters] = useState([]);
-  const [where, setWhere] = useState(";where");
+  const [where, setWhere] = useState("; where");
 
   useEffect(() => {
     setAllFilters((allFilters) => [
@@ -59,19 +59,19 @@ const Sidebar = () => {
     { id: 4, name: "Split screen" },
   ];
 
-  const handleFilters = (event) => {
+  const handleFilters = () => {
     if (
       platformFilters.length > 0 ||
       genresFilters.length > 0 ||
-      modesFilters > 0
+      modesFilters.length > 0
     ) {
       if (
         platformFilters.length > 0 &&
         genresFilters.length === 0 &&
-        modesFilters === 0
+        modesFilters.length === 0
       ) {
         setWhere(
-          (where) => `${where} release_date.platform=(${platformFilters})`
+          (where) => `${where} release_dates.platform=(${platformFilters})`
         );
       } else if (
         (platformFilters.length > 0 &&
@@ -82,7 +82,7 @@ const Sidebar = () => {
           modesFilters.length > 0)
       ) {
         setWhere(
-          (where) => `${where} release_date.platform=(${platformFilters}) &`
+          (where) => `${where} release_dates.platform=(${platformFilters}) &`
         );
       }
       if (genresFilters.length > 0 && modesFilters.length === 0) {
@@ -91,7 +91,7 @@ const Sidebar = () => {
         setWhere((where) => `${where} genres=(${genresFilters}) &`);
       }
       if (modesFilters.length > 0) {
-        setWhere((where) => `${where} modes=(${modesFilters})`);
+        setWhere((where) => `${where} game_modes=(${modesFilters})`);
       }
     }
   };
@@ -100,7 +100,7 @@ const Sidebar = () => {
     setData(filteredSearch);
   }, [handleFilters]);
 
-  const handleReset = (event) => {
+  const handleReset = () => {
     setData(defaultCall);
     setWhere(";where");
     setPlatformFilters([]);
