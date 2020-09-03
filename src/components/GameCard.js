@@ -33,8 +33,6 @@ const GameCard = (props) => {
       firebase.userActu(userId).onSnapshot(function (doc) {
         setUser(doc.data());
       });
-    } else {
-      console.log("non chargé");
     }
   };
 
@@ -49,8 +47,6 @@ const GameCard = (props) => {
       firebase.userActu(userId).onSnapshot(function (doc) {
         setUser(doc.data());
       });
-    } else {
-      console.log("non chargé");
     }
   };
 
