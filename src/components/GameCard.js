@@ -55,7 +55,7 @@ const GameCard = (props) => {
 
   if (user) {
     return (
-      <GameCardStyle>
+      <GameCardStyle little={props.little}>
         <Link to={{ pathname: link, state: { detail: gameData } }}>
           <GameCardJacquette
             src={

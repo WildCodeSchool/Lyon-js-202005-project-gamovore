@@ -7,9 +7,9 @@ export default function PageTitle() {
   const url = location.pathname;
   function mySwitch(url) {
     if (url.includes("sign-in")) {
-      return "Sign In";
+      return "";
     } else if (url.includes("sign-up")) {
-      return "Sign Up";
+      return "";
     } else if (url.includes("profil")) {
       return "Profile";
     } else if (url.includes("game")) {

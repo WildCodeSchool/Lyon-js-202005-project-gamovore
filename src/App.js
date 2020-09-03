@@ -18,6 +18,7 @@ import ProfilPage from "./containers/ProfilPage";
 import GamovoreProfil from "./components/GamovoreProfil";
 import { GameListProvider } from "./context/GameListContext";
 import { UserContext } from "./context/UserContext";
+import PageTitle from "./components/PageTitle";
 
 const App = () => {
   const { user } = useContext(UserContext);
@@ -31,6 +32,8 @@ const App = () => {
           <SidebarBox />
 
           <Main>
+            <PageTitle />
+
             <Switch>
               <Route path="/sign-in" component={SignInForm} />
               <Route path="/sign-up" component={SignUpForm} />
