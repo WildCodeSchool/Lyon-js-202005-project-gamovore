@@ -97,261 +97,286 @@ const GameItem = (props) => {
           <GameResume>{game.summary}</GameResume>
           <GameInfoList>
             <GameInfoListTitle>Catégorie(s) : </GameInfoListTitle>
-            {game.game_modes.map((item) => (
-              <GameInfoListList key={item.id}>{item.name} - </GameInfoListList>
-            ))}
+            {game.game_modes ? (
+              game.game_modes.map((item) => (
+                <GameInfoListList key={item.id}>
+                  {item.name} -{" "}
+                </GameInfoListList>
+              ))
+            ) : (
+              <GameInfoListList></GameInfoListList>
+            )}
           </GameInfoList>
           <GameInfoList>
             <GameInfoListTitle>Genre(s) : </GameInfoListTitle>
-            {game.genres.map((item) => (
-              <GameInfoListList key={item.id}>{item.name}</GameInfoListList>
-            ))}
+            {game.genres ? (
+              game.genres.map((item) => (
+                <GameInfoListList key={item.id}>{item.name}</GameInfoListList>
+              ))
+            ) : (
+              <GameInfoListList></GameInfoListList>
+            )}
           </GameInfoList>
           <GameInfoList>
             <GameInfoListTitle>Plateforme(s) : </GameInfoListTitle>
 
-            {game.platforms.map((item) => (
-              <GameInfoListList key={item.id}>
-                {item.name === "PC (Microsoft Windows)" ? (
-                  <>
-                    <SiWindows data-tip data-for="windows" />
-                    <ReactTooltip
-                      id="windows"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>windows</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "Mac" ? (
-                  <>
-                    <SiApple data-tip data-for="mac" />
-                    <ReactTooltip
-                      id="mac"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>mac</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "Linux" ? (
-                  <>
-                    <SiLinux data-tip data-for="linux" />
-                    <ReactTooltip
-                      id="linux"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>linux</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "PlayStation" ? (
-                  <>
-                    <SiPlaystation data-tip data-for="plastation" />
-                    <ReactTooltip
-                      id="plastation"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>playstation</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "PlayStation 2" ? (
-                  <>
-                    <SiPlaystation2 size={32} data-tip data-for="plastation2" />
-                    <ReactTooltip
-                      id="plastation2"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>playstation 2</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "PlayStation 3" ? (
-                  <>
-                    <SiPlaystation3 size={32} data-tip data-for="plastation3" />
-                    <ReactTooltip
-                      id="plastation3"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>playstation 3</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "PlayStation 4" ? (
-                  <>
-                    <SiPlaystation4 size={32} data-tip data-for="plastation4" />
-                    <ReactTooltip
-                      id="plastation4"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>playstation 4</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "PlayStation Network"
-                  ? "playStation Netword"
-                  : ""}
-                {item.name === "Xbox One" ? (
-                  <>
-                    <SiXbox data-tip data-for="xboxone" />
-                    <ReactTooltip
-                      id="xboxone"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>xbox one</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "Xbox 360" ? (
-                  <>
-                    <SiXbox data-tip data-for="xbox360" />
-                    <ReactTooltip
-                      id="xbox360"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>xbox 360</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "Xbox" ? (
-                  <>
-                    <SiXbox data-tip data-for="xbox" />
-                    <ReactTooltip
-                      id="xbox"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>xbox</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "Nintendo DS" ? (
-                  <>
-                    <SiNintendo3Ds data-tip data-for="nintendods" />
-                    <ReactTooltip
-                      id="nintendods"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>nintendo DS</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "Nintendo GameCube" ? (
-                  <>
-                    <SiNintendogamecube data-tip data-for="gamecube" />
-                    <ReactTooltip
-                      id="gamecube"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>GameCube</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "Nintendo Switch" ? (
-                  <>
-                    <SiNintendoswitch data-tip data-for="switch" />
-                    <ReactTooltip
-                      id="switch"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>switch</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "Super Nintendo Entertainment System (SNES)" ? (
-                  <SiNintendonetwork />
-                ) : (
-                  ""
-                )}
-                {item.name === "Game Boy Advance" ? "Game Boy Advance" : ""}
-                {item.name === "PlayStation Portable"
-                  ? "Playstation Portable"
-                  : ""}
-                {item.name === "iOS" ? (
-                  <>
-                    <SiIos size={20} data-tip data-for="ios" />
-                    <ReactTooltip
-                      id="ios"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>iOS</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "Android" ? (
-                  <>
-                    <MdAndroid data-tip data-for="android" />
-                    <ReactTooltip
-                      id="android"
-                      type="light"
-                      place="top"
-                      effect="solid"
-                    >
-                      <span>android</span>
-                    </ReactTooltip>
-                  </>
-                ) : (
-                  ""
-                )}
-                {item.name === "Sega Saturn" ? <SiSega /> : ""}
-              </GameInfoListList>
-            ))}
+            {game.platforms
+              ? game.platforms.map((item) => (
+                  <GameInfoListList key={item.id}>
+                    {item.name === "PC (Microsoft Windows)" ? (
+                      <>
+                        <SiWindows data-tip data-for="windows" />
+                        <ReactTooltip
+                          id="windows"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>windows</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "Mac" ? (
+                      <>
+                        <SiApple data-tip data-for="mac" />
+                        <ReactTooltip
+                          id="mac"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>mac</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "Linux" ? (
+                      <>
+                        <SiLinux data-tip data-for="linux" />
+                        <ReactTooltip
+                          id="linux"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>linux</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "PlayStation" ? (
+                      <>
+                        <SiPlaystation data-tip data-for="plastation" />
+                        <ReactTooltip
+                          id="plastation"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>playstation</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "PlayStation 2" ? (
+                      <>
+                        <SiPlaystation2
+                          size={32}
+                          data-tip
+                          data-for="plastation2"
+                        />
+                        <ReactTooltip
+                          id="plastation2"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>playstation 2</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "PlayStation 3" ? (
+                      <>
+                        <SiPlaystation3
+                          size={32}
+                          data-tip
+                          data-for="plastation3"
+                        />
+                        <ReactTooltip
+                          id="plastation3"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>playstation 3</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "PlayStation 4" ? (
+                      <>
+                        <SiPlaystation4
+                          size={32}
+                          data-tip
+                          data-for="plastation4"
+                        />
+                        <ReactTooltip
+                          id="plastation4"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>playstation 4</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "PlayStation Network"
+                      ? "playStation Netword"
+                      : ""}
+                    {item.name === "Xbox One" ? (
+                      <>
+                        <SiXbox data-tip data-for="xboxone" />
+                        <ReactTooltip
+                          id="xboxone"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>xbox one</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "Xbox 360" ? (
+                      <>
+                        <SiXbox data-tip data-for="xbox360" />
+                        <ReactTooltip
+                          id="xbox360"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>xbox 360</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "Xbox" ? (
+                      <>
+                        <SiXbox data-tip data-for="xbox" />
+                        <ReactTooltip
+                          id="xbox"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>xbox</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "Nintendo DS" ? (
+                      <>
+                        <SiNintendo3Ds data-tip data-for="nintendods" />
+                        <ReactTooltip
+                          id="nintendods"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>nintendo DS</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "Nintendo GameCube" ? (
+                      <>
+                        <SiNintendogamecube data-tip data-for="gamecube" />
+                        <ReactTooltip
+                          id="gamecube"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>GameCube</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "Nintendo Switch" ? (
+                      <>
+                        <SiNintendoswitch data-tip data-for="switch" />
+                        <ReactTooltip
+                          id="switch"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>switch</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name ===
+                    "Super Nintendo Entertainment System (SNES)" ? (
+                      <SiNintendonetwork />
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "Game Boy Advance" ? "Game Boy Advance" : ""}
+                    {item.name === "PlayStation Portable"
+                      ? "Playstation Portable"
+                      : ""}
+                    {item.name === "iOS" ? (
+                      <>
+                        <SiIos size={20} data-tip data-for="ios" />
+                        <ReactTooltip
+                          id="ios"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>iOS</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "Android" ? (
+                      <>
+                        <MdAndroid data-tip data-for="android" />
+                        <ReactTooltip
+                          id="android"
+                          type="light"
+                          place="top"
+                          effect="solid"
+                        >
+                          <span>android</span>
+                        </ReactTooltip>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {item.name === "Sega Saturn" ? <SiSega /> : ""}
+                  </GameInfoListList>
+                ))
+              : ""}
           </GameInfoList>
 
           {user.favoriteGameId.includes(gameId) ? (

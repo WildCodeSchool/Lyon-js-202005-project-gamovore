@@ -8,6 +8,9 @@ const IsLogged = styled.div`
   :hover {
     cursor: pointer;
   }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 export default IsLogged;
