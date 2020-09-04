@@ -40,6 +40,7 @@ const Chat = () => {
         message: messageWrite,
         send: true,
         date: firebase.firestore.Timestamp.now(),
+        isView: true,
       });
 
     //Ajoute le message dans la base de données de mon gamovore
@@ -53,6 +54,7 @@ const Chat = () => {
         message: messageWrite,
         send: false,
         date: firebase.firestore.Timestamp.now(),
+        isView: false,
       });
 
     // recharge mes messages.
