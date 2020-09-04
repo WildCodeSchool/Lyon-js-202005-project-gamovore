@@ -9,7 +9,7 @@ const FooterBox = () => {
     <Footer>
       Made with{" "}
       <FooterSpan role="img" aria-label="love">
-        ❤️
+        <span>❤️</span>
       </FooterSpan>
       by{" "}
       <Linked to="https://www.linkedin.com/in/alexandra-lhermitte-802a54171/">
