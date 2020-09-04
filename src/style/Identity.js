@@ -6,6 +6,9 @@ const Identity = styled.div`
   margin: 1%;
   align-items: center;
   margin-left: 2%;
+  @media screen and (max-width: 600px) {
+    justify-content: center;
+  }
 `;
 
 export default Identity;

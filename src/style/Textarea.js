@@ -8,6 +8,9 @@ const Textarea = styled.textarea`
     sans-serif;
   font-size: 1.2em;
   cursor: default;
+  @media screen and (max-width: 600px) {
+    font-size: 1em;
+  }
 `;
 
 export default Textarea;

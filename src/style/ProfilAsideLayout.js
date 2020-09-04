@@ -6,6 +6,9 @@ const ProfilAsideLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 export default ProfilAsideLayout;

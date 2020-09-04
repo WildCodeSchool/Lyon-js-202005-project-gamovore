@@ -17,6 +17,7 @@ import LoadingImg from "../style/LoadingImg";
 import MyGamovores from "../components/MyGamovores";
 import Button from "../style/Button";
 import MyGameDiv from "../style/MyGameDiv";
+import Section from "../style/Section";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -94,7 +95,7 @@ const ProfilPage = () => {
     <ProfilPageLayout>
       <Profil />
       <ProfilAsideLayout>
-        <section>
+        <Section>
           <SecondaryTitle>My Games</SecondaryTitle>
           <ProfilGameLayout>
             {loading ? (
@@ -125,7 +126,7 @@ const ProfilPage = () => {
           >
             {isViewAll ? "Reduce my games list" : "View all my games"}
           </Button>
-        </section>
+        </Section>
         <MyGamovoreLayout>
           <SecondaryTitle>My Gamovores</SecondaryTitle>
           <MyGamovoreProfilLayout>

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import StyleForPseudo from "../style/Pseudo";
-import StyleForAvatar from "../style/Avatar";
+import AvatarImg from "../style/AvatarImg";
 import GamovoreDiv from "../style/GamovoreDiv";
 import Linked from "../style/Linked";
 
@@ -46,7 +46,7 @@ const Gamovores = (props) => {
               key={item.id}
             >
               <GamovoreDiv key={item.id} display="inline-block">
-                <StyleForAvatar src={item.avatarUrl} />
+                <AvatarImg src={item.avatarUrl} />
                 <StyleForPseudo>{item.pseudo}</StyleForPseudo>
               </GamovoreDiv>
             </Linked>
