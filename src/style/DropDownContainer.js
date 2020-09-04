@@ -8,7 +8,7 @@ const DropDownContainer = styled.div`
   box-shadow: 0 8px 8px #000000;
   width: 20%;
   @media screen and (max-width: 600px) {
-    top: 38%;
+    top: 21%;
     width: 30%;
   }
 `;
