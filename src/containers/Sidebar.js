@@ -13,6 +13,7 @@ const Sidebar = () => {
   const [genresFilters, setGenresFilters] = useState([]);
   const [modesFilters, setModesFilters] = useState([]);
   const [where, setWhere] = useState("; where");
+  const [filtered, setFiltered] = useState(false);
 
   const onClick = () => {
     setData(
@@ -58,6 +59,7 @@ const Sidebar = () => {
   ];
 
   const handleFilters = () => {
+    setFiltered(true);
     if (
       platformFilters.length > 0 ||
       genresFilters.length > 0 ||
@@ -99,6 +101,7 @@ const Sidebar = () => {
   }, [handleFilters]);
 
   const handleReset = () => {
+    setFiltered(false);
     setData(defaultCall);
     setWhere(";where");
     setPlatformFilters([]);
@@ -167,8 +170,11 @@ const Sidebar = () => {
           <SidebarItemMenu>
             FILTERS
             <SidebarSubMenu>
-              <Button onClick={handleFilters}>Filter</Button>
-              <Button onClick={handleReset}>Reset Filters</Button>
+              {filtered ? (
+                <Button onClick={handleReset}>Reset Filters</Button>
+              ) : (
+                <Button onClick={handleFilters}>Filter</Button>
+              )}
             </SidebarSubMenu>
           </SidebarItemMenu>
         </SidebarSubMenu>
