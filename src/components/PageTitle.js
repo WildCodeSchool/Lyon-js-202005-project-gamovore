@@ -16,6 +16,8 @@ export default function PageTitle() {
       return "Game Details";
     } else if (url.includes("gamovore")) {
       return "Gamovores";
+    } else if (url.includes("chat")) {
+      return "Chat";
     } else {
       return "Game List";
     }

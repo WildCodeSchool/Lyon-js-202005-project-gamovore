@@ -1,0 +1,146 @@
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/UserContext";
+import FirebaseContext from "../firebase-config/FirebaseContext";
+import MyGamovoresChat from "../components/MyGamovoresChat";
+import ChatLayout from "../style/ChatLayout";
+import ConversationLayout from "../style/ConversationLayout";
+import Textarea from "../style/Textarea";
+import Button from "../style/Button";
+import Messages from "../style/Messages";
+import SendedMessage from "../style/SendedMessage";
+import ReceivedMessage from "../style/ReceivedMessage";
+import ConversationContent from "../style/ConversationContent";
+import { useEffect } from "react";
+
+const Chat = () => {
+  const { user } = useContext(UserContext);
+  const firebase = useContext(FirebaseContext);
+  const [gamovoreState, setGamovoreState] = useState(null);
+  const [messageWrite, setMessageWrite] = useState(null);
+  const [userChat, setUserChat] = useState(null);
+
+  const handleChangeMessage = (e) => {
+    e.preventDefault();
+    setMessageWrite(e.target.value);
+  };
+
+  const sendMessage = ({ user }, { gamovoreState }, messageWrite) => {
+    const userId = user.id;
+    const gamovoreId = gamovoreState.id;
+    const docId = Date.now().toString();
+
+    // Ajoute le message dans ma base de donnée
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(userId)
+      .collection(gamovoreId)
+      .doc(docId)
+      .set({
+        message: messageWrite,
+        send: true,
+        date: firebase.firestore.Timestamp.now(),
+      });
+
+    //Ajoute le message dans la base de données de mon gamovore
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(gamovoreId)
+      .collection(userId)
+      .doc(docId)
+      .set({
+        message: messageWrite,
+        send: false,
+        date: firebase.firestore.Timestamp.now(),
+      });
+
+    // recharge mes messages.
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(userId)
+      .collection(gamovoreId)
+      .orderBy("date", "asc")
+      .get()
+      .then((snapshot) => {
+        let messages = [];
+        snapshot.forEach((doc) => {
+          if (doc && doc.exists) {
+            messages.push(doc.data());
+          } else console.log("no user");
+        });
+        setUserChat(messages);
+      });
+  };
+
+  useEffect(() => {
+    if (user && firebase && gamovoreState) {
+      const userId = user.id;
+      const gamovoreId = gamovoreState.id;
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(userId)
+        .collection(gamovoreId)
+        .orderBy("date", "asc")
+        .get()
+        .then((snapshot) => {
+          let messages = [];
+          snapshot.forEach((doc) => {
+            if (doc && doc.exists) {
+              messages.push(doc.data());
+            } else console.log("no user");
+          });
+          setUserChat(messages);
+        });
+    }
+  }, [user, gamovoreState]);
+
+  return (
+    <ChatLayout>
+      <MyGamovoresChat
+        width="20%"
+        user={user}
+        setGamovoreState={setGamovoreState}
+      />
+      <ConversationLayout>
+        {gamovoreState ? (
+          <ConversationContent>
+            <h1>{gamovoreState.pseudo}</h1>
+            {userChat ? (
+              userChat.map((message) => (
+                <Messages key={message.date}>
+                  {message.send ? (
+                    <SendedMessage key={message.date}>
+                      <p>{message.message}</p>
+                    </SendedMessage>
+                  ) : (
+                    <ReceivedMessage key={message.date}>
+                      <p>{message.message}</p>
+                    </ReceivedMessage>
+                  )}
+                </Messages>
+              ))
+            ) : (
+              <div>No message</div>
+            )}
+
+            <Textarea onChange={handleChangeMessage}></Textarea>
+            <Button
+              onClick={() =>
+                sendMessage({ user }, { gamovoreState }, messageWrite)
+              }
+            >
+              Send
+            </Button>
+          </ConversationContent>
+        ) : (
+          <h1>Select a gamovore</h1>
+        )}
+      </ConversationLayout>
+    </ChatLayout>
+  );
+};
+
+export default Chat;
