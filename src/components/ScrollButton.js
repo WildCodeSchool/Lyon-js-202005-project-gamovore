@@ -32,11 +32,9 @@ const ArrowUp = styled.span`
 
 const ScrollButton = (props) => {
   const scrollStep = () => {
-    console.log(window.pageYOffset);
     if (window.pageYOffset === 0) {
       clearInterval(intervalId);
     }
-
     window.scroll(0, window.pageYOffset - props.scrollStepInPx);
   };
 
@@ -53,4 +51,3 @@ const ScrollButton = (props) => {
   );
 };
 export default ScrollButton;
-// <ScrollButton scrollStepInPx="50" delayInMs="16.66"/>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserContext } from "../context/UserContext";
 import "firebase/firestore";
-
 import GameCardJacquette from "../style/GameCardJacquette";
 import GameCardName from "../style/GameCardName";
 import GameCardStyle from "../style/GameCardStyle";
@@ -39,7 +38,6 @@ const GameCard = (props) => {
   const deleteGame = (user, gameId) => {
     if (user && firebase) {
       const userId = user.id;
-
       firebase.userActu(userId).update({
         favoriteGameId: firebase.dataRemove(gameId),
       });
@@ -50,11 +48,26 @@ const GameCard = (props) => {
     }
   };
 
+  const scrollStep = () => {
+    if (window.pageYOffset === 0) {
+      clearInterval(intervalId);
+    }
+    window.scroll(0, window.pageYOffset - props.scrollStepInPx);
+  };
+
+  let intervalId;
+  const scrollToTop = () => {
+    intervalId = setInterval(scrollStep, props.delayInMs);
+  };
+
   if (user) {
     return (
       <GameCardStyle little={props.little}>
         <ImageContent>
-          <Link to={{ pathname: link, state: { detail: gameData } }}>
+          <Link
+            onClick={scrollToTop}
+            to={{ pathname: link, state: { detail: gameData } }}
+          >
             <GameCardJacquette
               src={
                 props.cover
@@ -69,12 +82,12 @@ const GameCard = (props) => {
         {user.favoriteGameId.includes(gameId) ? (
           <AddGameButton onClick={() => deleteGame(user, gameId)}>
             <RiDeleteBin5Fill fontSize="2.5em" />
-            Delete to Collection
+            Remove from collection
           </AddGameButton>
         ) : (
           <AddGameButton onClick={() => addGame(user, gameId)}>
             <RiAddFill fontSize="3em" />
-            Add to Collection
+            Add to collection
           </AddGameButton>
         )}
       </GameCardStyle>
@@ -83,7 +96,7 @@ const GameCard = (props) => {
     return (
       <Loading>
         <Title>
-          Be patient young Gamovore, the duck is fishing a games for you ...
+          Be patient young Gamovore, the duck is fishing games for you ...
         </Title>
         <LoadingImg
           src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"

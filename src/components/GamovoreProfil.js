@@ -3,7 +3,6 @@ import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
 import GameCard from "../components/GameCard";
-
 import SecondaryTitle from "../style/SecondaryTitle";
 import GameInfoList from "../style/GameInfoList";
 import GameInfoListList from "../style/GameInfoListList";
@@ -14,7 +13,6 @@ import ProfilGameLayout from "../style/ProfilGameLayout";
 import Button from "../style/Button";
 import ButtonLayout from "../style/ButtonLayout";
 import MyGameDiv from "../style/MyGameDiv";
-
 import { RiMoonClearLine, RiSunLine } from "react-icons/ri";
 import { GiSunrise, GiSunset } from "react-icons/gi";
 
@@ -24,7 +22,6 @@ const GamovoreProfil = (props) => {
   const firebase = useContext(FirebaseContext);
   const { user, setUser } = useContext(UserContext);
   const [isViewAll, setIsViewAll] = useState(false);
-
   const [gamovoreData, setGamovoreData] = useState([]);
   const [gameToLoad, setGameToLoad] = useState([]);
   const [gamovoreGames, setGamovoreGames] = useState([]);
@@ -86,7 +83,7 @@ const GamovoreProfil = (props) => {
         </MyGameDiv>
       );
     } else {
-      return <p>No games to your collection ... </p>;
+      return <p>No game in that collection</p>;
     }
   };
 
@@ -160,13 +157,13 @@ const GamovoreProfil = (props) => {
               }
             }}
           >
-            {isViewAll ? "Reduce games list" : "View all games"}
+            {isViewAll ? "Reduce" : "View all"}
           </Button>
         </section>
       </ProfilAsideLayout>
     </ProfilPageLayout>
   ) : (
-    <p>loading ...</p>
+    <p>Loading, please wait ...</p>
   );
 };
 

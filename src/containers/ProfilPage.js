@@ -87,7 +87,7 @@ const ProfilPage = () => {
         </MyGameDiv>
       );
     } else {
-      return <div>No games to your collection ... </div>;
+      return <div>No game in that collection </div>;
     }
   };
 
@@ -124,7 +124,7 @@ const ProfilPage = () => {
               }
             }}
           >
-            {isViewAll ? "Reduce my games list" : "View all my games"}
+            {isViewAll ? "Reduce" : "View all"}
           </Button>
         </Section>
         <MyGamovoreLayout>

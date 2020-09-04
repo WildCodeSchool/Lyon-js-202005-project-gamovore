@@ -57,7 +57,7 @@ const Gamovores = (props) => {
             </Linked>
           ))
         ) : (
-          <p>No gamovores</p>
+          <p>No gamovore</p>
         )}
       </div>
     );

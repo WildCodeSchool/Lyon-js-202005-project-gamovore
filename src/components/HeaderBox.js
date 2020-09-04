@@ -33,9 +33,14 @@ function HeaderBox() {
         {user ? (
           <ProfilButton drop />
         ) : (
-          <Linked to="/sign-in">
-            <Button>Connexion</Button>
-          </Linked>
+          <>
+            <Linked to="/sign-in">
+              <Button>Sign in</Button>
+            </Linked>
+            <Linked to="/sign-up">
+              <Button>Sign up</Button>
+            </Linked>
+          </>
         )}
       </IsLogged>
     </Header>

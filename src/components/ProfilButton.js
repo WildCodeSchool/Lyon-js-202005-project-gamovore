@@ -26,12 +26,12 @@ const ProfilButton = (props) => {
       </Linked>
       <DropDownContainer>
         <Linked to="/profil">
-          <MenuItem>My profil</MenuItem>
+          <MenuItem>My profile</MenuItem>
         </Linked>
         <Linked to="/chat">
-          <MenuItem>Chat</MenuItem>
+          <MenuItem>My Messages</MenuItem>
         </Linked>
-        <MenuItem>My co-gamovores</MenuItem>
+        <MenuItem>My Gamovores</MenuItem>
         <Logout />
       </DropDownContainer>
     </StyleForProfilButton>

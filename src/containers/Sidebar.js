@@ -152,13 +152,6 @@ const Sidebar = () => {
   return (
     <>
       <SidebarMenu>
-        <SidebarItemMenu>
-          <Linked to="/" issidebar="true" onClick={onClick}>
-            HOME
-          </Linked>
-        </SidebarItemMenu>
-      </SidebarMenu>
-      <SidebarMenu>
         <SidebarItemMenu>SEARCH</SidebarItemMenu>
         <SidebarSubMenu>
           <SidebarItemMenu>
@@ -167,18 +160,7 @@ const Sidebar = () => {
         </SidebarSubMenu>
       </SidebarMenu>
       <SidebarMenu>
-        <SidebarSubMenu>
-          <SidebarItemMenu>
-            FILTERS
-            <SidebarSubMenu>
-              {filtered ? (
-                <Button onClick={handleReset}>Reset Filters</Button>
-              ) : (
-                <Button onClick={handleFilters}>Filter</Button>
-              )}
-            </SidebarSubMenu>
-          </SidebarItemMenu>
-        </SidebarSubMenu>
+        <SidebarItemMenu>FILTERS</SidebarItemMenu>
         <form id="checkboxes">
           <SidebarSubMenu>
             <SidebarItemMenu>Platforms</SidebarItemMenu>
@@ -234,6 +216,13 @@ const Sidebar = () => {
             </SidebarSubMenu>
           </SidebarSubMenu>
         </form>
+        <SidebarSubMenu>
+          {filtered ? (
+            <Button onClick={handleReset}>Reset Filters</Button>
+          ) : (
+            <Button onClick={handleFilters}>Filter</Button>
+          )}
+        </SidebarSubMenu>
       </SidebarMenu>
     </>
   );

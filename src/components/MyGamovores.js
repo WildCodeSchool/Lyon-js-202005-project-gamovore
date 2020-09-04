@@ -52,14 +52,14 @@ const Gamovores = (props) => {
             </Linked>
           ))
         ) : (
-          <p>No gamovores</p>
+          <p>No gamovore</p>
         )}
       </div>
     );
   } else {
     return (
       <div>
-        <p>Loading...</p>
+        <p>Loading, please wait...</p>
       </div>
     );
   }

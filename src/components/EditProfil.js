@@ -8,7 +8,6 @@ import Textarea from "../style/Textarea";
 import InputPseudo from "../style/InputPseudo";
 import InputAvatarUrl from "../style/InputAvatarUrl";
 import Button from "../style/Button";
-
 import { RiMoonClearLine, RiSunLine } from "react-icons/ri";
 import { GiSunrise, GiSunset } from "react-icons/gi";
 
@@ -106,7 +105,6 @@ const Profil = ({ setEditProfil }) => {
 
       <div>
         <h2>Description :</h2>
-        <p>avaibalities</p>
         <Textarea
           rows="5"
           cols="45"
@@ -116,7 +114,7 @@ const Profil = ({ setEditProfil }) => {
         />
       </div>
       <div>
-        <h2>Avaibalities :</h2>
+        <h2>Availabilities :</h2>
         <input
           type="checkbox"
           name="morning"
@@ -145,7 +143,7 @@ const Profil = ({ setEditProfil }) => {
           onChange={handleCheckChange}
           checked={avaibalities.includes("night") ? true : false}
         />{" "}
-        Nigth <RiMoonClearLine fontSize="2em" /> <br />
+        Night <RiMoonClearLine fontSize="2em" /> <br />
       </div>
       <br />
       <Button

@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from "react";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserContext } from "../context/UserContext";
 import ReactTooltip from "react-tooltip";
-
 import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
 import GameInfo from "../style/GameInfo";
 import GameCoverBox from "../style/GameCoverBox";
@@ -14,7 +13,6 @@ import GameInfoListTitle from "../style/GameInfoListTitle";
 import GameInfoListList from "../style/GameInfoListList";
 import Gamovores from "./Gamovores";
 import AddGameButton from "../style/AddGameButton";
-
 import { RiDeleteBin5Fill, RiAddFill } from "react-icons/ri";
 import {
   SiPlaystation3,
@@ -72,7 +70,7 @@ const GameItem = (props) => {
 
   useEffect(() => {
     let listener = firebase.auth.onAuthStateChanged((user) => {
-      user ? console.log("fuck!!!!") : props.history.push("/sign-in");
+      user ? console.log("Welcome home") : props.history.push("/sign-in");
     });
     return () => {
       listener();
@@ -96,7 +94,7 @@ const GameItem = (props) => {
           <h1>{game.name}</h1>
           <GameResume>{game.summary}</GameResume>
           <GameInfoList>
-            <GameInfoListTitle>Catégorie(s) : </GameInfoListTitle>
+            <GameInfoListTitle>Game Mode(s) : </GameInfoListTitle>
             {game.game_modes ? (
               game.game_modes.map((item) => (
                 <GameInfoListList key={item.id}>
@@ -118,7 +116,7 @@ const GameItem = (props) => {
             )}
           </GameInfoList>
           <GameInfoList>
-            <GameInfoListTitle>Plateforme(s) : </GameInfoListTitle>
+            <GameInfoListTitle>Plateform(s) : </GameInfoListTitle>
 
             {game.platforms
               ? game.platforms.map((item) => (
@@ -327,7 +325,7 @@ const GameItem = (props) => {
                           place="top"
                           effect="solid"
                         >
-                          <span>switch</span>
+                          <span>nintendo switch</span>
                         </ReactTooltip>
                       </>
                     ) : (
@@ -382,12 +380,12 @@ const GameItem = (props) => {
           {user.favoriteGameId.includes(gameId) ? (
             <AddGameButton onClick={() => deleteGame(user, gameId)}>
               <RiDeleteBin5Fill fontSize="2.5em" />
-              Delete to Collection
+              Remove from collection
             </AddGameButton>
           ) : (
             <AddGameButton onClick={() => addGame(user, gameId)}>
               <RiAddFill fontSize="3em" />
-              Add to Collection
+              Add to collection
             </AddGameButton>
           )}
 
@@ -396,7 +394,7 @@ const GameItem = (props) => {
       </GamePage>
     );
   } else {
-    return <p>No user</p>;
+    return <p>Nobody added this game to their collection yet.</p>;
   }
 };
 
