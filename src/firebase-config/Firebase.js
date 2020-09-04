@@ -47,6 +47,8 @@ class Firebase {
   dataRemove = (id) => this.firestore.FieldValue.arrayRemove(id);
 
   dataReplace = (id) => this.firestore.FieldValue.increment(id);
+
+  userChat = (uid, gamovoreId) => this.db.doc(`users/${uid}/${gamovoreId}`);
 }
 
 export default Firebase;
