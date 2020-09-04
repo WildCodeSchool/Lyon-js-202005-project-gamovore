@@ -101,6 +101,7 @@ const Sidebar = () => {
   }, [handleFilters]);
 
   const handleReset = () => {
+    document.getElementById("checkboxes").reset();
     setFiltered(false);
     setData(defaultCall);
     setWhere(";where");
@@ -178,59 +179,61 @@ const Sidebar = () => {
             </SidebarSubMenu>
           </SidebarItemMenu>
         </SidebarSubMenu>
-        <SidebarSubMenu>
-          <SidebarItemMenu>Platforms</SidebarItemMenu>
+        <form id="checkboxes">
           <SidebarSubMenu>
-            {platforms.map((item) => (
-              <SidebarItemMenu key={item.id}>
-                <input
-                  type="checkbox"
-                  key={item.id}
-                  name={item.name}
-                  id={item.id}
-                  onChange={handlePlatforms}
-                />{" "}
-                {item.name}
-              </SidebarItemMenu>
-            ))}
+            <SidebarItemMenu>Platforms</SidebarItemMenu>
+            <SidebarSubMenu>
+              {platforms.map((item) => (
+                <SidebarItemMenu key={item.id}>
+                  <input
+                    type="checkbox"
+                    key={item.id}
+                    name={item.name}
+                    id={item.id}
+                    onChange={handlePlatforms}
+                  />{" "}
+                  {item.name}
+                </SidebarItemMenu>
+              ))}
+            </SidebarSubMenu>
           </SidebarSubMenu>
-        </SidebarSubMenu>
 
-        <SidebarSubMenu>
-          <SidebarItemMenu>Genres</SidebarItemMenu>
           <SidebarSubMenu>
-            {genres.map((item) => (
-              <SidebarItemMenu key={item.id}>
-                <input
-                  type="checkbox"
-                  key={item.id}
-                  name={item.name}
-                  id={item.id}
-                  onChange={handleGenres}
-                />{" "}
-                {item.name}
-              </SidebarItemMenu>
-            ))}
+            <SidebarItemMenu>Genres</SidebarItemMenu>
+            <SidebarSubMenu>
+              {genres.map((item) => (
+                <SidebarItemMenu key={item.id}>
+                  <input
+                    type="checkbox"
+                    key={item.id}
+                    name={item.name}
+                    id={item.id}
+                    onChange={handleGenres}
+                  />{" "}
+                  {item.name}
+                </SidebarItemMenu>
+              ))}
+            </SidebarSubMenu>
           </SidebarSubMenu>
-        </SidebarSubMenu>
 
-        <SidebarSubMenu>
-          <SidebarItemMenu>Modes</SidebarItemMenu>
           <SidebarSubMenu>
-            {modes.map((item) => (
-              <SidebarItemMenu key={item.id}>
-                <input
-                  type="checkbox"
-                  key={item.id}
-                  name={item.name}
-                  id={item.id}
-                  onChange={handleModes}
-                />{" "}
-                {item.name}
-              </SidebarItemMenu>
-            ))}
+            <SidebarItemMenu>Modes</SidebarItemMenu>
+            <SidebarSubMenu>
+              {modes.map((item) => (
+                <SidebarItemMenu key={item.id}>
+                  <input
+                    type="checkbox"
+                    key={item.id}
+                    name={item.name}
+                    id={item.id}
+                    onChange={handleModes}
+                  />{" "}
+                  {item.name}
+                </SidebarItemMenu>
+              ))}
+            </SidebarSubMenu>
           </SidebarSubMenu>
-        </SidebarSubMenu>
+        </form>
       </SidebarMenu>
     </>
   );
