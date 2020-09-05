@@ -14,6 +14,7 @@ const Sidebar = () => {
   const [modesFilters, setModesFilters] = useState([]);
   const [where, setWhere] = useState("; where");
   const [filtered, setFiltered] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   const onClick = () => {
     setData(
@@ -101,7 +102,7 @@ const Sidebar = () => {
   }, [handleFilters]);
 
   const handleReset = () => {
-    document.getElementById("checkboxes").reset();
+    setIsChecked(false);
     setFiltered(false);
     setData(defaultCall);
     setWhere(";where");
@@ -111,6 +112,7 @@ const Sidebar = () => {
   };
 
   const handlePlatforms = (event) => {
+    setIsChecked(true);
     event.persist();
     if (event.target.checked) {
       setPlatformFilters((platformFilters) => [
@@ -126,6 +128,7 @@ const Sidebar = () => {
   };
 
   const handleGenres = (event) => {
+    setIsChecked(true);
     event.persist();
     if (event.target.checked) {
       setGenresFilters((genresFilters) => [...genresFilters, event.target.id]);
@@ -138,6 +141,7 @@ const Sidebar = () => {
   };
 
   const handleModes = (event) => {
+    setIsChecked(true);
     event.persist();
     if (event.target.checked) {
       setModesFilters((modesFilters) => [...modesFilters, event.target.id]);
@@ -185,13 +189,24 @@ const Sidebar = () => {
             <SidebarSubMenu>
               {platforms.map((item) => (
                 <SidebarItemMenu key={item.id}>
-                  <input
-                    type="checkbox"
-                    key={item.id}
-                    name={item.name}
-                    id={item.id}
-                    onChange={handlePlatforms}
-                  />{" "}
+                  {isChecked ? (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handlePlatforms}
+                    />
+                  ) : (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handlePlatforms}
+                      checked={false}
+                    />
+                  )}{" "}
                   {item.name}
                 </SidebarItemMenu>
               ))}
@@ -203,13 +218,24 @@ const Sidebar = () => {
             <SidebarSubMenu>
               {genres.map((item) => (
                 <SidebarItemMenu key={item.id}>
-                  <input
-                    type="checkbox"
-                    key={item.id}
-                    name={item.name}
-                    id={item.id}
-                    onChange={handleGenres}
-                  />{" "}
+                  {isChecked ? (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handleGenres}
+                    />
+                  ) : (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handleGenres}
+                      checked={false}
+                    />
+                  )}{" "}
                   {item.name}
                 </SidebarItemMenu>
               ))}
@@ -221,13 +247,24 @@ const Sidebar = () => {
             <SidebarSubMenu>
               {modes.map((item) => (
                 <SidebarItemMenu key={item.id}>
-                  <input
-                    type="checkbox"
-                    key={item.id}
-                    name={item.name}
-                    id={item.id}
-                    onChange={handleModes}
-                  />{" "}
+                  {isChecked ? (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handleModes}
+                    />
+                  ) : (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handleModes}
+                      checked={false}
+                    />
+                  )}{" "}
                   {item.name}
                 </SidebarItemMenu>
               ))}
