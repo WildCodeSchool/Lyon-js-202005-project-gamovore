@@ -3,6 +3,8 @@
 
 For more information on the hows and dos of the Gamovore project, you can go to our [wiki](https://github.com/WildCodeSchool/Lyon-js-202005-project-gamovore/wiki)
 
+***
+
 
 ## REACT:
 
