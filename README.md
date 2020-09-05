@@ -1,3 +1,11 @@
+
+## GAMOVORE HAS A WIKI!
+
+For more information on the hows and dos of the Gamovore project, you can go to our [wiki](https://github.com/WildCodeSchool/Lyon-js-202005-project-gamovore/wiki)
+
+
+## REACT:
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
