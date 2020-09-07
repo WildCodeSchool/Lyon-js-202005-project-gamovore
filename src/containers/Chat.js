@@ -56,14 +56,13 @@ const Chat = () => {
         date: firebase.firestore.Timestamp.now(),
         isView: false,
       });
-
-    // recharge mes messages.
   };
 
   useEffect(() => {
     if (user && firebase && gamovoreState) {
       const userId = user.id;
       const gamovoreId = gamovoreState.id;
+      // recharge mes messages.
       firebase.userActu(userId).onSnapshot(function (doc) {
         setUser(doc.data());
       });
