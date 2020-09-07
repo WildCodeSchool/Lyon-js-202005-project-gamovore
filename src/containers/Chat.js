@@ -64,7 +64,8 @@ const Chat = () => {
       setUser(doc.data());
     });
 
-    // recharge mes messages.
+    // remets les messages à 0
+    setMessageWrite("");
   };
 
   useEffect(() => {
@@ -126,10 +127,18 @@ const Chat = () => {
               )}
             </Scrollable>
             <br />
-            <Textarea onChange={handleChangeMessage}></Textarea>
+            <Textarea
+              onChange={handleChangeMessage}
+              value={messageWrite}
+            ></Textarea>
             <Button
               onClick={() =>
-                sendMessage({ user }, { gamovoreState }, messageWrite)
+                sendMessage(
+                  { user },
+                  { gamovoreState },
+                  messageWrite,
+                  setMessageWrite
+                )
               }
             >
               Send
