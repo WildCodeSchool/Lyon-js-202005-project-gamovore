@@ -13,7 +13,7 @@ import ConversationContent from "../style/ConversationContent";
 import { useEffect } from "react";
 
 const Chat = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const firebase = useContext(FirebaseContext);
   const [gamovoreState, setGamovoreState] = useState(null);
   const [messageWrite, setMessageWrite] = useState(null);
@@ -58,28 +58,15 @@ const Chat = () => {
       });
 
     // recharge mes messages.
-    firebase
-      .firestore()
-      .collection("users")
-      .doc(userId)
-      .collection(gamovoreId)
-      .orderBy("date", "asc")
-      .get()
-      .then((snapshot) => {
-        let messages = [];
-        snapshot.forEach((doc) => {
-          if (doc && doc.exists) {
-            messages.push(doc.data());
-          } else console.log("no user");
-        });
-        setUserChat(messages);
-      });
   };
 
   useEffect(() => {
     if (user && firebase && gamovoreState) {
       const userId = user.id;
       const gamovoreId = gamovoreState.id;
+      firebase.userActu(userId).onSnapshot(function (doc) {
+        setUser(doc.data());
+      });
       firebase
         .firestore()
         .collection("users")
