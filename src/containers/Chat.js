@@ -8,12 +8,13 @@ import Textarea from "../style/Textarea";
 import Button from "../style/Button";
 import Messages from "../style/Messages";
 import SendedMessage from "../style/SendedMessage";
+import Scrollable from "../style/Scrollable";
 import ReceivedMessage from "../style/ReceivedMessage";
 import ConversationContent from "../style/ConversationContent";
 import { useEffect } from "react";
 
 const Chat = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const firebase = useContext(FirebaseContext);
   const [gamovoreState, setGamovoreState] = useState(null);
   const [messageWrite, setMessageWrite] = useState(null);
@@ -57,29 +58,24 @@ const Chat = () => {
         isView: false,
       });
 
+    // Recharge l'utilisateur
+
+    firebase.userActu(userId).onSnapshot(function (doc) {
+      setUser(doc.data());
+    });
+
     // recharge mes messages.
-    firebase
-      .firestore()
-      .collection("users")
-      .doc(userId)
-      .collection(gamovoreId)
-      .orderBy("date", "asc")
-      .get()
-      .then((snapshot) => {
-        let messages = [];
-        snapshot.forEach((doc) => {
-          if (doc && doc.exists) {
-            messages.push(doc.data());
-          } else console.log("no user");
-        });
-        setUserChat(messages);
-      });
   };
 
   useEffect(() => {
     if (user && firebase && gamovoreState) {
       const userId = user.id;
       const gamovoreId = gamovoreState.id;
+
+      firebase.userActu(userId).onSnapshot(function (doc) {
+        setUser(doc.data());
+      });
+
       firebase
         .firestore()
         .collection("users")
@@ -110,24 +106,26 @@ const Chat = () => {
         {gamovoreState ? (
           <ConversationContent>
             <h1>{gamovoreState.pseudo}</h1>
-            {userChat ? (
-              userChat.map((message) => (
-                <Messages key={message.date}>
-                  {message.send ? (
-                    <SendedMessage key={message.date}>
-                      <p>{message.message}</p>
-                    </SendedMessage>
-                  ) : (
-                    <ReceivedMessage key={message.date}>
-                      <p>{message.message}</p>
-                    </ReceivedMessage>
-                  )}
-                </Messages>
-              ))
-            ) : (
-              <div>No message</div>
-            )}
-
+            <Scrollable>
+              {userChat ? (
+                userChat.map((message) => (
+                  <Messages key={message.date}>
+                    {message.send ? (
+                      <SendedMessage key={message.date}>
+                        <p>{message.message}</p>
+                      </SendedMessage>
+                    ) : (
+                      <ReceivedMessage key={message.date}>
+                        <p>{message.message}</p>
+                      </ReceivedMessage>
+                    )}
+                  </Messages>
+                ))
+              ) : (
+                <div>No message</div>
+              )}
+            </Scrollable>
+            <br />
             <Textarea onChange={handleChangeMessage}></Textarea>
             <Button
               onClick={() =>
