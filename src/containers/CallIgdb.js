@@ -20,7 +20,7 @@ const CallIgdb = (dataCallIgdb) => {
     })
       .then((response) => response.data)
       .then((data) => {
-        setGameList(data);
+        setGameList(data.sort((a, b) => (a.name > b.name ? 1 : -1)));
         setLoading(false);
       })
       .catch((err) => {

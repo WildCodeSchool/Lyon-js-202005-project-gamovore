@@ -51,8 +51,6 @@ const Profil = ({ setEditProfil }) => {
         setUser(doc.data());
         setEditProfil(false);
       });
-    } else {
-      console.log("non chargé");
     }
   };
 

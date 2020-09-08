@@ -12,22 +12,15 @@ const Sidebar = () => {
   const [platformFilters, setPlatformFilters] = useState([]);
   const [genresFilters, setGenresFilters] = useState([]);
   const [modesFilters, setModesFilters] = useState([]);
-  const [allFilters, setAllFilters] = useState([]);
   const [where, setWhere] = useState("; where");
+  const [filtered, setFiltered] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   const onClick = () => {
     setData(
       "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 20; where total_rating_count>=80;"
     );
   };
-
-  useEffect(() => {
-    setAllFilters((allFilters) => [
-      platformFilters,
-      genresFilters,
-      modesFilters,
-    ]);
-  }, [platformFilters, genresFilters, modesFilters]);
 
   const defaultCall =
     "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 50; where total_rating_count>=80;";
@@ -67,6 +60,7 @@ const Sidebar = () => {
   ];
 
   const handleFilters = () => {
+    setFiltered(true);
     if (
       platformFilters.length > 0 ||
       genresFilters.length > 0 ||
@@ -108,6 +102,8 @@ const Sidebar = () => {
   }, [handleFilters]);
 
   const handleReset = () => {
+    setIsChecked(false);
+    setFiltered(false);
     setData(defaultCall);
     setWhere(";where");
     setPlatformFilters([]);
@@ -116,6 +112,7 @@ const Sidebar = () => {
   };
 
   const handlePlatforms = (event) => {
+    setIsChecked(true);
     event.persist();
     if (event.target.checked) {
       setPlatformFilters((platformFilters) => [
@@ -131,6 +128,7 @@ const Sidebar = () => {
   };
 
   const handleGenres = (event) => {
+    setIsChecked(true);
     event.persist();
     if (event.target.checked) {
       setGenresFilters((genresFilters) => [...genresFilters, event.target.id]);
@@ -143,6 +141,7 @@ const Sidebar = () => {
   };
 
   const handleModes = (event) => {
+    setIsChecked(true);
     event.persist();
     if (event.target.checked) {
       setModesFilters((modesFilters) => [...modesFilters, event.target.id]);
@@ -176,64 +175,102 @@ const Sidebar = () => {
           <SidebarItemMenu>
             FILTERS
             <SidebarSubMenu>
-              <Button onClick={handleFilters}>Filter</Button>
-              <Button onClick={handleReset}>Reset Filters</Button>
+              {filtered ? (
+                <Button onClick={handleReset}>Reset Filters</Button>
+              ) : (
+                <Button onClick={handleFilters}>Filter</Button>
+              )}
             </SidebarSubMenu>
           </SidebarItemMenu>
         </SidebarSubMenu>
-        <SidebarSubMenu>
-          <SidebarItemMenu>Platforms</SidebarItemMenu>
+        <form id="checkboxes">
           <SidebarSubMenu>
-            {platforms.map((item) => (
-              <SidebarItemMenu key={item.id}>
-                <input
-                  type="checkbox"
-                  key={item.id}
-                  name={item.name}
-                  id={item.id}
-                  onChange={handlePlatforms}
-                />{" "}
-                {item.name}
-              </SidebarItemMenu>
-            ))}
+            <SidebarItemMenu>Platforms</SidebarItemMenu>
+            <SidebarSubMenu>
+              {platforms.map((item) => (
+                <SidebarItemMenu key={item.id}>
+                  {isChecked ? (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handlePlatforms}
+                    />
+                  ) : (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handlePlatforms}
+                      checked={false}
+                    />
+                  )}{" "}
+                  {item.name}
+                </SidebarItemMenu>
+              ))}
+            </SidebarSubMenu>
           </SidebarSubMenu>
-        </SidebarSubMenu>
 
-        <SidebarSubMenu>
-          <SidebarItemMenu>Genres</SidebarItemMenu>
           <SidebarSubMenu>
-            {genres.map((item) => (
-              <SidebarItemMenu key={item.id}>
-                <input
-                  type="checkbox"
-                  key={item.id}
-                  name={item.name}
-                  id={item.id}
-                  onChange={handleGenres}
-                />{" "}
-                {item.name}
-              </SidebarItemMenu>
-            ))}
+            <SidebarItemMenu>Genres</SidebarItemMenu>
+            <SidebarSubMenu>
+              {genres.map((item) => (
+                <SidebarItemMenu key={item.id}>
+                  {isChecked ? (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handleGenres}
+                    />
+                  ) : (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handleGenres}
+                      checked={false}
+                    />
+                  )}{" "}
+                  {item.name}
+                </SidebarItemMenu>
+              ))}
+            </SidebarSubMenu>
           </SidebarSubMenu>
-        </SidebarSubMenu>
 
-        <SidebarSubMenu>
-          <SidebarItemMenu>Modes</SidebarItemMenu>
           <SidebarSubMenu>
-            {modes.map((item) => (
-              <SidebarItemMenu key={item.id}>
-                <input
-                  type="checkbox"
-                  key={item.id}
-                  name={item.name}
-                  id={item.id}
-                  onChange={handleModes}
-                />{" "}
-                {item.name}
-              </SidebarItemMenu>
-            ))}
+            <SidebarItemMenu>Modes</SidebarItemMenu>
+            <SidebarSubMenu>
+              {modes.map((item) => (
+                <SidebarItemMenu key={item.id}>
+                  {isChecked ? (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handleModes}
+                    />
+                  ) : (
+                    <input
+                      type="checkbox"
+                      key={item.id}
+                      name={item.name}
+                      id={item.id}
+                      onChange={handleModes}
+                      checked={false}
+                    />
+                  )}{" "}
+                  {item.name}
+                </SidebarItemMenu>
+              ))}
+            </SidebarSubMenu>
           </SidebarSubMenu>
-        </SidebarSubMenu>
+        </form>
       </SidebarMenu>
     </>
   );
