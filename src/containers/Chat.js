@@ -100,7 +100,7 @@ const Chat = () => {
           snapshot.forEach((doc) => {
             if (doc && doc.exists) {
               messages.push(doc.data());
-            } else console.log("no user");
+            }
           });
           setUserChat(messages);
         })
