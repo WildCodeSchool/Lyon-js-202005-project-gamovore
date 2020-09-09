@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { UserContext } from "../context/UserContext";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import MyGamovoresChat from "../components/MyGamovoresChat";
@@ -17,13 +17,15 @@ const Chat = () => {
   const { user, setUser } = useContext(UserContext);
   const firebase = useContext(FirebaseContext);
   const [gamovoreState, setGamovoreState] = useState(null);
-  const [messageWrite, setMessageWrite] = useState(null);
+  const [messageWrite, setMessageWrite] = useState("");
   const [userChat, setUserChat] = useState(null);
 
   const handleChangeMessage = (e) => {
     e.preventDefault();
     setMessageWrite(e.target.value);
   };
+
+  setInterval(() => userReload(), 10000);
 
   const sendMessage = ({ user }, { gamovoreState }, messageWrite) => {
     const userId = user.id;
@@ -59,9 +61,9 @@ const Chat = () => {
       });
 
     // Recharge l'utilisateur
-
-    firebase.userActu(userId).onSnapshot(function (doc) {
+    firebase.userActu(user.id).onSnapshot((doc) => {
       setUser(doc.data());
+      console.log("toto");
     });
 
     // remets les messages à 0
@@ -72,10 +74,6 @@ const Chat = () => {
     if (user && firebase && gamovoreState) {
       const userId = user.id;
       const gamovoreId = gamovoreState.id;
-
-      firebase.userActu(userId).onSnapshot(function (doc) {
-        setUser(doc.data());
-      });
 
       firebase
         .firestore()
@@ -94,6 +92,7 @@ const Chat = () => {
           setUserChat(messages);
         });
     }
+    console.log("hello");
   }, [user, gamovoreState, firebase, setUser]);
 
   return (

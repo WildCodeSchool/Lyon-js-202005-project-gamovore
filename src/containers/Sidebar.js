@@ -14,7 +14,6 @@ const Sidebar = () => {
   const [modesFilters, setModesFilters] = useState([]);
   const [where, setWhere] = useState("; where");
   const [filtered, setFiltered] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
 
   const onClick = () => {
     setData(
@@ -27,36 +26,36 @@ const Sidebar = () => {
   const filteredSearch = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 100${where};`;
 
   const [platforms, setPlatforms] = useState([
-    { id: "130", name: "Nintendo Switch", check: false },
-    { id: "6", name: "PC (Microsoft Windows)", check: false },
-    { id: "48", name: "PlayStation 4", check: false },
-    { id: "167", name: "PlayStation 5", check: false },
-    { id: "169", name: "Xbox Series X", check: false },
-    { id: "49", name: "Xbox One", check: false },
+    { id: 130, name: "Nintendo Switch", check: false },
+    { id: 6, name: "PC (Microsoft Windows)", check: false },
+    { id: 48, name: "PlayStation 4", check: false },
+    { id: 167, name: "PlayStation 5", check: false },
+    { id: 169, name: "Xbox Series X", check: false },
+    { id: 49, name: "Xbox One", check: false },
   ]);
 
   const [genres, setGenres] = useState([
-    { id: 31, name: "Adventure" },
-    { id: 33, name: "Arcade" },
-    { id: 35, name: "Card & Board Game" },
-    { id: 4, name: "Fighting" },
-    { id: 25, name: "Hack and slash/Beat 'em up" },
-    { id: 36, name: "MOBA" },
-    { id: 10, name: "Racing" },
-    { id: 11, name: "Real Time Strategy (RTS)" },
-    { id: 12, name: "Role-playing (RPG)" },
-    { id: 5, name: "Shooter" },
-    { id: 14, name: "Sport" },
-    { id: 15, name: "Strategy" },
+    { id: 31, name: "Adventure", check: false },
+    { id: 33, name: "Arcade", check: false },
+    { id: 35, name: "Card & Board Game", check: false },
+    { id: 4, name: "Fighting", check: false },
+    { id: 25, name: "Hack and slash/Beat 'em up", check: false },
+    { id: 36, name: "MOBA", check: false },
+    { id: 10, name: "Racing", check: false },
+    { id: 11, name: "Real Time Strategy (RTS)", check: false },
+    { id: 12, name: "Role-playing (RPG)", check: false },
+    { id: 5, name: "Shooter", check: false },
+    { id: 14, name: "Sport", check: false },
+    { id: 15, name: "Strategy", check: false },
   ]);
 
   const [modes, setModes] = useState([
-    { id: 6, name: "Battle Royale" },
-    { id: 3, name: "Co-operative" },
-    { id: 5, name: "Massively Multiplayer Online (MMO)" },
-    { id: 2, name: "Multiplayer" },
-    { id: 1, name: "Single player" },
-    { id: 4, name: "Split screen" },
+    { id: 6, name: "Battle Royale", check: false },
+    { id: 3, name: "Co-operative", check: false },
+    { id: 5, name: "Massively Multiplayer Online (MMO)", check: false },
+    { id: 2, name: "Multiplayer", check: false },
+    { id: 1, name: "Single player", check: false },
+    { id: 4, name: "Split screen", check: false },
   ]);
 
   const handleFilters = useCallback(() => {
@@ -102,7 +101,24 @@ const Sidebar = () => {
   }, [handleFilters, filteredSearch, setData]);
 
   const handleReset = () => {
-    setIsChecked(false);
+    setPlatforms((prev) =>
+      prev.map((item) => {
+        item.check = false;
+        return item;
+      })
+    );
+    setGenres((prev) =>
+      prev.map((item) => {
+        item.check = false;
+        return item;
+      })
+    );
+    setModes((prev) =>
+      prev.map((item) => {
+        item.check = false;
+        return item;
+      })
+    );
     setFiltered(false);
     setData(defaultCall);
     setWhere(";where");
@@ -112,19 +128,17 @@ const Sidebar = () => {
   };
 
   const handlePlatforms = (event) => {
-    setIsChecked(true);
     event.persist();
     setPlatforms((prevState) =>
       prevState.map((item) => {
-        if (item.id === event.target.id) {
-          item.check = !item.check;
+        if (item.id.toString() === event.target.id) {
+          item.check = true;
           return item;
         } else {
           return item;
         }
       })
     );
-
     if (event.target.checked) {
       setPlatformFilters((platformFilters) => [
         ...platformFilters,
@@ -135,15 +149,20 @@ const Sidebar = () => {
         (filter) => filter !== event.target.id
       );
       setPlatformFilters(removedPlatform);
+      setPlatforms((prev) =>
+        prev.map((item) => {
+          item.check = false;
+          return item;
+        })
+      );
     }
   };
 
   const handleGenres = (event) => {
-    setIsChecked(true);
     event.persist();
     setGenres((prevState) =>
       prevState.map((item) => {
-        if (item.id == event.target.id) {
+        if (item.id.toString() === event.target.id) {
           item.check = true;
           return item;
         } else {
@@ -158,15 +177,20 @@ const Sidebar = () => {
         (filter) => filter !== event.target.id
       );
       setGenresFilters(removedGenre);
+      setGenres((prev) =>
+        prev.map((item) => {
+          item.check = false;
+          return item;
+        })
+      );
     }
   };
 
   const handleModes = (event) => {
-    setIsChecked(true);
     event.persist();
     setModes((prevState) =>
       prevState.map((item) => {
-        if (item.id == event.target.id) {
+        if (item.id.toString() === event.target.id) {
           item.check = true;
           return item;
         } else {
@@ -181,6 +205,12 @@ const Sidebar = () => {
         (filter) => filter !== event.target.id
       );
       setModesFilters(removedGenre);
+      setModes((prev) =>
+        prev.map((item) => {
+          item.check = false;
+          return item;
+        })
+      );
     }
   };
 
@@ -220,25 +250,14 @@ const Sidebar = () => {
             <SidebarSubMenu>
               {platforms.map((item) => (
                 <SidebarItemMenu key={item.id}>
-                  {isChecked ? (
-                    <input
-                      type="checkbox"
-                      key={item.id}
-                      name={item.name}
-                      id={item.id}
-                      onChange={handlePlatforms}
-                      checked={item.check}
-                    />
-                  ) : (
-                    <input
-                      type="checkbox"
-                      key={item.id}
-                      name={item.name}
-                      id={item.id}
-                      onChange={handlePlatforms}
-                      checked={item.check}
-                    />
-                  )}{" "}
+                  <input
+                    type="checkbox"
+                    key={item.id}
+                    name={item.name}
+                    id={item.id}
+                    onChange={handlePlatforms}
+                    checked={item.check}
+                  />
                   {item.name}
                 </SidebarItemMenu>
               ))}
@@ -250,25 +269,14 @@ const Sidebar = () => {
             <SidebarSubMenu>
               {genres.map((item) => (
                 <SidebarItemMenu key={item.id}>
-                  {isChecked ? (
-                    <input
-                      type="checkbox"
-                      key={item.id}
-                      name={item.name}
-                      id={item.id}
-                      onChange={handleGenres}
-                      checked={item.check}
-                    />
-                  ) : (
-                    <input
-                      type="checkbox"
-                      key={item.id}
-                      name={item.name}
-                      id={item.id}
-                      onChange={handleGenres}
-                      checked={item.check}
-                    />
-                  )}{" "}
+                  <input
+                    type="checkbox"
+                    key={item.id}
+                    name={item.name}
+                    id={item.id}
+                    onChange={handleGenres}
+                    checked={item.check}
+                  />
                   {item.name}
                 </SidebarItemMenu>
               ))}
@@ -280,25 +288,14 @@ const Sidebar = () => {
             <SidebarSubMenu>
               {modes.map((item) => (
                 <SidebarItemMenu key={item.id}>
-                  {isChecked ? (
-                    <input
-                      type="checkbox"
-                      key={item.id}
-                      name={item.name}
-                      id={item.id}
-                      onChange={handleModes}
-                      checked={item.check}
-                    />
-                  ) : (
-                    <input
-                      type="checkbox"
-                      key={item.id}
-                      name={item.name}
-                      id={item.id}
-                      onChange={handleModes}
-                      checked={item.check}
-                    />
-                  )}{" "}
+                  <input
+                    type="checkbox"
+                    key={item.id}
+                    name={item.name}
+                    id={item.id}
+                    onChange={handleModes}
+                    checked={item.check}
+                  />
                   {item.name}
                 </SidebarItemMenu>
               ))}
