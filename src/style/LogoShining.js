@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const LogoShining = styled.div`
-  width: 10%;
+  width: 10.5%;
   clip-path: polygon(
     100% 3%,
     79% 46%,
@@ -34,7 +34,7 @@ const LogoShining = styled.div`
     height: 100%;
     background: rgba(255, 255, 255, 0.43);
     transform: skewX(-30deg);
-    transition: 0.5s;
+    transition: 0.8s;
   }
 
   &:hover:before {
