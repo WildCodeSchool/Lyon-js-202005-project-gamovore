@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import MyGamovoresChat from "../components/MyGamovoresChat";
@@ -11,7 +11,6 @@ import SendedMessage from "../style/SendedMessage";
 import Scrollable from "../style/Scrollable";
 import ReceivedMessage from "../style/ReceivedMessage";
 import ConversationContent from "../style/ConversationContent";
-import { useEffect } from "react";
 
 const Chat = () => {
   const { user, setUser } = useContext(UserContext);
@@ -147,7 +146,7 @@ const Chat = () => {
             </Button>
           </ConversationContent>
         ) : (
-          <h1>Select a gamovore</h1>
+          <h1>Select a conversation</h1>
         )}
       </ConversationLayout>
     </ChatLayout>

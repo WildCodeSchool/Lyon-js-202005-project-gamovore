@@ -8,7 +8,6 @@ import SeparForm from "../style/SeparForm";
 import Linked from "../style/Linked";
 
 const SignUpForm = (props) => {
-  
   const firebase = useContext(FirebaseContext);
 
   const data = {
@@ -57,7 +56,7 @@ const SignUpForm = (props) => {
 
   return (
     <Form>
-      <h1>Join Gamovore</h1>
+      <h1>Join Gamovore!</h1>
       <p>Sign up to find other gamovores</p>
       <label htmlFor="pseudo"></label>
       <Input
@@ -74,7 +73,7 @@ const SignUpForm = (props) => {
         type="email"
         id="email"
         name="email"
-        placeholder="Your e-mail here"
+        placeholder="Your email address here"
         required
         value={loginData.email}
         onChange={handleChange}
@@ -85,13 +84,13 @@ const SignUpForm = (props) => {
         id="password"
         name="password"
         minLength="8"
-        placeholder="Your password here"
+        placeholder="Password"
         required
         value={loginData.password}
         onChange={handleChange}
       />
-      <input type="checkbox" onChange={checked} /> I agree to your Terms and
-      Conditions
+      <input type="checkbox" onChange={checked} /> I agree to the terms and
+      conditions
       <Button type="submit" disabled={disable} onClick={handleSubmit}>
         Create your free account
       </Button>

@@ -54,7 +54,7 @@ const GameListBox = (props) => {
       {loading ? (
         <Loading>
           <Title>
-            Be patient young Gamovore, the duck is fishing a games for you ...
+            Be patient young Gamovore, the duck is fishing games for you...
           </Title>
           <LoadingImg
             src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"

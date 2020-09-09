@@ -57,7 +57,7 @@ const Gamovores = (props) => {
   } else {
     return (
       <div>
-        <p>Loading...</p>
+        <p>Loading, please wait...</p>
       </div>
     );
   }

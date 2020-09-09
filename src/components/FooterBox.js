@@ -8,14 +8,12 @@ const FooterBox = () => {
   return (
     <Footer>
       Made with{" "}
-      <FooterSpan>
-        <span role="img" aria-label="love">
-          ❤️
-        </span>
+      <FooterSpan role="img" aria-label="love">
+        <span>❤️</span>
       </FooterSpan>
       by{" "}
       <Linked to="https://www.linkedin.com/in/alexandra-lhermitte-802a54171/">
-        Alex
+        Alexandra
       </Linked>
       ,{" "}
       <Linked to="https://www.linkedin.com/in/alyson-bernabeu-08249a172/">
@@ -31,7 +29,7 @@ const FooterBox = () => {
       </Linked>{" "}
       et{" "}
       <Linked to="https://www.linkedin.com/in/s%C3%A9bastien-morin-70a0371ab/">
-        Seb
+        Sebastien
       </Linked>
       <ScrollButton scrollStepInPx="50" delayInMs="10" />
     </Footer>

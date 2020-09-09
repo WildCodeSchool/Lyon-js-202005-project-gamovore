@@ -39,14 +39,14 @@ const SignInForm = (props) => {
 
   return (
     <Form>
-      <h1>Hello</h1>
-      <p>Sign into your account here</p>
+      <h1>Hello!</h1>
+      <p>Sign into your account</p>
       <label htmlFor="email" />
       <Input
         type="email"
         id="email"
         name="email"
-        placeholder="Your e-mail here"
+        placeholder="Your email address"
         onChange={handleEmail}
         value={email}
         required
@@ -56,7 +56,7 @@ const SignInForm = (props) => {
         type="password"
         id="password"
         name="password"
-        placeholder="password"
+        placeholder="Password"
         onChange={handlePassword}
         value={password}
         required
@@ -65,9 +65,9 @@ const SignInForm = (props) => {
         Sign In
       </Button>
       <SeparForm />
-      <p>Forgot password? Reset</p>
+      <p>Forgot your password? Reset</p>
       <p>
-        Don't have an account ? <Linked to="/sign-up">Sign up</Linked>
+        Don't have an account yet ? <Linked to="/sign-up">Sign up</Linked>
       </p>
     </Form>
   );
