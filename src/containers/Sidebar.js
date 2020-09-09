@@ -2,7 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import { GameListContext } from "../context/GameListContext";
 import SidebarMenu from "../style/SidebarMenu";
 import SidebarSubMenu from "../style/SidebarSubMenu";
+import SidebarSubMenu2 from "../style/SidebarSubMenu2";
 import SidebarItemMenu from "../style/SidebarItemMenu";
+import SidebarItemMenu2 from "../style/SidebarItemMenu2";
+import CollapseCursor from "../style/CollapseCursor";
+
 import Button from "../style/Button";
 import Searchbar from "../components/SearchBar";
 import Linked from "../style/Linked";
@@ -15,6 +19,14 @@ const Sidebar = () => {
   const [where, setWhere] = useState("; where");
   const [filtered, setFiltered] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+
+  const [platformCollapse, setPlatformCollapse] = useState(false);
+  const [genreCollapse, setGenreCollapse] = useState(false);
+  const [modeCollapse, setModeCollapse] = useState(false);
+
+  const collapsePlatform = () => setPlatformCollapse(!platformCollapse);
+  const collapseGenre = () => setGenreCollapse(!genreCollapse);
+  const collapseMode = () => setModeCollapse(!modeCollapse);
 
   const onClick = () => {
     setData(
@@ -174,8 +186,15 @@ const Sidebar = () => {
         <SidebarItemMenu>FILTERS</SidebarItemMenu>
         <form id="checkboxes">
           <SidebarSubMenu>
-            <SidebarItemMenu>Platforms</SidebarItemMenu>
-            <SidebarSubMenu>
+            <SidebarItemMenu2 onClick={collapsePlatform}>
+              Platforms
+              {platformCollapse ? (
+                <CollapseCursor>^ &ensp;</CollapseCursor>
+              ) : (
+                <CollapseCursor>v &ensp;</CollapseCursor>
+              )}
+            </SidebarItemMenu2>
+            <SidebarSubMenu2 collapse={platformCollapse}>
               {platforms.map((item) => (
                 <SidebarItemMenu key={item.id}>
                   {isChecked ? (
@@ -199,12 +218,19 @@ const Sidebar = () => {
                   {item.name}
                 </SidebarItemMenu>
               ))}
-            </SidebarSubMenu>
+            </SidebarSubMenu2>
           </SidebarSubMenu>
 
           <SidebarSubMenu>
-            <SidebarItemMenu>Genres</SidebarItemMenu>
-            <SidebarSubMenu>
+            <SidebarItemMenu2 onClick={collapseGenre}>
+              Genres
+              {genreCollapse ? (
+                <CollapseCursor>^ &ensp;</CollapseCursor>
+              ) : (
+                <CollapseCursor>v &ensp;</CollapseCursor>
+              )}
+            </SidebarItemMenu2>
+            <SidebarSubMenu2 collapse={genreCollapse}>
               {genres.map((item) => (
                 <SidebarItemMenu key={item.id}>
                   {isChecked ? (
@@ -228,12 +254,19 @@ const Sidebar = () => {
                   {item.name}
                 </SidebarItemMenu>
               ))}
-            </SidebarSubMenu>
+            </SidebarSubMenu2>
           </SidebarSubMenu>
 
           <SidebarSubMenu>
-            <SidebarItemMenu>Modes</SidebarItemMenu>
-            <SidebarSubMenu>
+            <SidebarItemMenu2 onClick={collapseMode}>
+              Modes{" "}
+              {modeCollapse ? (
+                <CollapseCursor>^ &ensp;</CollapseCursor>
+              ) : (
+                <CollapseCursor>v &ensp;</CollapseCursor>
+              )}
+            </SidebarItemMenu2>
+            <SidebarSubMenu2 collapse={modeCollapse}>
               {modes.map((item) => (
                 <SidebarItemMenu key={item.id}>
                   {isChecked ? (
@@ -257,7 +290,7 @@ const Sidebar = () => {
                   {item.name}
                 </SidebarItemMenu>
               ))}
-            </SidebarSubMenu>
+            </SidebarSubMenu2>
           </SidebarSubMenu>
         </form>
         <SidebarSubMenu>
