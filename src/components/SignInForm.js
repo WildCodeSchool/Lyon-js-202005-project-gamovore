@@ -28,6 +28,8 @@ const SignInForm = (props) => {
       .then((user) => {
         setEmail("");
         setPassword("");
+      })
+      .then(() => {
         props.history.push("/");
       })
       .catch((error) => {
