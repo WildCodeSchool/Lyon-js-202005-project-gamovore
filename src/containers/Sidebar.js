@@ -152,6 +152,13 @@ const Sidebar = () => {
   return (
     <>
       <SidebarMenu>
+        <SidebarItemMenu>
+          <Linked to="/" issidebar="true" onClick={onClick}>
+            HOME
+          </Linked>
+        </SidebarItemMenu>
+      </SidebarMenu>
+      <SidebarMenu>
         <SidebarItemMenu>SEARCH</SidebarItemMenu>
         <SidebarSubMenu>
           <SidebarItemMenu>
