@@ -58,7 +58,6 @@ const Chat = () => {
         isView: false,
       });
 
-
     // Recharge l'utilisateur
 
     firebase.userActu(userId).onSnapshot(function (doc) {
@@ -67,7 +66,6 @@ const Chat = () => {
 
     // remets les messages à 0
     setMessageWrite("");
-
   };
 
   useEffect(() => {
@@ -96,7 +94,7 @@ const Chat = () => {
           setUserChat(messages);
         });
     }
-  }, [user, gamovoreState]);
+  }, [user, gamovoreState, firebase, setUser]);
 
   return (
     <ChatLayout>

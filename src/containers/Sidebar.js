@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import { GameListContext } from "../context/GameListContext";
 import SidebarMenu from "../style/SidebarMenu";
 import SidebarSubMenu from "../style/SidebarSubMenu";
@@ -26,16 +26,16 @@ const Sidebar = () => {
     "fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 50; where total_rating_count>=80;";
   const filteredSearch = `fields name, summary, cover.url, genres.name, platforms.platform_logo.url ,platforms.name, themes.name, game_modes.name  ; limit 100${where};`;
 
-  const platforms = [
-    { id: 130, name: "Nintendo Switch" },
-    { id: 6, name: "PC (Microsoft Windows)" },
-    { id: 48, name: "PlayStation 4" },
-    { id: 167, name: "PlayStation 5" },
-    { id: 169, name: "Xbox Series X" },
-    { id: 49, name: "Xbox One" },
-  ];
+  const [platforms, setPlatforms] = useState([
+    { id: "130", name: "Nintendo Switch", check: false },
+    { id: "6", name: "PC (Microsoft Windows)", check: false },
+    { id: "48", name: "PlayStation 4", check: false },
+    { id: "167", name: "PlayStation 5", check: false },
+    { id: "169", name: "Xbox Series X", check: false },
+    { id: "49", name: "Xbox One", check: false },
+  ]);
 
-  const genres = [
+  const [genres, setGenres] = useState([
     { id: 31, name: "Adventure" },
     { id: 33, name: "Arcade" },
     { id: 35, name: "Card & Board Game" },
@@ -48,18 +48,18 @@ const Sidebar = () => {
     { id: 5, name: "Shooter" },
     { id: 14, name: "Sport" },
     { id: 15, name: "Strategy" },
-  ];
+  ]);
 
-  const modes = [
+  const [modes, setModes] = useState([
     { id: 6, name: "Battle Royale" },
     { id: 3, name: "Co-operative" },
     { id: 5, name: "Massively Multiplayer Online (MMO)" },
     { id: 2, name: "Multiplayer" },
     { id: 1, name: "Single player" },
     { id: 4, name: "Split screen" },
-  ];
+  ]);
 
-  const handleFilters = () => {
+  const handleFilters = useCallback(() => {
     setFiltered(true);
     if (
       platformFilters.length > 0 ||
@@ -95,11 +95,11 @@ const Sidebar = () => {
         setWhere((where) => `${where} game_modes=(${modesFilters})`);
       }
     }
-  };
+  }, [genresFilters, modesFilters, platformFilters]);
 
   useEffect(() => {
     setData(filteredSearch);
-  }, [handleFilters]);
+  }, [handleFilters, filteredSearch, setData]);
 
   const handleReset = () => {
     setIsChecked(false);
@@ -114,6 +114,17 @@ const Sidebar = () => {
   const handlePlatforms = (event) => {
     setIsChecked(true);
     event.persist();
+    setPlatforms((prevState) =>
+      prevState.map((item) => {
+        if (item.id === event.target.id) {
+          item.check = !item.check;
+          return item;
+        } else {
+          return item;
+        }
+      })
+    );
+
     if (event.target.checked) {
       setPlatformFilters((platformFilters) => [
         ...platformFilters,
@@ -130,6 +141,16 @@ const Sidebar = () => {
   const handleGenres = (event) => {
     setIsChecked(true);
     event.persist();
+    setGenres((prevState) =>
+      prevState.map((item) => {
+        if (item.id == event.target.id) {
+          item.check = true;
+          return item;
+        } else {
+          return item;
+        }
+      })
+    );
     if (event.target.checked) {
       setGenresFilters((genresFilters) => [...genresFilters, event.target.id]);
     } else {
@@ -143,6 +164,16 @@ const Sidebar = () => {
   const handleModes = (event) => {
     setIsChecked(true);
     event.persist();
+    setModes((prevState) =>
+      prevState.map((item) => {
+        if (item.id == event.target.id) {
+          item.check = true;
+          return item;
+        } else {
+          return item;
+        }
+      })
+    );
     if (event.target.checked) {
       setModesFilters((modesFilters) => [...modesFilters, event.target.id]);
     } else {
@@ -196,6 +227,7 @@ const Sidebar = () => {
                       name={item.name}
                       id={item.id}
                       onChange={handlePlatforms}
+                      checked={item.check}
                     />
                   ) : (
                     <input
@@ -204,7 +236,7 @@ const Sidebar = () => {
                       name={item.name}
                       id={item.id}
                       onChange={handlePlatforms}
-                      checked={false}
+                      checked={item.check}
                     />
                   )}{" "}
                   {item.name}
@@ -225,6 +257,7 @@ const Sidebar = () => {
                       name={item.name}
                       id={item.id}
                       onChange={handleGenres}
+                      checked={item.check}
                     />
                   ) : (
                     <input
@@ -233,7 +266,7 @@ const Sidebar = () => {
                       name={item.name}
                       id={item.id}
                       onChange={handleGenres}
-                      checked={false}
+                      checked={item.check}
                     />
                   )}{" "}
                   {item.name}
@@ -254,6 +287,7 @@ const Sidebar = () => {
                       name={item.name}
                       id={item.id}
                       onChange={handleModes}
+                      checked={item.check}
                     />
                   ) : (
                     <input
@@ -262,7 +296,7 @@ const Sidebar = () => {
                       name={item.name}
                       id={item.id}
                       onChange={handleModes}
-                      checked={false}
+                      checked={item.check}
                     />
                   )}{" "}
                   {item.name}
