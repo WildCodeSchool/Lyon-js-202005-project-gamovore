@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { UserContext } from "../context/UserContext";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import MyGamovoresChat from "../components/MyGamovoresChat";
@@ -13,10 +13,24 @@ import ReceivedMessage from "../style/ReceivedMessage";
 import ConversationContent from "../style/ConversationContent";
 
 const Chat = () => {
+  const myRef = useRef(null);
+
+  const scrollToRef = (myRef) => {
+    myRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+  };
+
+  const executeScroll = () => {
+    scrollToRef(myRef);
+  };
+
   const { user, setUser } = useContext(UserContext);
   const firebase = useContext(FirebaseContext);
   const [gamovoreState, setGamovoreState] = useState(null);
-  const [messageWrite, setMessageWrite] = useState(null);
+  const [messageWrite, setMessageWrite] = useState("");
   const [userChat, setUserChat] = useState(null);
 
   const handleChangeMessage = (e) => {
@@ -57,26 +71,22 @@ const Chat = () => {
         isView: false,
       });
 
-
     // Recharge l'utilisateur
 
     firebase.userActu(userId).onSnapshot(function (doc) {
       setUser(doc.data());
     });
 
+    executeScroll();
+
     // remets les messages à 0
     setMessageWrite("");
-
   };
 
   useEffect(() => {
     if (user && firebase && gamovoreState) {
       const userId = user.id;
       const gamovoreId = gamovoreState.id;
-
-      firebase.userActu(userId).onSnapshot(function (doc) {
-        setUser(doc.data());
-      });
 
       firebase
         .firestore()
@@ -93,6 +103,9 @@ const Chat = () => {
             } else console.log("no user");
           });
           setUserChat(messages);
+        })
+        .then(() => {
+          executeScroll();
         });
     }
   }, [user, gamovoreState]);
@@ -109,44 +122,50 @@ const Chat = () => {
           <ConversationContent>
             <h1>{gamovoreState.pseudo}</h1>
             <Scrollable>
-              {userChat ? (
-                userChat.map((message) => (
-                  <Messages key={message.date}>
-                    {message.send ? (
-                      <SendedMessage key={message.date}>
-                        <p>{message.message}</p>
-                      </SendedMessage>
-                    ) : (
-                      <ReceivedMessage key={message.date}>
-                        <p>{message.message}</p>
-                      </ReceivedMessage>
-                    )}
-                  </Messages>
-                ))
-              ) : (
-                <div>No message</div>
-              )}
+              <Messages ref={myRef}>
+                {userChat ? (
+                  userChat.map((message) => (
+                    <Messages key={message.date}>
+                      {message.send ? (
+                        <SendedMessage key={message.date}>
+                          <p>{message.message}</p>
+                        </SendedMessage>
+                      ) : (
+                        <ReceivedMessage key={message.date}>
+                          <p>{message.message}</p>
+                        </ReceivedMessage>
+                      )}
+                    </Messages>
+                  ))
+                ) : (
+                  <div>No message</div>
+                )}
+                <div>
+                  <br />
+                  <Textarea
+                    onChange={handleChangeMessage}
+                    value={messageWrite}
+                  ></Textarea>
+                  <Button
+                    onClick={() =>
+                      sendMessage(
+                        { user },
+                        { gamovoreState },
+                        messageWrite,
+                        setMessageWrite
+                      )
+                    }
+                  >
+                    Send
+                  </Button>
+                </div>
+              </Messages>
             </Scrollable>
-            <br />
-            <Textarea
-              onChange={handleChangeMessage}
-              value={messageWrite}
-            ></Textarea>
-            <Button
-              onClick={() =>
-                sendMessage(
-                  { user },
-                  { gamovoreState },
-                  messageWrite,
-                  setMessageWrite
-                )
-              }
-            >
-              Send
-            </Button>
           </ConversationContent>
         ) : (
-          <h1>Select a conversation</h1>
+          <div>
+            <h1>Select a conversation</h1>
+          </div>
         )}
       </ConversationLayout>
     </ChatLayout>
