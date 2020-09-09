@@ -115,17 +115,21 @@ const ProfilPage = () => {
           </ProfilGameLayout>
           <br />
 
-          <Button
-            onClick={() => {
-              if (isViewAll === true) {
-                setIsViewAll(false);
-              } else {
-                setIsViewAll(true);
-              }
-            }}
-          >
-            {isViewAll ? "Reduce" : "View all"}
-          </Button>
+          {nbGames < 3 ? (
+            <></>
+          ) : (
+            <Button
+              onClick={() => {
+                if (isViewAll === true) {
+                  setIsViewAll(false);
+                } else {
+                  setIsViewAll(true);
+                }
+              }}
+            >
+              {isViewAll ? "Reduce" : "View all"}
+            </Button>
+          )}
         </Section>
         <MyGamovoreLayout>
           <SecondaryTitle>My Gamovores</SecondaryTitle>
