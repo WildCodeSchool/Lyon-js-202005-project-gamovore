@@ -100,8 +100,6 @@ const Chat = () => {
           setUserChat(gamovoreId);
           executeScroll();
         });
-
-      console.log("toto");
     }
   }, [user, gamovoreState, executeScroll, firebase]);
 
