@@ -46,7 +46,7 @@ const Gamovores = (props) => {
               }}
             >
               <AvatarImg src={item.avatarUrl} />
-              <StyleForPseudo>{item.pseudo}</StyleForPseudo>
+              <StyleForPseudo inChat>{item.pseudo}</StyleForPseudo>
             </GamovoreDiv>
           ))
         ) : (

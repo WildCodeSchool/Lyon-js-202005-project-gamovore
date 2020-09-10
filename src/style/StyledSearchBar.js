@@ -17,7 +17,7 @@ const StyledSearchBar = styled.form`
   }
 
   input {
-    width: 80%;
+    width: 60%;
     background: #fff;
     padding: 0 1.6rem;
     border-radius: 15px;

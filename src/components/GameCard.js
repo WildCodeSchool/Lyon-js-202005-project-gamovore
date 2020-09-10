@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserContext } from "../context/UserContext";
@@ -48,26 +48,11 @@ const GameCard = (props) => {
     }
   };
 
-  const scrollStep = () => {
-    if (window.pageYOffset === 0) {
-      clearInterval(intervalId);
-    }
-    window.scroll(0, window.pageYOffset - props.scrollStepInPx);
-  };
-
-  let intervalId;
-  const scrollToTop = () => {
-    intervalId = setInterval(scrollStep, props.delayInMs);
-  };
-
   if (user) {
     return (
       <GameCardStyle little={props.little}>
         <ImageContent>
-          <Link
-            onClick={scrollToTop}
-            to={{ pathname: link, state: { detail: gameData } }}
-          >
+          <Link to={{ pathname: link, state: { detail: gameData } }}>
             <GameCardJacquette
               src={
                 props.cover
@@ -95,9 +80,7 @@ const GameCard = (props) => {
   } else {
     return (
       <Loading>
-        <Title>
-          Be patient young Gamovore, the duck is fishing games for you ...
-        </Title>
+        <h3>Be patient young Gamovore, the duck is fishing games for you ...</h3>
         <LoadingImg
           src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
           alt="loading"
