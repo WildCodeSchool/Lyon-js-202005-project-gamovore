@@ -15,6 +15,8 @@ import ButtonLayout from "../style/ButtonLayout";
 import MyGameDiv from "../style/MyGameDiv";
 import { RiMoonClearLine, RiSunLine } from "react-icons/ri";
 import { GiSunrise, GiSunset } from "react-icons/gi";
+import AvatarImg from "../style/AvatarImg";
+import AvatarContainer from "../style/AvatarContainer";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -112,7 +114,10 @@ const GamovoreProfil = (props) => {
   return gamovoreData.length !== 0 ? (
     <ProfilPageLayout>
       <ProfilLayout>
-        <SecondaryTitle>{props.location.state.detail}</SecondaryTitle>
+        <AvatarContainer>
+          <AvatarImg src={gamovoreData.avatarUrl} />
+          <SecondaryTitle>{props.location.state.detail}</SecondaryTitle>
+        </AvatarContainer>
         <div>
           <h2>Description :</h2>
           <p>{gamovoreData.description}</p>
