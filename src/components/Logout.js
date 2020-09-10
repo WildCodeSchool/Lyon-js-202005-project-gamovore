@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import Button from "../style/Button";
 import { UserContext } from "../context/UserContext";
+import { checkPropTypes } from "prop-types";
 
 const Logout = () => {
   const firebase = useContext(FirebaseContext);
