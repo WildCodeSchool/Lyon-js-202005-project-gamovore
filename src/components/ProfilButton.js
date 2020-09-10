@@ -8,6 +8,7 @@ import Logout from "../components/Logout";
 import AvatarContainer from "../style/AvatarContainer";
 import DropDownContainer from "../style/DropDownContainer";
 import MenuItem from "../style/MenuItem";
+import DropDownContainerInvisible from "../style/DropDownContainerInvisible";
 
 const ProfilButton = (props) => {
   const { user } = useContext(UserContext);
@@ -24,15 +25,17 @@ const ProfilButton = (props) => {
           <StyleForPseudo>{user.pseudo}</StyleForPseudo>
         </AvatarContainer>
       </Linked>
-      <DropDownContainer>
-        <Linked to="/profil">
-          <MenuItem>My profile</MenuItem>
-        </Linked>
-        <Linked to="/chat">
-          <MenuItem>My Messages</MenuItem>
-        </Linked>
-        <Logout />
-      </DropDownContainer>
+      <DropDownContainerInvisible>
+        <DropDownContainer>
+          <Linked to="/profil">
+            <MenuItem>My profile</MenuItem>
+          </Linked>
+          <Linked to="/chat">
+            <MenuItem>My Messages</MenuItem>
+          </Linked>
+          <Logout />
+        </DropDownContainer>
+      </DropDownContainerInvisible>
     </StyleForProfilButton>
   ) : (
     <Linked to="/profil">
