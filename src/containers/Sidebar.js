@@ -5,7 +5,7 @@ import SidebarSubMenu from "../style/SidebarSubMenu";
 import SidebarSubMenu2 from "../style/SidebarSubMenu2";
 import SidebarItemMenu from "../style/SidebarItemMenu";
 import SidebarItemMenu2 from "../style/SidebarItemMenu2";
-import CollapseCursor from "../style/CollapseCursor";
+import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 
 import Button from "../style/Button";
 import Searchbar from "../components/SearchBar";
@@ -249,11 +249,7 @@ const Sidebar = () => {
           <SidebarSubMenu>
             <SidebarItemMenu2 onClick={collapsePlatform}>
               Platforms
-              {platformCollapse ? (
-                <CollapseCursor>^ &ensp;</CollapseCursor>
-              ) : (
-                <CollapseCursor>v &ensp;</CollapseCursor>
-              )}
+              {platformCollapse ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
             </SidebarItemMenu2>
             <SidebarSubMenu2 collapse={platformCollapse}>
               {platforms.map((item) => (
@@ -275,11 +271,7 @@ const Sidebar = () => {
           <SidebarSubMenu>
             <SidebarItemMenu2 onClick={collapseGenre}>
               Genres
-              {genreCollapse ? (
-                <CollapseCursor>^ &ensp;</CollapseCursor>
-              ) : (
-                <CollapseCursor>v &ensp;</CollapseCursor>
-              )}
+              {genreCollapse ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
             </SidebarItemMenu2>
             <SidebarSubMenu2 collapse={genreCollapse}>
               {genres.map((item) => (
@@ -300,12 +292,7 @@ const Sidebar = () => {
 
           <SidebarSubMenu>
             <SidebarItemMenu2 onClick={collapseMode}>
-              Modes{" "}
-              {modeCollapse ? (
-                <CollapseCursor>^ &ensp;</CollapseCursor>
-              ) : (
-                <CollapseCursor>v &ensp;</CollapseCursor>
-              )}
+              Modes {modeCollapse ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
             </SidebarItemMenu2>
             <SidebarSubMenu2 collapse={modeCollapse}>
               {modes.map((item) => (

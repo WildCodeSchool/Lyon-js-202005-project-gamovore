@@ -31,7 +31,6 @@ const ProfilButton = (props) => {
         <Linked to="/chat">
           <MenuItem>My Messages</MenuItem>
         </Linked>
-        <MenuItem>My Gamovores</MenuItem>
         <Logout />
       </DropDownContainer>
     </StyleForProfilButton>

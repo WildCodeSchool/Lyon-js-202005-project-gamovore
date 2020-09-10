@@ -17,7 +17,7 @@ const StyledSearchBar = styled.form`
   }
 
   input {
-    width: 80%;
+    width: 60%;
     background: #fff;
     padding: 0 1.6rem;
     border-radius: 15px;
@@ -37,6 +37,7 @@ const StyledSearchBar = styled.form`
     font-weight: bold;
     background: #fbb700;
     border-radius: 0 15px 15px 0;
+    cursor: pointer;
   }
 
   input:not(:placeholder-shown) {
