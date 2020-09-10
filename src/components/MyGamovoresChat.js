@@ -44,6 +44,7 @@ const Gamovores = (props) => {
               onClick={() => {
                 setGamovoreState(item);
               }}
+              inChat
             >
               <AvatarImg src={item.avatarUrl} />
               <StyleForPseudo inChat>{item.pseudo}</StyleForPseudo>

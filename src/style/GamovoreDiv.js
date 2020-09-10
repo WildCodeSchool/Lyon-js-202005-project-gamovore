@@ -6,11 +6,11 @@ const GamovoreDiv = styled.div`
   margin-bottom: 2%;
   align-items: center;
   padding: 5%;
-  background-color: #fbb700;
+  background-color: ${(props) => (props.inChat ? "#fbb700" : "#393431")};
   color: black;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 5px 5px 5px #000000;
+  ${(props) => (props.inChat ? "box-shadow: 5px 5px 5px #000000" : "")};
 `;
 
 export default GamovoreDiv;
