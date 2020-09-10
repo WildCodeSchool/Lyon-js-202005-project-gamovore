@@ -37,6 +37,7 @@ const StyledSearchBar = styled.form`
     font-weight: bold;
     background: #fbb700;
     border-radius: 0 15px 15px 0;
+    cursor: pointer;
   }
 
   input:not(:placeholder-shown) {
