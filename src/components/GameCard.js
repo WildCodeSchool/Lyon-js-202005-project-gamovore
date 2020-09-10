@@ -66,12 +66,12 @@ const GameCard = (props) => {
         {user.favoriteGameId.includes(gameId) ? (
           <AddGameButton onClick={() => deleteGame(user, gameId)}>
             <RiDeleteBin5Fill fontSize="2.5em" />
-            Remove from collection
+            Remove
           </AddGameButton>
         ) : (
           <AddGameButton onClick={() => addGame(user, gameId)}>
             <RiAddFill fontSize="3em" />
-            Add to collection
+            Add game
           </AddGameButton>
         )}
       </GameCardStyle>
@@ -79,7 +79,9 @@ const GameCard = (props) => {
   } else {
     return (
       <Loading>
-        <h3>Be patient young Gamovore, the duck is fishing games for you ...</h3>
+        <h3>
+          Be patient young Gamovore, the duck is fishing games for you ...
+        </h3>
         <LoadingImg
           src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
           alt="loading"
