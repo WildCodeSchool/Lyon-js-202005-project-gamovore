@@ -193,7 +193,7 @@ const Sidebar = () => {
                       name={item.name}
                       id={item.id}
                       onChange={handlePlatforms}
-                      checked={false}
+                      checked={isChecked ? true : false}
                     />
                   )}{" "}
                   {item.name}
