@@ -109,6 +109,10 @@ const GamovoreProfil = (props) => {
     });
   };
 
+  if (gamovoreData.favoriteGameId) {
+    console.log(gamovoreData.favoriteGameId.length);
+  }
+
   return gamovoreData.length !== 0 ? (
     <ProfilPageLayout>
       <ProfilLayout>
@@ -148,17 +152,21 @@ const GamovoreProfil = (props) => {
           <ProfilGameLayout>
             <DisplayGames />
           </ProfilGameLayout>
-          <Button
-            onClick={() => {
-              if (isViewAll === true) {
-                setIsViewAll(false);
-              } else {
-                setIsViewAll(true);
-              }
-            }}
-          >
-            {isViewAll ? "Reduce" : "View all"}
-          </Button>
+          {gamovoreData.favoriteGameId.length < 3 ? (
+            <></>
+          ) : (
+            <Button
+              onClick={() => {
+                if (isViewAll === true) {
+                  setIsViewAll(false);
+                } else {
+                  setIsViewAll(true);
+                }
+              }}
+            >
+              {isViewAll ? "Reduce" : "View all"}
+            </Button>
+          )}
         </section>
       </ProfilAsideLayout>
     </ProfilPageLayout>

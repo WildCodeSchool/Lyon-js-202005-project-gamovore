@@ -46,7 +46,7 @@ const SignUpForm = (props) => {
       })
       .then(() => {
         setLoginData({ ...data });
-        props.history.push("/game-list");
+        props.history.push("/");
       })
       .catch((error) => {
         alert(error);
