@@ -25,8 +25,6 @@ const Chat = () => {
     setMessageWrite(e.target.value);
   };
 
-  setInterval(() => userReload(), 10000);
-
   const sendMessage = ({ user }, { gamovoreState }, messageWrite) => {
     const userId = user.id;
     const gamovoreId = gamovoreState.id;
@@ -74,6 +72,13 @@ const Chat = () => {
     if (user && firebase && gamovoreState) {
       const userId = user.id;
       const gamovoreId = gamovoreState.id;
+
+      firebase.db
+        .collection("users")
+        .doc(userId)
+        .onSnapshot((doc) => {
+          setUser(doc.data());
+        });
 
       firebase
         .firestore()
