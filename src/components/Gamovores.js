@@ -38,7 +38,7 @@ const Gamovores = (props) => {
   if (gamovoresList) {
     return (
       <div>
-        <h3>{gamovoresList.length ? gamovoresList.length : ""} Gamovores</h3>
+        <h1>{gamovoresList.length ? gamovoresList.length : ""} Gamovores</h1>
         {gamovoresList.length !== 0 ? (
           gamovoresList.map((item) => (
             <Linked
@@ -48,7 +48,7 @@ const Gamovores = (props) => {
               }}
               key={item.id}
             >
-              <GamovoreDiv key={item.id} display="inline-block" >
+              <GamovoreDiv key={item.id} display="inline-block">
                 <AvatarImg src={item.avatarUrl} />
                 <StyleForPseudo>{item.pseudo}</StyleForPseudo>
               </GamovoreDiv>
