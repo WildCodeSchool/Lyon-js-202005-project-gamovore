@@ -14,7 +14,7 @@ import ConversationContent from "../style/ConversationContent";
 import { useCallback } from "react";
 
 const Chat = () => {
-  const myRef = useRef(null);
+  const myRef = useRef("");
 
   const scrollToRef = (myRef) => {
     myRef.current.scrollIntoView({
