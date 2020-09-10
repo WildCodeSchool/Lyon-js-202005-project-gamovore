@@ -12,7 +12,6 @@ import MyGamovoreProfilLayout from "../style/MyGamovoreProfilLayout";
 import SecondaryTitle from "../style/SecondaryTitle";
 import CallIgdb from "./CallIgdb";
 import Loading from "../style/Loading";
-import Title from "../style/Title";
 import LoadingImg from "../style/LoadingImg";
 import MyGamovores from "../components/MyGamovores";
 import Button from "../style/Button";

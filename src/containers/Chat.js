@@ -40,7 +40,7 @@ const Chat = () => {
   };
 
   const sendMessage = ({ user }, { gamovoreState }, messageWrite) => {
-    if (messageWrite == "") {
+    if (messageWrite === "") {
       return null;
     }
     const userId = user.id;

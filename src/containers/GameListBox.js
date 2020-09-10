@@ -3,7 +3,6 @@ import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserContext } from "../context/UserContext";
 import { GameListContext } from "../context/GameListContext";
 import GameCard from "../components/GameCard";
-import Title from "../style/Title";
 import Loading from "../style/Loading";
 import LoadingImg from "../style/LoadingImg";
 import GameListLayout from "../style/GameListLayout";

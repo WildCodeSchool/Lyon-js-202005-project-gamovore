@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserContext } from "../context/UserContext";
@@ -10,7 +10,6 @@ import AddGameButton from "../style/AddGameButton";
 import ImageContent from "../style/ImageContent";
 import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
 import { RiDeleteBin5Fill, RiAddFill } from "react-icons/ri";
-import Title from "../style/Title";
 import Loading from "../style/Loading";
 import LoadingImg from "../style/LoadingImg";
 

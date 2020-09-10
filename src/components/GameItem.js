@@ -33,6 +33,16 @@ import {
 
 import { MdAndroid } from "react-icons/md";
 let intervalId;
+const scrollStep = () => {
+  if (window.pageYOffset === 0) {
+    clearInterval(intervalId);
+  }
+  window.scroll(0, window.pageYOffset - 50);
+};
+
+const scrollToTop = () => {
+  intervalId = setInterval(scrollStep, 10);
+};
 
 const GameItem = (props) => {
   const game = props.location.state.detail;
@@ -41,17 +51,6 @@ const GameItem = (props) => {
   const firebase = useContext(FirebaseContext);
 
   const gameId = game.id;
-
-  const scrollStep = () => {
-    if (window.pageYOffset === 0) {
-      clearInterval(intervalId);
-    }
-    window.scroll(0, window.pageYOffset - 50);
-  };
-
-  const scrollToTop = () => {
-    intervalId = setInterval(scrollStep, 10);
-  };
 
   useEffect(() => {
     scrollToTop();
