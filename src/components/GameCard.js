@@ -10,7 +10,6 @@ import AddGameButton from "../style/AddGameButton";
 import ImageContent from "../style/ImageContent";
 import gameCoverPlaceholder from "../img/white/gameCoverPlaceholder.png";
 import { RiDeleteBin5Fill, RiAddFill } from "react-icons/ri";
-import Title from "../style/Title";
 import Loading from "../style/Loading";
 import LoadingImg from "../style/LoadingImg";
 
@@ -48,26 +47,11 @@ const GameCard = (props) => {
     }
   };
 
-  const scrollStep = () => {
-    if (window.pageYOffset === 0) {
-      clearInterval(intervalId);
-    }
-    window.scroll(0, window.pageYOffset - props.scrollStepInPx);
-  };
-
-  let intervalId;
-  const scrollToTop = () => {
-    intervalId = setInterval(scrollStep, props.delayInMs);
-  };
-
   if (user) {
     return (
       <GameCardStyle little={props.little}>
         <ImageContent>
-          <Link
-            onClick={scrollToTop}
-            to={{ pathname: link, state: { detail: gameData } }}
-          >
+          <Link to={{ pathname: link, state: { detail: gameData } }}>
             <GameCardJacquette
               src={
                 props.cover
@@ -95,9 +79,7 @@ const GameCard = (props) => {
   } else {
     return (
       <Loading>
-        <Title>
-          Be patient young Gamovore, the duck is fishing games for you ...
-        </Title>
+        <h3>Be patient young Gamovore, the duck is fishing games for you ...</h3>
         <LoadingImg
           src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
           alt="loading"

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 const SendedMessage = styled.div`
-  width: 50%;
+  width: auto;
+  min-width: 60%;
+  max-width: 70%;
   border-radius: 20px;
   background-color: #fbb700;
   color: #000000;

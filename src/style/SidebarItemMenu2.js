@@ -7,9 +7,7 @@ const SidebarItemMenu2 = styled.li`
   padding-top: 2%;
   padding-bottom: 2%;
   justify-content: space-between;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 export default SidebarItemMenu2;

@@ -3,7 +3,6 @@ import FirebaseContext from "../firebase-config/FirebaseContext";
 import { UserContext } from "../context/UserContext";
 import { GameListContext } from "../context/GameListContext";
 import GameCard from "../components/GameCard";
-import Title from "../style/Title";
 import Loading from "../style/Loading";
 import LoadingImg from "../style/LoadingImg";
 import GameListLayout from "../style/GameListLayout";
@@ -53,9 +52,9 @@ const GameListBox = (props) => {
     <GameListLayout>
       {loading ? (
         <Loading>
-          <Title>
+          <h3>
             Be patient young Gamovore, the duck is fishing games for you...
-          </Title>
+          </h3>
           <LoadingImg
             src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
             alt="loading"

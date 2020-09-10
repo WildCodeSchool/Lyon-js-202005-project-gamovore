@@ -29,16 +29,16 @@ const LogoShining = styled.div`
     content: "";
     position: absolute;
     top: 0;
-    left: -220px;
+    left: -300px;
     width: 75px;
     height: 100%;
     background: rgba(255, 255, 255, 0.43);
     transform: skewX(-30deg);
-    transition: 0.8s;
+    transition: 1s;
   }
 
   &:hover:before {
-    left: 220px;
+    left: 250px;
   }
 `;
 

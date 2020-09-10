@@ -12,7 +12,6 @@ import MyGamovoreProfilLayout from "../style/MyGamovoreProfilLayout";
 import SecondaryTitle from "../style/SecondaryTitle";
 import CallIgdb from "./CallIgdb";
 import Loading from "../style/Loading";
-import Title from "../style/Title";
 import LoadingImg from "../style/LoadingImg";
 import MyGamovores from "../components/MyGamovores";
 import Button from "../style/Button";
@@ -100,10 +99,10 @@ const ProfilPage = () => {
           <ProfilGameLayout>
             {loading ? (
               <Loading>
-                <Title>
-                  Be patient young Gamovore, the duck is fishing a games for you
+                <h3>
+                  Be patient young Gamovore, the duck is fishing games for you
                   ...
-                </Title>
+                </h3>
                 <LoadingImg
                   src="https://cdn.dribbble.com/users/591610/screenshots/3861704/pato.gif"
                   alt="loading"
