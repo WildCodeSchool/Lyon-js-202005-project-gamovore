@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import FirebaseContext from "../firebase-config/FirebaseContext";
@@ -35,16 +35,7 @@ const ProfilPage = () => {
 
   const [isViewAll, setIsViewAll] = useState(false);
 
-  useEffect(() => {
-    let listener = firebase.auth.onAuthStateChanged((user) => {
-      user ? apiRender() : setUser(null);
-    });
-    return () => {
-      listener();
-    };
-  }, [user]);
-
-  const apiRender = () => {
+  const apiRender = useCallback(() => {
     if (nbGames !== 0 && nbGames !== null) {
       axios({
         url:
@@ -67,7 +58,16 @@ const ProfilPage = () => {
     } else {
       setLoading(false);
     }
-  };
+  }, [dataCallIgdb, nbGames]);
+
+  useEffect(() => {
+    let listener = firebase.auth.onAuthStateChanged((user) => {
+      user ? apiRender() : setUser(null);
+    });
+    return () => {
+      listener();
+    };
+  }, [user, apiRender, firebase.auth, setUser]);
 
   const ViewGames = () => {
     if (nbGames !== 0 && isViewAll === true) {

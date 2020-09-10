@@ -91,7 +91,7 @@ const GameItem = (props) => {
     return () => {
       listener();
     };
-  }, [user]);
+  }, [user, firebase.auth, props.history]);
 
   if (user) {
     return (

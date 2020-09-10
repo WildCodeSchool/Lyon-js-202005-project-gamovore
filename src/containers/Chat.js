@@ -11,6 +11,7 @@ import SendedMessage from "../style/SendedMessage";
 import Scrollable from "../style/Scrollable";
 import ReceivedMessage from "../style/ReceivedMessage";
 import ConversationContent from "../style/ConversationContent";
+import { useCallback } from "react";
 
 const Chat = () => {
   const myRef = useRef(null);
@@ -23,11 +24,11 @@ const Chat = () => {
     });
   };
 
-  const executeScroll = () => {
+  const executeScroll = useCallback(() => {
     scrollToRef(myRef);
-  };
+  }, []);
 
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const firebase = useContext(FirebaseContext);
   const [gamovoreState, setGamovoreState] = useState(null);
   const [messageWrite, setMessageWrite] = useState("");
@@ -76,10 +77,6 @@ const Chat = () => {
 
     // Recharge l'utilisateur
 
-    firebase.userActu(userId).onSnapshot(function (doc) {
-      setUser(doc.data());
-    });
-
     executeScroll();
 
     // remets les messages à 0
@@ -91,27 +88,22 @@ const Chat = () => {
       const userId = user.id;
       const gamovoreId = gamovoreState.id;
 
-      firebase
-        .firestore()
+      firebase.db
         .collection("users")
         .doc(userId)
         .collection(gamovoreId)
-        .orderBy("date", "asc")
-        .get()
-        .then((snapshot) => {
-          let messages = [];
-          snapshot.forEach((doc) => {
-            if (doc && doc.exists) {
-              messages.push(doc.data());
-            }
+        .onSnapshot((querySnapshot) => {
+          const gamovoreId = [];
+          querySnapshot.forEach((doc) => {
+            gamovoreId.push(doc.data());
           });
-          setUserChat(messages);
-        })
-        .then(() => {
+          setUserChat(gamovoreId);
           executeScroll();
         });
+
+      console.log("toto");
     }
-  }, [user, gamovoreState]);
+  }, [user, gamovoreState, executeScroll, firebase]);
 
   return (
     <ChatLayout>
