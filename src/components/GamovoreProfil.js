@@ -39,7 +39,7 @@ const GamovoreProfil = (props) => {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  }, []);
+  }, [firebase.db, props.location.state.gvid]);
 
   useEffect(() => {
     if (gamovoreData.favoriteGameId !== undefined) {
@@ -108,10 +108,6 @@ const GamovoreProfil = (props) => {
       setUser(doc.data());
     });
   };
-
-  if (gamovoreData.favoriteGameId) {
-    console.log(gamovoreData.favoriteGameId.length);
-  }
 
   return gamovoreData.length !== 0 ? (
     <ProfilPageLayout>
