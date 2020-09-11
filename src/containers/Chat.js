@@ -150,6 +150,7 @@ const Chat = () => {
                     onChange={handleChangeMessage}
                     value={messageWrite}
                     onKeyPress={handleUserKeyPress}
+                    required
                   />
                   <Button type="submit">Send</Button>
                 </form>
