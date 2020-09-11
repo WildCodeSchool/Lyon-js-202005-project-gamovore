@@ -1,24 +1,55 @@
-import React, {useContext} from 'react';
-import { AuthContext } from "../App";
-import { UserBase } from "../UserBase";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/UserContext";
+import StyleForPseudo from "../style/Pseudo";
+import StyleForAvatar from "../style/Avatar";
+import StyleForProfilButton from "../style/StyledProfilButton";
+import Linked from "../style/Linked";
+import Logout from "../components/Logout";
+import AvatarContainer from "../style/AvatarContainer";
+import DropDownContainer from "../style/DropDownContainer";
+import MenuItem from "../style/MenuItem";
+import DropDownContainerInvisible from "../style/DropDownContainerInvisible";
 
-import StyleForPseudo from "./Pseudo";
-import StyleForAvatar from "./Avatar";
-import StyleForProfilButton from "./StyledProfilButton";
-import Linked from "./Linked";
+const ProfilButton = (props) => {
+  const { user } = useContext(UserContext);
+  const [hover, setHover] = useState(false);
 
-
-
-const ProfilButton = () => {
-    const { currentUser } = useContext(AuthContext);
-    const detailsUser = UserBase.find(el => el.pseudo === currentUser);
-    return (
-        <Linked to="/profil"><StyleForProfilButton>
-            <StyleForAvatar src={detailsUser.avatar}/>
-            <StyleForPseudo>{detailsUser.pseudo}</StyleForPseudo>
-        </StyleForProfilButton>
-        </Linked>
-    )
-}
+  return props.drop && hover ? (
+    <StyleForProfilButton
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <Linked to="/profil">
+        <AvatarContainer>
+          <StyleForAvatar src={user.avatarUrl} />
+          <StyleForPseudo>{user.pseudo}</StyleForPseudo>
+        </AvatarContainer>
+      </Linked>
+      <DropDownContainerInvisible>
+        <DropDownContainer>
+          <Linked to="/profil">
+            <MenuItem>My profile</MenuItem>
+          </Linked>
+          <Linked to="/chat">
+            <MenuItem>My Messages</MenuItem>
+          </Linked>
+          <Logout />
+        </DropDownContainer>
+      </DropDownContainerInvisible>
+    </StyleForProfilButton>
+  ) : (
+    <Linked to="/profil">
+      <StyleForProfilButton
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <StyleForAvatar src={user.avatarUrl} />
+          <StyleForPseudo>{user.pseudo}</StyleForPseudo>
+        </div>
+      </StyleForProfilButton>
+    </Linked>
+  );
+};
 
 export default ProfilButton;

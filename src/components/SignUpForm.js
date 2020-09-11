@@ -1,43 +1,99 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import FirebaseContext from "../firebase-config/FirebaseContext";
 
-import Form from "./Form";
-import Input from "./Input";
-import Button from "./Button";
-import SeparForm from "./SeparForm";
-import Linked from "./Linked";
+import Form from "../style/Form";
+import Input from "../style/Input";
+import Button from "../style/Button";
+import SeparForm from "../style/SeparForm";
+import Linked from "../style/Linked";
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
+  const firebase = useContext(FirebaseContext);
+
+  const data = {
+    pseudo: "",
+    email: "",
+    password: "",
+  };
+
+  const [disable, setDisable] = useState(true);
+  const [loginData, setLoginData] = useState(data);
+
+  const checked = () => {
+    setDisable(false);
+  };
+
+  const handleChange = (e) => {
+    setLoginData({ ...loginData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    firebase
+      .signupUser(loginData.email, loginData.password)
+      .then((authUser) => {
+        return firebase.userAdd(authUser.user.uid).set({
+          id: authUser.user.uid,
+          pseudo: loginData.pseudo,
+          email: loginData.email,
+          avatarUrl:
+            "https://medgoldresources.com/wp-content/uploads/2018/02/avatar-placeholder.gif",
+          description: "I am a new gamovore",
+          avaibalities: ["afternoon", "morning", "evening", "night"],
+          favoriteGameId: [],
+          favoriteGamovoreID: [],
+        });
+      })
+      .then(() => {
+        setLoginData({ ...data });
+        props.history.push("/");
+      })
+      .catch((error) => {
+        alert(error);
+        setLoginData({ ...data });
+      });
+  };
+
   return (
     <Form>
-      <h1>Join Gamovore</h1>
+      <h1>Join Gamovore!</h1>
       <p>Sign up to find other gamovores</p>
-      <label htmlFor="pseudoAdd"></label>
+      <label htmlFor="pseudo"></label>
       <Input
         type="text"
-        id="pseudoAdd"
+        id="pseudo"
         name="pseudo"
         placeholder="Your pseudo here"
         required
+        value={loginData.pseudo}
+        onChange={handleChange}
       />
-      <label htmlFor="mail"></label>
+      <label htmlFor="email"></label>
       <Input
         type="email"
-        id="mail"
-        name="e-mail"
-        placeholder="Your e-mail here"
+        id="email"
+        name="email"
+        placeholder="Your email address here"
         required
+        value={loginData.email}
+        onChange={handleChange}
       />
-      <label htmlFor="passAdd"></label>
+      <label htmlFor="password"></label>
       <Input
         type="password"
-        id="passAdd"
+        id="password"
         name="password"
         minLength="8"
-        placeholder="Your password here"
+        placeholder="Password"
         required
+        value={loginData.password}
+        onChange={handleChange}
       />
-      <input type="checkbox" /> I agree to your Terms and Conditions
-      <Button type="submit">Create your free account</Button>
+      <input type="checkbox" onChange={checked} /> I agree to the terms and
+      conditions
+      <Button type="submit" disabled={disable} onClick={handleSubmit}>
+        Create your free account
+      </Button>
       <SeparForm />
       <p>
         Already registered? <Linked to="/sign-in">Sign in</Linked>

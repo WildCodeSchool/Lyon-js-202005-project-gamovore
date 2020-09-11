@@ -1,29 +1,17 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../App";
-import { UserBase } from "../UserBase";
-import ProfilLayout from "./ProfilLayout";
-import ProfilButton from "./ProfilButton";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/UserContext";
+import ViewProfil from "./ViewProfil";
+import EditProfil from "./EditProfil";
 
 const Profil = () => {
-  const { currentUser } = useContext(AuthContext);
-  const detailsUser = UserBase.find((el) => el.pseudo === currentUser);
-  return (
-    <ProfilLayout>
-      <ProfilButton />
-      <div>
-        <h2>Description:</h2>
-        <p>{detailsUser.description}</p>
-      </div>
-      <div>
-        <h2>Disponibilities:</h2>
-        <p>{detailsUser.avaibality}</p>
-      </div>
-      <div>
-        <h2>Playing Modes:</h2>
-        <p>{detailsUser.gameMode.join(" - ")}</p>
-      </div>
-    </ProfilLayout>
-  );
+  const { user } = useContext(UserContext);
+  const [editProfil, setEditProfil] = useState(false);
+
+  if (!editProfil) {
+    return <ViewProfil user={user} setEditProfil={setEditProfil} />;
+  } else {
+    return <EditProfil user={user} setEditProfil={setEditProfil} />;
+  }
 };
 
 export default Profil;
