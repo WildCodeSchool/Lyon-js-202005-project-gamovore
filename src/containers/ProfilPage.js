@@ -38,7 +38,7 @@ const ProfilPage = () => {
     if (nbGames !== 0 && nbGames !== null) {
       axios({
         url:
-          "https://thingproxy.freeboard.io/fetch/https://api-v3.igdb.com/games",
+          "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
         method: "POST",
         headers: {
           Accept: "application/json",
