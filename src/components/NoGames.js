@@ -6,7 +6,7 @@ const NoGames = () => {
   return (
     <NoGamesDiv>
       <NoGamesImg
-        src="https://media1.tenor.com/images/75a9e4cd4f617f5add61b972cd441ca2/tenor.gif?itemid=11936006"
+        src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ec7b9b48968549.58a6e6d241353.gif"
         alt="no games"
         title="no games"
       />
