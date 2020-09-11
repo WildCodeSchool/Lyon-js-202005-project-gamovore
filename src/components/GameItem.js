@@ -254,7 +254,7 @@ const GameItem = (props) => {
                       ""
                     )}
                     {item.name === "PlayStation Network"
-                      ? "playStation Netword"
+                      ? "PlayStation Network"
                       : ""}
                     {item.name === "Xbox One" ? (
                       <>
