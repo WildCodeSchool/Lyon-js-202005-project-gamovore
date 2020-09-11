@@ -49,7 +49,7 @@ const GamovoreProfil = (props) => {
       if (gameToLoad.length !== 0) {
         axios({
           url:
-            "https://thingproxy.freeboard.io/fetch/https://api-v3.igdb.com/games",
+            "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
           method: "POST",
           headers: {
             Accept: "application/json",
