@@ -7,6 +7,7 @@ import Loading from "../style/Loading";
 import LoadingImg from "../style/LoadingImg";
 import GameListLayout from "../style/GameListLayout";
 import CallIgdb from "./CallIgdb";
+import NoGames from "../components/NoGames";
 
 const GameListBox = (props) => {
   const firebase = useContext(FirebaseContext);
@@ -60,6 +61,8 @@ const GameListBox = (props) => {
             alt="loading"
           />
         </Loading>
+      ) : gameList.length === 0 ? (
+        <NoGames />
       ) : (
         gameList.map((item) => <GameCard {...item} key={item.id} />)
       )}
