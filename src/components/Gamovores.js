@@ -5,7 +5,6 @@ import StyleForPseudo from "../style/Pseudo";
 import AvatarImg from "../style/AvatarImg";
 import GamovoreDiv from "../style/GamovoreDiv";
 import Linked from "../style/Linked";
-import Title from "../style/Title";
 
 const Gamovores = (props) => {
   const [gamovoresList, setGamovoresList] = useState(null);
