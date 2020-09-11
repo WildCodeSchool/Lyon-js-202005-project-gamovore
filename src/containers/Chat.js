@@ -35,8 +35,19 @@ const Chat = () => {
   const [userChat, setUserChat] = useState(null);
 
   const handleChangeMessage = (e) => {
-    e.preventDefault();
     setMessageWrite(e.target.value);
+  };
+
+  const handleUserKeyPress = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage({ user }, { gamovoreState }, messageWrite, setMessageWrite);
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    sendMessage({ user }, { gamovoreState }, messageWrite, setMessageWrite);
   };
 
   const sendMessage = ({ user }, { gamovoreState }, messageWrite) => {
@@ -133,25 +144,15 @@ const Chat = () => {
                 ) : (
                   <div>No message</div>
                 )}
-                <div>
+                <form onSubmit={onSubmit}>
                   <br />
                   <Textarea
                     onChange={handleChangeMessage}
                     value={messageWrite}
-                  ></Textarea>
-                  <Button
-                    onClick={() =>
-                      sendMessage(
-                        { user },
-                        { gamovoreState },
-                        messageWrite,
-                        setMessageWrite
-                      )
-                    }
-                  >
-                    Send
-                  </Button>
-                </div>
+                    onKeyPress={handleUserKeyPress}
+                  />
+                  <Button type="submit">Send</Button>
+                </form>
               </Messages>
             </Scrollable>
           </ConversationContent>
