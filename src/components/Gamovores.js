@@ -62,7 +62,7 @@ const Gamovores = (props) => {
   } else {
     return (
       <div>
-        <Title> Gamovores</Title>
+        <h1> Gamovores</h1>
         <p>Loading...</p>
       </div>
     );
