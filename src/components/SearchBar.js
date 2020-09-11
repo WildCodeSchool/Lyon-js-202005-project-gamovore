@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import { GameListContext } from "../context/GameListContext";
 import StyledSearchBar from "../style/StyledSearchBar";
+import { useHistory } from "react-router-dom";
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const { data, setData } = useContext(GameListContext);
   const [search, setSearch] = useState(data);
+  const history = useHistory();
 
   const onChange = (e) => {
     setSearch(e.target.value);
@@ -12,6 +14,9 @@ const SearchBar = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if (window.location.pathname !== "/") {
+      history.push("/");
+    }
     setData(inputToRequest(search));
   };
 
