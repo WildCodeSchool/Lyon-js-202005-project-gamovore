@@ -14,7 +14,7 @@ const SearchBar = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (window.location.pathname) {
+    if (window.location.pathname !== "/") {
       history.push("/");
     }
     setData(inputToRequest(search));
