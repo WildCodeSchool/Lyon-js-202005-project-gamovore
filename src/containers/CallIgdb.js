@@ -9,8 +9,7 @@ const CallIgdb = (dataCallIgdb) => {
 
   useEffect(() => {
     axios({
-      url:
-        "https://thingproxy.freeboard.io/fetch/https://api-v3.igdb.com/games",
+      url: "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games",
       method: "POST",
       headers: {
         Accept: "application/json",
