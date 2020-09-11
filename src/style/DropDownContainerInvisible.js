@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import DropDownContainer from "./DropDownContainer";
 
 const DropDownContainerInvisible = styled.div`
   background-color: rgba(0, 0, 0, 0);

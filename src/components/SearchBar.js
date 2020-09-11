@@ -22,7 +22,12 @@ const SearchBar = () => {
 
   return (
     <StyledSearchBar onSubmit={onSubmit}>
-      <input type="search" onChange={onChange} placeholder="Search..." />
+      <input
+        type="search"
+        onChange={onChange}
+        placeholder="Search..."
+        required
+      />
       <button type="submit">Go</button>
     </StyledSearchBar>
   );
