@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import FirebaseContext from "../firebase-config/FirebaseContext";
+import Linked from "../style/Linked";
 import GameCard from "../components/GameCard";
 import Profil from "../components/Profil";
 import ProfilPageLayout from "../style/ProfilPageLayout";
@@ -86,7 +87,7 @@ const ProfilPage = () => {
         </MyGameDiv>
       );
     } else {
-      return <div>No game in that collection </div>;
+      return <Linked to="/">No game in that library. Go and add one! </Linked>;
     }
   };
 
